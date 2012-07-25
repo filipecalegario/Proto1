@@ -11,7 +11,7 @@
 @implementation P1AppDelegate
 
 @synthesize window = _window;
-@synthesize audioController = _audioController;
+@synthesize audioController = _audioController ;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
