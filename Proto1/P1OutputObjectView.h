@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "P1EditView.h"
 #import "P1IconView.h"
-#import "P1ConnectorView.h"
 
 @interface P1OutputObjectView : UIView
 

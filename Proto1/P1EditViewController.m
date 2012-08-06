@@ -9,11 +9,11 @@
 #import "P1EditViewController.h"
 
 #import "P1InputObjectView.h"
-#import "P1ConnectionObject.h"
 #import "P1AddObjectMenuViewController.h"
 #import "P1PlayViewController.h"
 #import "P1ContextMenuViewController.h"
 #import "P1OutputObjectView.h"
+#import "P1ObjectFactory.h"
 
 @interface P1EditViewController ()
 
@@ -30,6 +30,9 @@
 @synthesize myPopover = _myPopover;
 @synthesize contextMenuPopover = _contextMenuPopover;
 
+
+//======== METHODS FOR REMOTE ACCESS ========
+
 - (void) addObject:(NSString *)identifier
 {
     UIView *object;
@@ -38,65 +41,24 @@
     
     if([identifier isEqualToString:@"Touch"]){
         NSLog(@"adding a touch input object");
-        
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"touch" withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([identifier isEqualToString:@"Horizontal Slide"]) {
         NSLog(@"adding a horizontal slide input object");     
-        
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"horizontalSlide" withConnectorType:@"track" withCanvas:canvas];
         
     } else if ([identifier isEqualToString:@"Vertical Slide"]) {
         NSLog(@"adding a vertical slide input object");       
-        
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"verticalSlide" withConnectorType:@"track" withCanvas:canvas];
         
     } else if ([identifier isEqualToString:@"Note Flow"]) {
         NSLog(@"adding a play notes output object");
-        
-        object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 100, 400)];
-        
-//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"output" withIconType:@"playNotes" withConnectorType:@"trigger" withCanvas:canvas];
-//        
-//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"output" withIconType:@"changePitch" withConnectorType:@"track" withCanvas:canvas];
-//        
-//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"output" withIconType:@"changeDuration" withConnectorType:@"track" withCanvas:canvas];
-        
-        NSLog(@"NoteFlow");
-        object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 150)];
-        
-        NSString* defaultIconImageSource = @"specialIconLong";
-        CGRect defaultIconRect = CGRectMake(50, 0, 100, 50);
-        CGRect defaultConnectorRect = CGRectMake(0, 0, 50, 50);
-        
-        NSArray *icons = [[NSArray alloc] initWithObjects:
-                          [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"playNotes" withImageSource:defaultIconImageSource],
-                          [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"pitch"  withImageSource:defaultIconImageSource],
-                          [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"duration"  withImageSource:defaultIconImageSource],
-                          nil];
-        
-        NSArray *connectors = [[NSArray alloc] initWithObjects:
-                          [[P1IconView alloc] initWithFrame:defaultConnectorRect withType:@"trigger" withImageSource:@"specialConnector"],
-                          [[P1IconView alloc] initWithFrame:defaultConnectorRect withType:@"track"  withImageSource:@"specialTrackConnector"],
-                          [[P1IconView alloc] initWithFrame:defaultConnectorRect withType:@"track"  withImageSource:@"specialTrackConnector"],
-                          nil];
-        
-        for (int i = 0; i < 3; i++)
-        {
-            
-            P1IconView* icon = [icons objectAtIndex:i];
-            P1IconView* connector = [connectors objectAtIndex:i];
-            
-            P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 150, 50) withObjectType:@"output" withIcon:icon withConnector:connector withCanvas:self.canvas];
-            //noteObject.myTag = 128;
-            
-            [object addSubview:noteObject];
-        }
+        object = [P1ObjectFactory createNoteFlowWithCanvas:self.canvas];
         
     } else if ([identifier isEqualToString:@"Touchable"]) {
         NSLog(@"adding a touchable input object");  
-        
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"touchable" withConnectorType:@"trigger" withCanvas:canvas];
+        
     }else if ([identifier isEqualToString:@"swipeUp"]) {
         NSLog(@"adding a swipeUp input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeUp" withConnectorType:@"trigger" withCanvas:canvas];
@@ -131,58 +93,12 @@
         
     } else if ([identifier isEqualToString:@"Play Note"]) {
         NSLog(@"adding a touchable input object");
-        
-//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"output" withIconType:@"playNote" withConnectorType:@"trigger" withCanvas:canvas];
-//        object.myTag = 60;
-//        
-//        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapHandle:)];
-//        [object.icon addGestureRecognizer:longPress];
-        
-        NSString* iconTypeString = @"playNote";
-        NSString* connectorTypeString = @"trigger";
-        object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 100, 400)];
-        
-        for (int i = 0; i < 8; i++)
-        {
-            P1IconView* connector = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 50, 50) withType:connectorTypeString withImageSource:@"specialConnector"];
-            P1IconView* icon = [[P1IconView alloc] initWithFrame:CGRectMake(50, 0, 50, 50) withType:iconTypeString withImageSource:@"specialIcon"];
-            P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 100, 50) withObjectType:@"output" withIcon:icon withConnector:connector withCanvas:self.canvas];
-            noteObject.myTag = 60 + i;
-            [object addSubview:noteObject];
-            UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapHandle:)];
-            [icon addGestureRecognizer:longPress];
-        }
+        object = [P1ObjectFactory createNoteArrayWithCanvas:self.canvas withGestureHandler:self];
         
     } else if ([identifier isEqualToString:@"Afrobeat"]) {
         NSLog(@"Afrobeat");
-        object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 350)];
+        object = [P1ObjectFactory createAfrobeatWithCanvas:self.canvas];
         
-        NSString * connectorTypeString = @"trigger";
-    
-        CGRect defaultIconRect = CGRectMake(50, 0, 100, 50);
-        NSString* defaultIconImageSource = @"specialIconLong";
-        
-        NSArray *icons = [[NSArray alloc] initWithObjects:
-                          [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"music1" withImageSource:defaultIconImageSource],
-                          [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"music2"  withImageSource:defaultIconImageSource],
-                          [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"music3"  withImageSource:defaultIconImageSource],
-                          [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"music4"  withImageSource:defaultIconImageSource],
-                          [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"bpmUp"  withImageSource:defaultIconImageSource],
-                          [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"bpmDown" withImageSource:defaultIconImageSource],
-                          [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"trackSel" withImageSource:defaultIconImageSource],
-                          nil];
-        
-        for (int i = 0; i < 7; i++)
-        {
-            P1IconView* connector = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 50, 50) withType:connectorTypeString withImageSource:@"specialConnector"];
-            
-            P1IconView* icon = [icons objectAtIndex:i];
-            
-            P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 150, 50) withObjectType:@"output" withIcon:icon withConnector:connector withCanvas:self.canvas];
-            noteObject.myTag = 128;
-
-            [object addSubview:noteObject];
-        }
     }
     object.center = botao.center;
     [self.canvas addSubview:object];
@@ -197,12 +113,14 @@
     [self.contextMenuPopover dismissPopoverAnimated:NO];
 }
 
+//======== SEGUES ========
+
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"AddInputObject"] || [segue.identifier isEqualToString:@"AddOutputObject"]) {
         NSLog(@"Add gesture segue");
         [segue.destinationViewController setEditViewController:self];
-
+        
         CGPoint point;
         
         if([sender isMemberOfClass:[UITapGestureRecognizer class]]){
@@ -275,20 +193,19 @@
     }
 }
 
+//======== GESTURES HANDLERS ========
+
 - (void) longTapHandle:(UILongPressGestureRecognizer *)gesture
 {
     if (gesture.state == UIGestureRecognizerStateBegan) {
         [self performSegueWithIdentifier:@"ContextMenu" sender:gesture.view.superview];
     }
-    //gesture.view.superview;
-        NSLog(@"MELDELS!");
 }
 
 - (void) doubleTapHandle:(UITapGestureRecognizer *)gesture
 {
     NSLog(@"doubleTap working...");
     [self performSegueWithIdentifier: @"AddOutputObject" sender:gesture];
-    //[self performSegueWithIdentifier: @"AddObjectTableView" sender:gesture];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -299,6 +216,8 @@
     }
     return self;
 }
+
+//======== DEFAULT METHODS ========
 
 - (void)viewDidLoad
 {

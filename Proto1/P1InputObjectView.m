@@ -47,11 +47,7 @@
 
 - (CGPoint)auxPoint
 {
-//    CGPoint p1x = self.center;
-//    CGPoint p2x = self.connectedTo.center;
     CGFloat distance = 200;
-    
-//    CGFloat f = [self pointPairToBearingDegrees:p1x secondPoint:p2x];
     
     CGPoint auxPoint;
     if([self.objectType isEqualToString:@"input"]){
@@ -59,21 +55,7 @@
     } else if([self.objectType isEqualToString:@"output"]){
         auxPoint = CGPointMake(self.center.x - distance, self.center.y);
     }
-//    if ((f >= 0 && f < 45) || (f > 315 && f <= 360)) {
-//        auxPoint = CGPointMake(self.center.x + distance, self.center.y);
-//        self.connectorState = @"east";
-//    } else if (f > 45 && f < 135){
-//        auxPoint = CGPointMake(self.center.x, self.center.y + distance);
-//        self.connectorState = @"south";
-//    } else if (f > 135 && f < 225){
-//        auxPoint = CGPointMake(self.center.x - distance, self.center.y);
-//        self.connectorState = @"west";
-//    } else if (f > 225 && f < 315){
-//        auxPoint = CGPointMake(self.center.x, self.center.y - distance);
-//        self.connectorState = @"north";
-//    }
-    //_auxPoint = auxPoint;
-    //[self setNeedsDisplay];
+
     return auxPoint;
 }
 
@@ -97,9 +79,6 @@
         self.connector = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 50, 100) withType:[NSString stringWithFormat:@"%@Flipped", connectorType]];
         self.icon = [[P1IconView alloc] initWithFrame:CGRectMake(50, 0, 100, 100) withType:iconType];
     }
-    
-//    self.icon = [[P1IconView alloc] initWithFrame:CGRectMake(50, 50, 100, 100) withType:iconType];
-//    self.connector = [[P1IconView alloc] initWithFrame:CGRectMake(150, 50, 50, 100) withType:connectorType];
     
     UIPanGestureRecognizer* panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panIcon:)];
     UIPanGestureRecognizer* panConnectorGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panConnector:)];
@@ -131,96 +110,6 @@
 }
 
 
-- (void)setupAlternative:(NSString *)objectType withIconType:(NSString *)iconType withIconFrame:(CGRect)iconFrame withConnectorType:(NSString *)connectorType withConnectorFrame:(CGRect)connectorFrame withCanvas:(P1EditView *)canvas
-{
-    
-    self.canvas = canvas;
-    self.hasToBeDrawn = true;
-    
-    self.iconType = iconType;
-    self.connectorType = connectorType;
-    self.objectType = objectType;
-    
-    self.backgroundColor = [UIColor clearColor];
-    self.contentMode = UIViewContentModeRedraw;
-    
-    self.icon = [[P1IconView alloc] initWithFrame:iconFrame withType:iconType];
-    self.connector = [[P1IconView alloc] initWithFrame:connectorFrame withType:connectorType];
-
-    UIPanGestureRecognizer* panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panIconMultiple:)];
-    UIPanGestureRecognizer* panConnectorGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panConnector:)];
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapIconMultiple:)];
-    tapGesture.numberOfTouchesRequired = 1;
-    tapGesture.numberOfTapsRequired = 2;
-    
-    UITapGestureRecognizer *tapGesture2 = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapConnector:)];
-    tapGesture2.numberOfTouchesRequired = 1;
-    tapGesture2.numberOfTapsRequired = 2;
-    
-    [_icon addGestureRecognizer:tapGesture];
-    [_icon addGestureRecognizer:panIconGesture];
-    [_connector addGestureRecognizer:panConnectorGesture];
-    [_connector addGestureRecognizer:tapGesture2];
-    
-    [self addSubview:_icon];
-    [self addSubview:_connector];
-    
-    if ([self.iconType isEqualToString:@"playNote"]) {
-        self.noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 100, 25, 25)];
-        self.noteLabel.text = [NSString stringWithFormat:@"%i", self.myTag];
-        self.noteLabel.textAlignment = UITextAlignmentCenter;
-        self.noteLabel.backgroundColor = [UIColor clearColor];
-        self.noteLabel.font = [UIFont fontWithName:@"Helvetica" size:18];
-        [self addSubview:self.noteLabel];
-    }
-}
-
-- (CGFloat) pointPairToBearingDegrees:(CGPoint)startingPoint secondPoint:(CGPoint)endingPoint
-{
-    CGPoint originPoint = CGPointMake(endingPoint.x - startingPoint.x, endingPoint.y - startingPoint.y); // get origin point to origin by subtracting end from start
-    float bearingRadians = atan2f(originPoint.y, originPoint.x); // get bearing in radians
-    float bearingDegrees = bearingRadians * (180.0 / M_PI); // convert to degrees
-    bearingDegrees = (bearingDegrees > 0.0 ? bearingDegrees : (360.0 + bearingDegrees)); // correct discontinuity
-    return bearingDegrees;
-}
-
-//- (id)initWithFrame:(CGRect)frame withIcon:(P1IconView*)icon withConnector:(P1IconView*)connector
-//{
-//    self = [super initWithFrame:frame];
-//    if (self) {
-//        
-//    }
-//    return self;
-//}
-
-//- (id)initWithFrame:(CGRect)frame
-//{
-//    self = [super initWithFrame:frame];
-//    NSString* iconTypeString = @"playNote";
-//    NSString* connectorTypeString = @"triggerFlipped";
-//    NSArray *connectors = [[NSArray alloc] initWithObjects:
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 50, 50) withType:connectorTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(0, 50, 50, 50) withType:connectorTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(0, 100, 50, 50) withType:connectorTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(0, 150, 50, 50) withType:connectorTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(0, 200, 50, 50) withType:connectorTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(0, 250, 50, 50) withType:connectorTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(0, 300, 50, 50) withType:connectorTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(0, 350, 50, 50) withType:connectorTypeString],
-//                      nil];
-//
-//    NSArray *icons = [[NSArray alloc] initWithObjects:
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(50, 0, 50, 50) withType:iconTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(50, 50, 50, 50) withType:iconTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(50, 100, 50, 50) withType:iconTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(50, 150, 50, 50) withType:iconTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(50, 200, 50, 50) withType:iconTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(50, 250, 50, 50) withType:iconTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(50, 300, 50, 50) withType:iconTypeString],
-//                      [[P1IconView alloc] initWithFrame:CGRectMake(50, 350, 50, 50) withType:iconTypeString],
-//                      nil];
-//}
 
 - (id)initWithFrame:(CGRect)frame withObjectType:(NSString*)objectType withIcon:(P1IconView*)iconObject withConnector:(P1IconView*)connectorObject withCanvas:(P1EditView*)canvas
 {
@@ -269,15 +158,6 @@
             self.noteLabel.font = [UIFont fontWithName:@"Helvetica" size:18];
             [self addSubview:self.noteLabel];
         //}
-    }
-    return self;
-}
-
-- (id)initWithFrame:(CGRect)frame withObjectType:(NSString *)objectType withIconType:(NSString *)iconType withIconFrame:(CGRect)iconFrame withConnectorType:(NSString *)connectorType withConnectorFrame:(CGRect)connectorFrame withCanvas:(P1EditView *)canvas
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setupAlternative:objectType withIconType:iconType withIconFrame:iconFrame withConnectorType:connectorType withConnectorFrame:connectorFrame withCanvas:canvas];
     }
     return self;
 }
@@ -354,29 +234,6 @@
         //self.noteLabel.center = self.icon.center;
     }
     self.noteLabel.center = self.icon.center;
-    
-//    CGPoint aux = self.auxPoint;
-//
-//    CGAffineTransform newTransform;
-//    CGPoint centerToGo;
-//    
-//    if ([self.connectorState isEqualToString:@"north"]) {
-//        newTransform = CGAffineTransformMakeRotation(-3.14159/2);
-//        centerToGo = CGPointMake(100, 25);
-//    } else if ([self.connectorState isEqualToString:@"east"]) {
-//        newTransform = CGAffineTransformMakeRotation(0);
-//        centerToGo = CGPointMake(175, 100);
-//    } else if ([self.connectorState isEqualToString:@"south"]) {
-//        newTransform = CGAffineTransformMakeRotation(3.14159/2);
-//        centerToGo = CGPointMake(100, 175);
-//    } else if ([self.connectorState isEqualToString:@"west"]) {
-//        newTransform = CGAffineTransformMakeRotation(3.14159);
-//        centerToGo = CGPointMake(25, 100);
-//    }
-//    
-//    [UIView animateWithDuration:0.2 animations:^{
-//        self.connector.transform = newTransform;
-//        self.connector.center = centerToGo;}];
     
 }
 

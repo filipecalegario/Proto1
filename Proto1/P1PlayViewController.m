@@ -69,8 +69,6 @@
     }
     
     for (P1InputObjectView *currentObject in self.objectArray) {
-        //NSLog([NSString stringWithFormat:@"%@, %@, %@ connectedTo %@, %@, %@", currentObject.objectType, currentObject.iconType, currentObject.connectorType, currentObject.connectedTo.objectType, currentObject.connectedTo.iconType, currentObject.connectedTo.connectorType]);
-        
         if ([currentObject.connectedTo.iconType isEqualToString:@"playNote"]) {
             if ([currentObject.iconType isEqualToString:@"touchable"]){
                 //[self.touchableObjects addObject:currentObject];
@@ -95,7 +93,6 @@
                 NSNumber * noteToPlay = [NSNumber numberWithInt:currentObject.connectedTo.myTag];
                 NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
                 [self.swipeDictionary setObject:noteToPlay forKey:keyToStore];
-                //NSLog([NSString stringWithFormat:@"%i, %i", noteToPlay.intValue, keyToStore.intValue]);
                 [self.playArea addGestureRecognizer:swipe];
             }
         } else if(currentObject.connectedTo.myTag == 128.0){
@@ -120,11 +117,10 @@
                 
                 NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
                 [self.swipeDictionary setObject:messageToSend forKey:keyToStore];
-                
-                //NSLog([NSString stringWithFormat:@"%i, %i", noteToPlay.intValue, keyToStore.intValue]);
+
                 [self.playArea addGestureRecognizer:swipe];
             }
-
+            
             
         }
         
@@ -184,7 +180,7 @@
 {
     CGPoint point = [gesture locationInView:self.playArea];
     UIView* pickedView = [self.playArea hitTest:point withEvent:nil];
-    NSLog(pickedView.debugDescription);
+    //NSLog(pickedView.debugDescription);
     if ([pickedView isKindOfClass:[UIButton class]]) {
         UIButton* button = (UIButton *)pickedView;
         //button.backgroundColor = [UIColor redColor];
@@ -195,7 +191,7 @@
 
 - (void)panOnTheButtonAction:(UIPanGestureRecognizer *)gesture
 {
-    UIButton* buttonForAction = (UIButton *)gesture.view;
+    //UIButton* buttonForAction = (UIButton *)gesture.view;
     //[PdBase sendFloat:buttonForAction.tag toReceiver:@"midinote"];
     //[PdBase sendBangToReceiver:@"noteTrigger"];
 }
@@ -203,32 +199,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-     
-    //NSArray *swipeKeys = [NSArray arrayWithObjects:@"swipeUp", @"swipeDown", @"swipeLeft", @"swipeRight",@"swipeDoubleUp", @"swipeDoubleDown", @"swipeDoubleLeft", @"swipeDoubleDown", nil];
     
-    NSArray * initialNotes = [NSArray arrayWithObjects: [NSNumber numberWithInt:50],
-                                                        [NSNumber numberWithInt:50],
-                                                        [NSNumber numberWithInt:50],
-                                                        [NSNumber numberWithInt:50],
-                                                        [NSNumber numberWithInt:50],
-                                                        [NSNumber numberWithInt:50],
-                                                        [NSNumber numberWithInt:50],
-                                                        [NSNumber numberWithInt:50],
-                                                        nil];
-    
-    NSArray * swipeKeys = [NSArray arrayWithObjects: 
-                            [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionUp*2],
-                            [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionDown*2],
-                            [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionLeft*2],
-                            [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionRight*2],
-                            [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionUp*(2+1)],
-                            [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionDown*(2+1)],
-                            [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionLeft*(2+1)],
-                            [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionRight*(2+1)],
-                              nil];
-    
-    self.swipeDictionary = [[NSMutableDictionary alloc] initWithObjects:initialNotes forKeys:swipeKeys];
+    [self initializeSwipeDictionary];
     
     NSLog(@"viewDidLoad");
     
@@ -238,6 +210,32 @@
     
     [self loadPatch:self.patchToLoad];
     
+}
+
+- (void) initializeSwipeDictionary
+{
+    NSArray * initialNotes = [NSArray arrayWithObjects: [NSNumber numberWithInt:50],
+                              [NSNumber numberWithInt:50],
+                              [NSNumber numberWithInt:50],
+                              [NSNumber numberWithInt:50],
+                              [NSNumber numberWithInt:50],
+                              [NSNumber numberWithInt:50],
+                              [NSNumber numberWithInt:50],
+                              [NSNumber numberWithInt:50],
+                              nil];
+    
+    NSArray * swipeKeys = [NSArray arrayWithObjects: 
+                           [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionUp*2],
+                           [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionDown*2],
+                           [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionLeft*2],
+                           [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionRight*2],
+                           [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionUp*(2+1)],
+                           [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionDown*(2+1)],
+                           [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionLeft*(2+1)],
+                           [NSNumber numberWithInt:UISwipeGestureRecognizerDirectionRight*(2+1)],
+                           nil];
+    
+    self.swipeDictionary = [[NSMutableDictionary alloc] initWithObjects:initialNotes forKeys:swipeKeys];
 }
 
 - (void) loadPatch:(NSString*)patchName
@@ -332,7 +330,7 @@
 {
     [self setPlayArea:nil];
     [super viewDidUnload];
-//    [PdBase closeFile:patch];
+    //    [PdBase closeFile:patch];
     [PdBase setDelegate:nil];
     patch = nil;
 }
