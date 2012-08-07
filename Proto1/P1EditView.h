@@ -18,4 +18,6 @@
 - (void)tapIconMultiple:(UITapGestureRecognizer *)gesture;
 - (void)tapConnector:(UITapGestureRecognizer *)gesture;
 
+-(NSArray*)getAllObjects;
+
 @end

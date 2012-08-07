@@ -41,12 +41,17 @@
     return self;
 }
 
-- (void)populateArray:(NSMutableArray *)objectArray
+//- (void)populateArray:(NSMutableArray *)objectArray
+//{
+//    _objectArray = [[NSMutableArray alloc] init];
+//    for (P1InputObjectView * object in objectArray) {
+//        [_objectArray addObject:object];
+//    }
+//}
+
+- (void)populateArray:(NSArray *)objectArray
 {
-    _objectArray = [[NSMutableArray alloc] init];
-    for (P1InputObjectView * object in objectArray) {
-        [_objectArray addObject:object];
-    }
+    self.objectArray = objectArray;
 }
 
 - (void)setupForPlayWith

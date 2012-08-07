@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "P1InputObjectView.h"
 #import "P1EditView.h"
 
 @interface P1ObjectFactory : NSObject
@@ -14,5 +15,6 @@
 + (UIView *)createAfrobeatWithCanvas:(P1EditView *)canvas;
 + (UIView *)createNoteFlowWithCanvas:(P1EditView *)canvas;
 + (UIView *)createNoteArrayWithCanvas:(P1EditView *)canvas withGestureHandler:(id)gestureHandler;
++ (P1InputObjectView *)createTouchable:(P1EditView *)canvas;
 
 @end

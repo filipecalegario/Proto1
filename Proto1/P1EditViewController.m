@@ -57,37 +57,37 @@
         
     } else if ([identifier isEqualToString:@"Touchable"]) {
         NSLog(@"adding a touchable input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"touchable" withConnectorType:@"trigger" withCanvas:canvas];
+        object = [P1ObjectFactory createTouchable:self.canvas];
         
-    }else if ([identifier isEqualToString:@"swipeUp"]) {
+    } else if ([identifier isEqualToString:@"swipeUp"]) {
         NSLog(@"adding a swipeUp input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeUp" withConnectorType:@"trigger" withCanvas:canvas];
         
-    }else if ([identifier isEqualToString:@"swipeDown"]) {
+    } else if ([identifier isEqualToString:@"swipeDown"]) {
         NSLog(@"adding a swipeDown input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDown" withConnectorType:@"trigger" withCanvas:canvas];
         
-    }else if ([identifier isEqualToString:@"swipeLeft"]) {
+    } else if ([identifier isEqualToString:@"swipeLeft"]) {
         NSLog(@"adding a swipeLeft input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeLeft" withConnectorType:@"trigger" withCanvas:canvas];
         
-    }else if ([identifier isEqualToString:@"swipeRight"]) {
+    } else if ([identifier isEqualToString:@"swipeRight"]) {
         NSLog(@"adding a swipeRight input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeRight" withConnectorType:@"trigger" withCanvas:canvas];
         
-    }else if ([identifier isEqualToString:@"swipeDoubleUp"]) {
+    } else if ([identifier isEqualToString:@"swipeDoubleUp"]) {
         NSLog(@"adding a swipeDoubleUp input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDoubleUp" withConnectorType:@"trigger" withCanvas:canvas];
         
-    }else if ([identifier isEqualToString:@"swipeDoubleDown"]) {
+    } else if ([identifier isEqualToString:@"swipeDoubleDown"]) {
         NSLog(@"adding a swipeDoubleDown input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDoubleDown" withConnectorType:@"trigger" withCanvas:canvas];
         
-    }else if ([identifier isEqualToString:@"swipeDoubleLeft"]) {
+    } else if ([identifier isEqualToString:@"swipeDoubleLeft"]) {
         NSLog(@"adding a swipeDoubleLeft input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDoubleLeft" withConnectorType:@"trigger" withCanvas:canvas];
         
-    }else if ([identifier isEqualToString:@"swipeDoubleRight"]) {
+    } else if ([identifier isEqualToString:@"swipeDoubleRight"]) {
         NSLog(@"adding a swipeDoubleRight input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDoubleRight" withConnectorType:@"trigger" withCanvas:canvas];
         
@@ -143,31 +143,32 @@
         NSLog(@"Going to play segue");
         
         //TODO Não precisa mais. Mudar depois.
-        NSArray *allTheSubViews = [self.canvas subviews];
-        NSMutableArray *objectsToSend = [[NSMutableArray alloc] init];
-        for(UIView * currentView in allTheSubViews){
-            if([currentView isMemberOfClass:[P1InputObjectView class]]){
-                P1InputObjectView * objectView = (P1InputObjectView *) currentView;
-                P1InputObjectView * connectedView = objectView.connectedTo;
-                if ([objectView.objectType isEqualToString:@"input"] && connectedView) {
-                    [objectsToSend addObject:objectView];
-                }
-            }
-            if([currentView isMemberOfClass:[P1OutputObjectView class]]){
-                for(UIView * subCurrentView in currentView.subviews){
-                    if([currentView isMemberOfClass:[P1InputObjectView class]]){
-                        P1InputObjectView * objectView = (P1InputObjectView *) currentView;
-                        P1InputObjectView * connectedView = objectView.connectedTo;
-                        if ([objectView.objectType isEqualToString:@"input"] && connectedView) {
-                            [objectsToSend addObject:objectView];
-                        }
-                    }
-                }
-            }
-            
-        }
-        //[segue.destinationViewController setObjectArray:[NSArray arrayWithArray:objectsToSend]];
-        [segue.destinationViewController populateArray:objectsToSend];
+        //        NSArray *allTheSubViews = [self.canvas subviews];
+        //        NSMutableArray *objectsToSend = [[NSMutableArray alloc] init];
+        //        for(UIView * currentView in allTheSubViews){
+        //            if([currentView isMemberOfClass:[P1InputObjectView class]]){
+        //                P1InputObjectView * objectView = (P1InputObjectView *) currentView;
+        //                P1InputObjectView * connectedView = objectView.connectedTo;
+        //                if ([objectView.objectType isEqualToString:@"input"] && connectedView) {
+        //                    [objectsToSend addObject:objectView];
+        //                }
+        //            }
+        //            if([currentView isMemberOfClass:[P1OutputObjectView class]]){
+        //                for(UIView * subCurrentView in currentView.subviews){
+        //                    if([currentView isMemberOfClass:[P1InputObjectView class]]){
+        //                        P1InputObjectView * objectView = (P1InputObjectView *) currentView;
+        //                        P1InputObjectView * connectedView = objectView.connectedTo;
+        //                        if ([objectView.objectType isEqualToString:@"input"] && connectedView) {
+        //                            [objectsToSend addObject:objectView];
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //        [segue.destinationViewController populateArray:objectsToSend];
+        
+        //TODO Ver isso depois!
+        [segue.destinationViewController populateArray:[self.canvas getAllObjects]];
         
     } else if ([segue.identifier isEqualToString:@"AddObjectTableView"]) {
         

@@ -18,12 +18,12 @@
 }
 
 @property (weak, nonatomic) IBOutlet P1PlayView *playArea;
-@property (nonatomic, strong) NSMutableArray* objectArray;
+@property (nonatomic, strong) NSArray* objectArray;
 
 - (void)touch:(UIPanGestureRecognizer *)gesture;
 
 - (void)aMethod:(UIButton *)sender;
-- (void)populateArray:(NSMutableArray *)objectArray;
+- (void)populateArray:(NSArray *)objectArray;
 - (void)swipeHandler:(UISwipeGestureRecognizer *)gesture;
 - (void)panOnTheButtonAction:(UIPanGestureRecognizer *)gesture;
 - (void)panOnEverything:(UIPanGestureRecognizer *)gesture;

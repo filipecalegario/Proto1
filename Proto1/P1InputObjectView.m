@@ -7,6 +7,7 @@
 //
 
 #import "P1InputObjectView.h"
+#import "P1Utils.h"
 
 @interface P1InputObjectView()
 
@@ -109,8 +110,6 @@
     }
 }
 
-
-
 - (id)initWithFrame:(CGRect)frame withObjectType:(NSString*)objectType withIcon:(P1IconView*)iconObject withConnector:(P1IconView*)connectorObject withCanvas:(P1EditView*)canvas
 {
     self = [super initWithFrame:frame];
@@ -171,63 +170,10 @@
     return self;
 }
 
-- (void)drawCircleAtPoint:(CGPoint)p withRadius:(CGFloat)radius withColor:(UIColor *)color inContext:(CGContextRef)context
-{
-    UIGraphicsPushContext(context);
-    CGContextSetLineWidth(context, 2*radius);
-    [color setStroke];
-    CGContextBeginPath(context);
-    CGContextAddArc(context, p.x, p.y, radius, 0, 2*M_PI, YES);
-    CGContextStrokePath(context);
-    UIGraphicsPopContext();
-}
-
 - (void)drawRect:(CGRect)rect
 {
     if ([self.iconType isEqualToString:@"playNote"]) {
-        NSString* noteName;
-        switch (self.myTag) {
-            case 60:
-                noteName = @"C";
-                break;
-            case 61:
-                noteName = @"C#";
-                break;
-            case 62:
-                noteName = @"D";
-                break;
-            case 63:
-                noteName = @"D#";
-                break;
-            case 64:
-                noteName = @"E";
-                break;
-            case 65:
-                noteName = @"F";
-                break;
-            case 66:
-                noteName = @"F#";
-                break;
-            case 67:
-                noteName = @"G";
-                break;
-            case 68:
-                noteName = @"G#";
-                break;
-            case 69:
-                noteName = @"A";
-                break;
-            case 70:
-                noteName = @"A#";
-                break;
-            case 71:
-                noteName = @"B";
-                break;
-            default:
-                noteName = [NSString stringWithFormat:@"%i", self.myTag];
-                break;
-        }
-        self.noteLabel.text = noteName;
+        self.noteLabel.text = [P1Utils convertNumberToNoteName:self.myTag];
         //CGPointMake(self.icon.center.x, 60);
     } else {
         //self.noteLabel.text = self.;

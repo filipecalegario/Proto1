@@ -8,12 +8,14 @@
 
 #import "P1ObjectFactory.h"
 #import "P1InputObjectView.h"
+#import "P1OutputObjectView.h"
+#import "P1Touchable.h"
 
 @implementation P1ObjectFactory
 
 +(UIView *)createAfrobeatWithCanvas:(P1EditView *)canvas
 {
-    UIView* object = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 350)];
+    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 350)];
     
     NSString * connectorTypeString = @"trigger";
     
@@ -48,7 +50,7 @@
 {
     NSString* iconTypeString = @"playNote";
     NSString* connectorTypeString = @"trigger";
-    UIView* object = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 400)];
+    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 100, 400)];
     
     for (int i = 0; i < 8; i++)
     {
@@ -66,7 +68,7 @@
 +(UIView *)createNoteFlowWithCanvas:(P1EditView *)canvas
 {
     NSLog(@"NoteFlow");
-    UIView* object = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 150, 150)];
+    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 150)];
     
     NSString* defaultIconImageSource = @"specialIconLong";
     CGRect defaultIconRect = CGRectMake(50, 0, 100, 50);
@@ -95,6 +97,16 @@
         
         [object addSubview:noteObject];
     }
+    return object;
+}
+
++(P1Touchable *)createTouchable:(P1EditView *)canvas
+{
+    CGRect defaultRect = CGRectMake(0, 0, 150, 100);
+    
+    //P1InputObjectView* object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"touchable" withConnectorType:@"trigger" withCanvas:canvas];
+    P1Touchable * object = [[P1Touchable alloc] initWithFrame:defaultRect withCanvas:canvas];
+    
     return object;
 }
 

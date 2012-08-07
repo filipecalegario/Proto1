@@ -33,6 +33,7 @@
 		454C91A315B8B07200313CC3 /* playNote@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 454C91A215B8B07100313CC3 /* playNote@2x.png */; };
 		454C91A615B8CAAF00313CC3 /* P1ContextMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 454C91A515B8CAAE00313CC3 /* P1ContextMenuViewController.m */; };
 		457192A015D00E69008DEF35 /* P1Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4571929F15D00E69008DEF35 /* P1Utils.m */; };
+		457192A815D03F44008DEF35 /* P1Touchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 457192A715D03F44008DEF35 /* P1Touchable.m */; };
 		458B871315B65BA600DB125E /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 458B870D15B65B4E00DB125E /* libpd-ios.a */; };
 		458B871615B65BA600DB125E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458B871415B65BA600DB125E /* AudioToolbox.framework */; };
 		458B871715B65BA600DB125E /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 458B871515B65BA600DB125E /* AVFoundation.framework */; };
@@ -128,6 +129,8 @@
 		454C91A515B8CAAE00313CC3 /* P1ContextMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = P1ContextMenuViewController.m; sourceTree = "<group>"; };
 		4571929E15D00E69008DEF35 /* P1Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1Utils.h; sourceTree = "<group>"; };
 		4571929F15D00E69008DEF35 /* P1Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = P1Utils.m; sourceTree = "<group>"; };
+		457192A615D03F43008DEF35 /* P1Touchable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1Touchable.h; sourceTree = "<group>"; };
+		457192A715D03F44008DEF35 /* P1Touchable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = P1Touchable.m; sourceTree = "<group>"; };
 		458B870415B65B4E00DB125E /* libpd.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = libpd.xcodeproj; path = "../libpd/pd-for-ios/libpd/libpd.xcodeproj"; sourceTree = "<group>"; };
 		458B871415B65BA600DB125E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		458B871515B65BA600DB125E /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -293,6 +296,8 @@
 				4591C37815CC4F800048B219 /* Subs */,
 				4591C37915CC53B90048B219 /* P1ObjectFactory.h */,
 				4591C37A15CC53B90048B219 /* P1ObjectFactory.m */,
+				457192A615D03F43008DEF35 /* P1Touchable.h */,
+				457192A715D03F44008DEF35 /* P1Touchable.m */,
 			);
 			name = Edit;
 			sourceTree = "<group>";
@@ -520,6 +525,7 @@
 				454C91A615B8CAAF00313CC3 /* P1ContextMenuViewController.m in Sources */,
 				4591C37B15CC53B90048B219 /* P1ObjectFactory.m in Sources */,
 				457192A015D00E69008DEF35 /* P1Utils.m in Sources */,
+				457192A815D03F44008DEF35 /* P1Touchable.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

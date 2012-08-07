@@ -7,6 +7,7 @@
 //
 
 #import "P1PlayView.h"
+#import "P1Utils.h"
 
 @implementation P1PlayView
 
@@ -19,17 +20,6 @@
         // Initialization code
     }
     return self;
-}
-
-- (void)drawCircleAtPoint:(CGPoint)p withRadius:(CGFloat)radius withColor:(UIColor *)color inContext:(CGContextRef)context
-{
-    UIGraphicsPushContext(context);
-    CGContextSetLineWidth(context, 2*radius);
-    [color setStroke];
-    CGContextBeginPath(context);
-    CGContextAddArc(context, p.x, p.y, radius, 0, 2*M_PI, YES);
-    CGContextStrokePath(context);
-    UIGraphicsPopContext();
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
@@ -46,7 +36,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    //[self drawCircleAtPoint:self.tapPoint withRadius:10 withColor:[UIColor redColor] inContext:UIGraphicsGetCurrentContext()];
+    [P1Utils drawCircleAtPoint:self.tapPoint withRadius:10 withColor:[UIColor redColor] inContext:UIGraphicsGetCurrentContext()];
 }
 
 
