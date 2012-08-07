@@ -158,7 +158,6 @@
         [self.corner3 setHidden:true];
         [self.corner4 setHidden:true];
     }
-    //[P1Utils drawCircleAtPoint:self.translationPoint withRadius:3 withColor:[UIColor redColor] inContext:UIGraphicsGetCurrentContext()];
 }
 
 @end
