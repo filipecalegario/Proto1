@@ -15,7 +15,7 @@
 
 +(UIView *)createAfrobeatWithCanvas:(P1EditView *)canvas
 {
-    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 350)];
+    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 350) relatedPatch:@"afro-beat.pd"];
     
     NSString * connectorTypeString = @"trigger";
     
@@ -46,11 +46,45 @@
     return object;
 }
 
++(UIView *)createSamplePlayerWithCanvas:(P1EditView *)canvas
+{
+    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 350) relatedPatch:@"mySimpleSamplePlayer.pd"];
+    
+    NSString * connectorTypeString = @"trigger";
+    
+    CGRect defaultIconRect = CGRectMake(50, 0, 100, 50);
+    NSString* defaultIconImageSource = @"specialIconLong";
+    
+    NSArray *icons = [[NSArray alloc] initWithObjects:
+                      [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"sample1" withImageSource:defaultIconImageSource],
+                      [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"sample2"  withImageSource:defaultIconImageSource],
+                      [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"sample3"  withImageSource:defaultIconImageSource],
+                      [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"sample4"  withImageSource:defaultIconImageSource],
+                      [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"sample5"  withImageSource:defaultIconImageSource],
+                      [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"sample6" withImageSource:defaultIconImageSource],
+                      nil];
+    
+    for (int i = 0; i < 6; i++)
+    {
+        P1IconView* connector = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 50, 50) withType:connectorTypeString withImageSource:@"specialConnector"];
+        
+        P1IconView* icon = [icons objectAtIndex:i];
+        
+        P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 150, 50) withObjectType:@"output" withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
+        noteObject.myTag = 128;
+        
+        [object addSubview:noteObject];
+    }
+    return object;
+}
+
+#warning Criar um createGenericPDTriggerDefaultOuputObject
+
 +(UIView *)createNoteArrayWithCanvas:(P1EditView *)canvas withGestureHandler:(id)gestureHandler
 {
     NSString* iconTypeString = @"playNote";
     NSString* connectorTypeString = @"trigger";
-    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 100, 400)];
+    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 100, 400) relatedPatch:@"proto1.pd"];
     
     for (int i = 0; i < 8; i++)
     {
@@ -68,7 +102,7 @@
 +(UIView *)createNoteFlowWithCanvas:(P1EditView *)canvas
 {
     NSLog(@"NoteFlow");
-    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 150)];
+    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 150) relatedPatch:@"proto1.pd"];
     
     NSString* defaultIconImageSource = @"specialIconLong";
     CGRect defaultIconRect = CGRectMake(50, 0, 100, 50);
@@ -104,7 +138,6 @@
 {
     CGRect defaultRect = CGRectMake(0, 0, 150, 100);
     
-    //P1InputObjectView* object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"touchable" withConnectorType:@"trigger" withCanvas:canvas];
     P1Touchable * object = [[P1Touchable alloc] initWithFrame:defaultRect withCanvas:canvas];
     
     return object;

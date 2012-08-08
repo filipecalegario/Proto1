@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSString *mainAction;
 @property (nonatomic, strong) NSMutableArray *touchableObjects;
 @property (nonatomic, strong) NSMutableDictionary *swipeDictionary;
-@property (nonatomic, strong) NSString* patchToLoad;
+
 @property (nonatomic, strong) UIView* currentPannedView;
 
 @end
@@ -45,14 +45,6 @@
     return self;
 }
 
-//- (void)populateArray:(NSMutableArray *)objectArray
-//{
-//    _objectArray = [[NSMutableArray alloc] init];
-//    for (P1InputObjectView * object in objectArray) {
-//        [_objectArray addObject:object];
-//    }
-//}
-
 - (void)populateArray:(NSArray *)objectArray
 {
     self.objectArray = objectArray;
@@ -64,7 +56,7 @@
     
     UIPanGestureRecognizer* panOnEverything = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panOnEverything:)];
     
-    [self.playArea addGestureRecognizer:panOnEverything];
+    //[self.playArea addGestureRecognizer:panOnEverything];
     
     //NSArray *objects = self.objectArray;
     if(self.objectArray){
@@ -116,8 +108,9 @@
                 [self.playArea addGestureRecognizer:swipe];
             }
         } else if(currentObject.connectedTo.myTag == 128.0){
-            self.patchToLoad = @"afro-beat.pd";
+            //self.patchToLoad = @"afro-beat.pd";
             NSString * messageToSend = currentObject.connectedTo.noteLabel.text;
+            NSLog([NSString stringWithFormat:@"Message To Send is: %@", messageToSend]);
             
             if ([currentObject.iconType isEqualToString:@"touchable"]){
                 
@@ -243,7 +236,7 @@
     
     NSLog(@"viewDidLoad");
     
-    self.patchToLoad = @"proto1.pd";
+    //self.patchToLoad = @"proto1.pd";
     
     [self setupForPlayWith];
     
@@ -279,6 +272,8 @@
 
 - (void) loadPatch:(NSString*)patchName
 {
+    NSLog([NSString stringWithFormat:@"Carregando patch: %@", patchName]);
+    
     dispatcher = [[PdDispatcher alloc] init];
     [PdBase setDelegate:dispatcher];
     patch = [PdFile openFileNamed:patchName path:[[NSBundle mainBundle] resourcePath]];
@@ -289,6 +284,9 @@
 
 - (void)swipeHandler:(UISwipeGestureRecognizer *)gesture
 {
+    #warning Deixar isso sem tá dependende do patch!
+    
+    NSLog(@"Swipe Detected");
     
     if([self.patchToLoad isEqualToString:@"proto1.pd"]){
         NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
@@ -296,7 +294,7 @@
         //NSLog([NSString stringWithFormat:@"NOTE TO SEND: %f, %i, %i, %i",noteToSend.floatValue, gesture.direction, gesture.numberOfTouches, indexacao.intValue]);
         [PdBase sendFloat:noteToSend.floatValue toReceiver:@"midinote"];
         [PdBase sendBangToReceiver:@"noteTrigger"];
-    } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"]){ 
+    } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"] || [self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
         NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
         NSString* messageToSend = [self.swipeDictionary objectForKey:indexacao];
         [PdBase sendBangToReceiver:messageToSend];
@@ -310,6 +308,8 @@
         [PdBase sendFloat:sender.tag toReceiver:@"midinote"];
         [PdBase sendBangToReceiver:@"noteTrigger"];
     } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"]){ 
+        [PdBase sendBangToReceiver:sender.titleLabel.text];
+    } else if([self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
         [PdBase sendBangToReceiver:sender.titleLabel.text];
     }
 }

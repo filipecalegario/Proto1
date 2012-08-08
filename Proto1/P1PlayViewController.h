@@ -20,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet P1PlayView *playArea;
 @property (nonatomic, strong) NSArray* objectArray;
 
+@property (nonatomic, strong) NSString* patchToLoad;
+
 - (void)touch:(UIPanGestureRecognizer *)gesture;
 
 - (void)aMethod:(UIButton *)sender;

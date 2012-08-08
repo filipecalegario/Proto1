@@ -99,7 +99,11 @@
         NSLog(@"Afrobeat");
         object = [P1ObjectFactory createAfrobeatWithCanvas:self.canvas];
         
+    } else if ([identifier isEqualToString:@"sample player"]) {
+        NSLog(@"Sample Player");
+        object = [P1ObjectFactory createSamplePlayerWithCanvas:self.canvas];
     }
+    
     object.center = botao.center;
     [self.canvas addSubview:object];
     [self.canvas setNeedsDisplay];
@@ -168,6 +172,7 @@
         //        [segue.destinationViewController populateArray:objectsToSend];
         
         //TODO Ver isso depois!
+        [segue.destinationViewController setPatchToLoad:[self whichPatchToLoad]];
         [segue.destinationViewController populateArray:[self.canvas getAllObjects]];
         
     } else if ([segue.identifier isEqualToString:@"AddObjectTableView"]) {
@@ -194,7 +199,28 @@
     }
 }
 
+- (NSString *)whichPatchToLoad
+{
+    /*WARNING cuidado com este método. Problemas com múltiplos objetos de saída.
+                            Pode carregar o patch diferente.
+     */
+    
+    #warning Cuidado com esse método!
+    
+    NSString * patchToLoad = @"";
+    
+    for (UIView * currentView in self.canvas.subviews) {
+        if ([currentView isKindOfClass:[P1OutputObjectView class]]) {
+            P1OutputObjectView * outputObject = (P1OutputObjectView *) currentView;
+            patchToLoad = outputObject.relatedPatch;
+        }
+    }
+    
+    return patchToLoad;
+}
+
 //======== GESTURES HANDLERS ========
+#pragma mark - Gesture Handlers
 
 - (void) longTapHandle:(UILongPressGestureRecognizer *)gesture
 {

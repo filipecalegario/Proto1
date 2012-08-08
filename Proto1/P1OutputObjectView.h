@@ -12,4 +12,8 @@
 
 @interface P1OutputObjectView : UIView
 
+@property (nonatomic, strong) NSString* relatedPatch;
+
+- (id)initWithFrame:(CGRect)frame relatedPatch:(NSString *)patch;
+
 @end

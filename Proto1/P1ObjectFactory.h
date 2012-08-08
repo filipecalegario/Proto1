@@ -15,6 +15,7 @@
 + (UIView *)createAfrobeatWithCanvas:(P1EditView *)canvas;
 + (UIView *)createNoteFlowWithCanvas:(P1EditView *)canvas;
 + (UIView *)createNoteArrayWithCanvas:(P1EditView *)canvas withGestureHandler:(id)gestureHandler;
++ (UIView *)createSamplePlayerWithCanvas:(P1EditView *)canvas;
 + (P1InputObjectView *)createTouchable:(P1EditView *)canvas;
 
 @end

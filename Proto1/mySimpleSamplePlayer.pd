@@ -1,0 +1,55 @@
+#N canvas 144 69 708 665 12;
+#X msg 78 459 start;
+#X msg 135 459 stop;
+#X obj 500 541 bng 15 250 50 0 empty empty empty 0 -6 0 8 -262144 -1
+-1;
+#X obj 326 612 dac~;
+#X obj 242 577 *~ 0.7;
+#X obj 295 539 readsf~ 2;
+#X obj 398 579 *~ 0.7;
+#X text 45 18 3.4.1.2. play file;
+#X text 419 628 www.pd-tutorial.com;
+#X text 432 603 Johannes Kreidler;
+#X obj 107 51 bng 15 250 50 0 empty sample1 r:sample1 17 7 0 10 -262144
+-1 -1;
+#X obj 169 170 bng 15 250 50 0 empty sample4 r:sample4 17 7 0 10 -262144
+-1 -1;
+#X obj 202 271 bng 15 250 50 0 empty sample6 r:sample6 17 7 0 10 -262144
+-1 -1;
+#X obj 191 218 bng 15 250 50 0 empty sample5 r:sample5 17 7 0 10 -262144
+-1 -1;
+#X obj 150 126 bng 15 250 50 0 empty sample3 r:sample3 17 7 0 10 -262144
+-1 -1;
+#X obj 132 86 bng 15 250 50 0 empty sample2 r:sample2 17 7 0 10 -262144
+-1 -1;
+#X msg 497 76 open sample1.wav;
+#X msg 496 128 open sample2.wav;
+#X msg 496 178 open sample3.wav;
+#X msg 496 231 open sample4.wav;
+#X msg 497 285 open sample5.wav;
+#X msg 498 336 open sample6.wav;
+#X connect 0 0 5 0;
+#X connect 1 0 5 0;
+#X connect 4 0 3 0;
+#X connect 5 0 4 0;
+#X connect 5 1 6 0;
+#X connect 5 2 2 0;
+#X connect 6 0 3 1;
+#X connect 10 0 16 0;
+#X connect 10 0 0 0;
+#X connect 11 0 19 0;
+#X connect 11 0 0 0;
+#X connect 12 0 21 0;
+#X connect 12 0 0 0;
+#X connect 13 0 20 0;
+#X connect 13 0 0 0;
+#X connect 14 0 18 0;
+#X connect 14 0 0 0;
+#X connect 15 0 17 0;
+#X connect 15 0 0 0;
+#X connect 16 0 5 0;
+#X connect 17 0 5 0;
+#X connect 18 0 5 0;
+#X connect 19 0 5 0;
+#X connect 20 0 5 0;
+#X connect 21 0 5 0;

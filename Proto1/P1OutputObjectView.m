@@ -10,15 +10,18 @@
 
 @implementation P1OutputObjectView
 
+@synthesize relatedPatch = _relatedPatch;
+
 - (void)setup
 {
     
 }
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame relatedPatch:(NSString *)patch
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.relatedPatch = patch;
         [self setup];
     }
     return self;
