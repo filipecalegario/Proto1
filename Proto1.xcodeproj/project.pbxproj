@@ -23,6 +23,7 @@
 		45314D1815D2120A00BE7364 /* sample4.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45314D1215D2120A00BE7364 /* sample4.wav */; };
 		45314D1915D2120A00BE7364 /* sample5.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45314D1315D2120A00BE7364 /* sample5.wav */; };
 		45314D1A15D2120A00BE7364 /* sample6.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45314D1415D2120A00BE7364 /* sample6.wav */; };
+		45327D0115D31C85005E4571 /* P1TouchGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45327D0015D31C85005E4571 /* P1TouchGestureRecognizer.m */; };
 		454A690615B9F101009BEAAC /* swipeUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 454A68FD15B9F101009BEAAC /* swipeUp@2x.png */; };
 		454A690715B9F101009BEAAC /* swipeDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 454A68FE15B9F101009BEAAC /* swipeDown@2x.png */; };
 		454A690815B9F101009BEAAC /* swipeLeft@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 454A68FF15B9F101009BEAAC /* swipeLeft@2x.png */; };
@@ -125,6 +126,8 @@
 		45314D1215D2120A00BE7364 /* sample4.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample4.wav; sourceTree = "<group>"; };
 		45314D1315D2120A00BE7364 /* sample5.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample5.wav; sourceTree = "<group>"; };
 		45314D1415D2120A00BE7364 /* sample6.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample6.wav; sourceTree = "<group>"; };
+		45327CFF15D31C85005E4571 /* P1TouchGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1TouchGestureRecognizer.h; sourceTree = "<group>"; };
+		45327D0015D31C85005E4571 /* P1TouchGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = P1TouchGestureRecognizer.m; sourceTree = "<group>"; };
 		454A68FD15B9F101009BEAAC /* swipeUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swipeUp@2x.png"; sourceTree = "<group>"; };
 		454A68FE15B9F101009BEAAC /* swipeDown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swipeDown@2x.png"; sourceTree = "<group>"; };
 		454A68FF15B9F101009BEAAC /* swipeLeft@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swipeLeft@2x.png"; sourceTree = "<group>"; };
@@ -328,6 +331,8 @@
 				458E912115B48B2800A82826 /* P1PlayView.m */,
 				45314CB815D1A58600BE7364 /* P1PlayTouchable.h */,
 				45314CB915D1A58600BE7364 /* P1PlayTouchable.m */,
+				45327CFF15D31C85005E4571 /* P1TouchGestureRecognizer.h */,
+				45327D0015D31C85005E4571 /* P1TouchGestureRecognizer.m */,
 			);
 			name = Play;
 			sourceTree = "<group>";
@@ -560,6 +565,7 @@
 				457192A015D00E69008DEF35 /* P1Utils.m in Sources */,
 				457192A815D03F44008DEF35 /* P1Touchable.m in Sources */,
 				45314CBA15D1A58700BE7364 /* P1PlayTouchable.m in Sources */,
+				45327D0115D31C85005E4571 /* P1TouchGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

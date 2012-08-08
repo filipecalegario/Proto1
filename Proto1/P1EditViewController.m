@@ -146,31 +146,6 @@
     } else if ([segue.identifier isEqualToString:@"GoingToPlayMode"]) {
         NSLog(@"Going to play segue");
         
-        //TODO Não precisa mais. Mudar depois.
-        //        NSArray *allTheSubViews = [self.canvas subviews];
-        //        NSMutableArray *objectsToSend = [[NSMutableArray alloc] init];
-        //        for(UIView * currentView in allTheSubViews){
-        //            if([currentView isMemberOfClass:[P1InputObjectView class]]){
-        //                P1InputObjectView * objectView = (P1InputObjectView *) currentView;
-        //                P1InputObjectView * connectedView = objectView.connectedTo;
-        //                if ([objectView.objectType isEqualToString:@"input"] && connectedView) {
-        //                    [objectsToSend addObject:objectView];
-        //                }
-        //            }
-        //            if([currentView isMemberOfClass:[P1OutputObjectView class]]){
-        //                for(UIView * subCurrentView in currentView.subviews){
-        //                    if([currentView isMemberOfClass:[P1InputObjectView class]]){
-        //                        P1InputObjectView * objectView = (P1InputObjectView *) currentView;
-        //                        P1InputObjectView * connectedView = objectView.connectedTo;
-        //                        if ([objectView.objectType isEqualToString:@"input"] && connectedView) {
-        //                            [objectsToSend addObject:objectView];
-        //                        }
-        //                    }
-        //                }
-        //            }
-        //        }
-        //        [segue.destinationViewController populateArray:objectsToSend];
-        
         //TODO Ver isso depois!
         [segue.destinationViewController setPatchToLoad:[self whichPatchToLoad]];
         [segue.destinationViewController populateArray:[self.canvas getAllObjects]];
@@ -229,11 +204,13 @@
     }
 }
 
-- (void) doubleTapHandle:(UITapGestureRecognizer *)gesture
+- (void) openMenuToAddObject:(UITapGestureRecognizer *)gesture
 {
     NSLog(@"doubleTap working...");
     [self performSegueWithIdentifier: @"AddOutputObject" sender:gesture];
 }
+
+//======== DEFAULT METHODS ========
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -244,15 +221,15 @@
     return self;
 }
 
-//======== DEFAULT METHODS ========
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    UITapGestureRecognizer* tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTapHandle:)];
+    
+    UITapGestureRecognizer* tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openMenuToAddObject:)];
     tapGest.numberOfTapsRequired = 2;
     tapGest.numberOfTouchesRequired = 1;
     [self.canvas addGestureRecognizer:tapGest];
+    
 }
 
 - (void)viewDidUnload

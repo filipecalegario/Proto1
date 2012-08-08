@@ -27,7 +27,7 @@
 @property (weak, nonatomic) IBOutlet P1EditView *canvas;
 
 - (void) addObject:(NSString *)identifier;
-- (void) doubleTapHandle:(UITapGestureRecognizer *)gesture;
+- (void) openMenuToAddObject:(UITapGestureRecognizer *)gesture;
 - (void) longTapHandle:(UILongPressGestureRecognizer *)gesture;
 - (void) configContextMenu:(P1InputObjectView *)objectView withTag:(int)tag;
 

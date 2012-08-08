@@ -11,6 +11,7 @@
 #import "P1IconView.h"
 #import "P1PlayTouchable.h"
 #import <QuartzCore/QuartzCore.h>
+#import "P1TouchGestureRecognizer.h"
 
 @interface P1PlayViewController ()
 
@@ -36,27 +37,16 @@
 @synthesize patchToLoad = _patchToLoad;
 @synthesize currentPannedView = _currentPannedView;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
-- (void)populateArray:(NSArray *)objectArray
-{
-    self.objectArray = objectArray;
-}
+//======== SETUP/INITIALIZATION ========
+#pragma mark - Setup and Initialization
 
 - (void)setupForPlayWith
 {
-    //self.touchableObjects = [[NSMutableArray alloc] init];
-    
     UIPanGestureRecognizer* panOnEverything = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panOnEverything:)];
+    panOnEverything.delegate = self;
     
-    //[self.playArea addGestureRecognizer:panOnEverything];
+    [self.playArea addGestureRecognizer:panOnEverything];
     
     //NSArray *objects = self.objectArray;
     if(self.objectArray){
@@ -70,65 +60,78 @@
     }
     
     for (P1InputObjectView *currentObject in self.objectArray) {
+        
         if ([currentObject.connectedTo.iconType isEqualToString:@"playNote"]) {
+            
             if ([currentObject.iconType isEqualToString:@"touchable"]){
-                //[self.touchableObjects addObject:currentObject];
-                self.mainAction = @"touchable-playNote";
+                
                 P1InputObjectView * touchable = currentObject;
                 
                 P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height)];
                 playTouchable.value = touchable.connectedTo.myTag;
                 playTouchable.action = touchable.noteLabel.text;
                 
-                UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
+//                UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
+//                [playTouchable addGestureRecognizer:tapGesture];
                 
-                [playTouchable addGestureRecognizer:tapGesture];
+                P1TouchGestureRecognizer * touchGesture = [[P1TouchGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
+                [playTouchable addGestureRecognizer:touchGesture];
+                
                 [self.playArea addSubview:playTouchable];
                 
-                
-                //                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-                //                [button addTarget:self action:@selector(aMethod:) forControlEvents:UIControlEventTouchDown];
-                //                button.frame = CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height);
-                //                button.tag = touchable.connectedTo.myTag;
-                //                [button setBackgroundImage:[UIImage imageNamed:touchable.iconType] forState:UIControlStateNormal];
-                //                [button setTitle:touchable.noteLabel.text forState:UIControlStateNormal];
-                //                
-                //                UIPanGestureRecognizer* panOnTheButton = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panOnTheButtonAction:)];
-                //                
-                //                [button addGestureRecognizer:panOnTheButton];
-                //                
-                //                [self.playArea addSubview:button];
-                
             } else if([currentObject.iconType hasPrefix:@"swipe"]){
+                
                 UISwipeGestureRecognizer * swipe = [self createSwipe:currentObject];
+                
                 float indexacao = swipe.direction*(swipe.numberOfTouchesRequired+1);
+                
                 NSNumber * noteToPlay = [NSNumber numberWithInt:currentObject.connectedTo.myTag];
                 NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
+                
                 [self.swipeDictionary setObject:noteToPlay forKey:keyToStore];
+                
                 [self.playArea addGestureRecognizer:swipe];
+                
             }
+            
         } else if(currentObject.connectedTo.myTag == 128.0){
-            //self.patchToLoad = @"afro-beat.pd";
+            #warning Corrigir essa GAMBIARRA tosca de usar o 128 como definidor de ação!!!
             NSString * messageToSend = currentObject.connectedTo.noteLabel.text;
-            NSLog([NSString stringWithFormat:@"Message To Send is: %@", messageToSend]);
+            //NSLog([NSString stringWithFormat:@"Message To Send is: %@", messageToSend]);
             
             if ([currentObject.iconType isEqualToString:@"touchable"]){
                 
                 P1InputObjectView * touchable = currentObject;
-                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-                [button addTarget:self action:@selector(aMethod:) forControlEvents:UIControlEventTouchDown];
-                button.frame = CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height);
-                button.tag = touchable.connectedTo.myTag;
-                button.titleLabel.text = messageToSend;
-                [button setImage:[UIImage imageNamed:touchable.iconType] forState:UIControlStateNormal];
+                {
+//                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//                [button addTarget:self action:@selector(aMethod:) forControlEvents:UIControlEventTouchDown];
+//                button.frame = CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height);
+//                button.tag = touchable.connectedTo.myTag;
+//                button.titleLabel.text = messageToSend;
+//                [button setImage:[UIImage imageNamed:touchable.iconType] forState:UIControlStateNormal];
+//                [self.playArea addSubview:button];
+                }
                 
-                [self.playArea addSubview:button];
+                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height)];
+                playTouchable.value = touchable.connectedTo.myTag;
+                playTouchable.action = messageToSend;//touchable.noteLabel.text;
+                
+                //UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
+                //[playTouchable addGestureRecognizer:tapGesture];
+                
+                P1TouchGestureRecognizer * touchGesture = [[P1TouchGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
+                [playTouchable addGestureRecognizer:touchGesture];
+                
+                [self.playArea addSubview:playTouchable];
                 
             } else if([currentObject.iconType hasPrefix:@"swipe"]){
+                
                 UISwipeGestureRecognizer * swipe = [self createSwipe:currentObject];
+                
                 float indexacao = swipe.direction*(swipe.numberOfTouchesRequired+1);
                 
                 NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
+                
                 [self.swipeDictionary setObject:messageToSend forKey:keyToStore];
                 
                 [self.playArea addGestureRecognizer:swipe];
@@ -158,90 +161,14 @@
                 self.durationOrientation = @"vertical";
             }
         }
+        
     }
     //NSLog(self.mainAction);
 }
 
-- (UISwipeGestureRecognizer*) createSwipe:(P1InputObjectView*)currentObject
+- (void)populateArray:(NSArray *)objectArray
 {
-    UISwipeGestureRecognizer * swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
-    if ([currentObject.iconType hasSuffix:@"DoubleUp"]){
-        swipe.numberOfTouchesRequired = 2;
-        swipe.direction = UISwipeGestureRecognizerDirectionUp;
-    } else if ([currentObject.iconType hasSuffix:@"DoubleDown"]){
-        swipe.numberOfTouchesRequired = 2;
-        swipe.direction = UISwipeGestureRecognizerDirectionDown;                    
-    } else if ([currentObject.iconType hasSuffix:@"DoubleLeft"]){
-        swipe.numberOfTouchesRequired = 2;
-        swipe.direction = UISwipeGestureRecognizerDirectionLeft;
-    } else if ([currentObject.iconType hasSuffix:@"DoubleRight"]){          
-        swipe.numberOfTouchesRequired = 2;
-        swipe.direction = UISwipeGestureRecognizerDirectionRight;
-    } else if ([currentObject.iconType hasSuffix:@"Up"]) {
-        swipe.direction = UISwipeGestureRecognizerDirectionUp;
-    } else if ([currentObject.iconType hasSuffix:@"Down"]){
-        swipe.direction = UISwipeGestureRecognizerDirectionDown;
-    } else if ([currentObject.iconType hasSuffix:@"Left"]){
-        swipe.direction = UISwipeGestureRecognizerDirectionLeft;
-    } else if ([currentObject.iconType hasSuffix:@"Right"]){
-        swipe.direction = UISwipeGestureRecognizerDirectionRight;
-    }
-    return swipe;
-}
-
-- (void)panOnEverything:(UIPanGestureRecognizer *)gesture
-{
-    CGPoint point = [gesture locationInView:self.playArea];
-    UIView* pickedView = [self.playArea hitTest:point withEvent:nil];
-    
-    if ([pickedView isKindOfClass:[P1PlayTouchable class]]) {
-        if (pickedView != self.currentPannedView) {
-            P1PlayTouchable * pickedTouchable = (P1PlayTouchable *) pickedView;
-            [self playNote:pickedTouchable.value];
-            self.currentPannedView = pickedView;
-        }
-    }
-    
-    if ([pickedView isKindOfClass:[P1PlayView class]]) {
-        self.currentPannedView = self.playArea;
-    }
-    
-    //NSLog(pickedView.debugDescription);
-//    if ([pickedView isKindOfClass:[UIButton class]]) {
-//        UIButton* button = (UIButton *)pickedView;
-//        //button.backgroundColor = [UIColor redColor];
-//        [PdBase sendFloat:button.tag toReceiver:@"midinote"];
-//        [PdBase sendBangToReceiver:@"noteTrigger"];
-//    }
-}
-
--(void) playNote:(int)note
-{
-    [PdBase sendFloat:note toReceiver:@"midinote"];
-    [PdBase sendBangToReceiver:@"noteTrigger"];
-}
-
-- (void)panOnTheButtonAction:(UIPanGestureRecognizer *)gesture
-{
-    //UIButton* buttonForAction = (UIButton *)gesture.view;
-    //[PdBase sendFloat:buttonForAction.tag toReceiver:@"midinote"];
-    //[PdBase sendBangToReceiver:@"noteTrigger"];
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [self initializeSwipeDictionary];
-    
-    NSLog(@"viewDidLoad");
-    
-    //self.patchToLoad = @"proto1.pd";
-    
-    [self setupForPlayWith];
-    
-    [self loadPatch:self.patchToLoad];
-    
+    self.objectArray = objectArray;
 }
 
 - (void) initializeSwipeDictionary
@@ -270,21 +197,54 @@
     self.swipeDictionary = [[NSMutableDictionary alloc] initWithObjects:initialNotes forKeys:swipeKeys];
 }
 
-- (void) loadPatch:(NSString*)patchName
+- (UISwipeGestureRecognizer*) createSwipe:(P1InputObjectView*)currentObject
 {
-    NSLog([NSString stringWithFormat:@"Carregando patch: %@", patchName]);
+    UISwipeGestureRecognizer * swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeHandler:)];
+    if ([currentObject.iconType hasSuffix:@"DoubleUp"]){
+        swipe.numberOfTouchesRequired = 2;
+        swipe.direction = UISwipeGestureRecognizerDirectionUp;
+    } else if ([currentObject.iconType hasSuffix:@"DoubleDown"]){
+        swipe.numberOfTouchesRequired = 2;
+        swipe.direction = UISwipeGestureRecognizerDirectionDown;                    
+    } else if ([currentObject.iconType hasSuffix:@"DoubleLeft"]){
+        swipe.numberOfTouchesRequired = 2;
+        swipe.direction = UISwipeGestureRecognizerDirectionLeft;
+    } else if ([currentObject.iconType hasSuffix:@"DoubleRight"]){          
+        swipe.numberOfTouchesRequired = 2;
+        swipe.direction = UISwipeGestureRecognizerDirectionRight;
+    } else if ([currentObject.iconType hasSuffix:@"Up"]) {
+        swipe.direction = UISwipeGestureRecognizerDirectionUp;
+    } else if ([currentObject.iconType hasSuffix:@"Down"]){
+        swipe.direction = UISwipeGestureRecognizerDirectionDown;
+    } else if ([currentObject.iconType hasSuffix:@"Left"]){
+        swipe.direction = UISwipeGestureRecognizerDirectionLeft;
+    } else if ([currentObject.iconType hasSuffix:@"Right"]){
+        swipe.direction = UISwipeGestureRecognizerDirectionRight;
+    }
     
-    dispatcher = [[PdDispatcher alloc] init];
-    [PdBase setDelegate:dispatcher];
-    patch = [PdFile openFileNamed:patchName path:[[NSBundle mainBundle] resourcePath]];
-    if (!patch) {
-        NSLog(@"Failed to open patch!");
+    swipe.delegate = self;
+    return swipe;
+}
+
+//======== GESTURES HANDLERS ========
+#pragma mark - Gesture Handlers
+
+- (void)aMethod:(UIButton *)sender
+{
+    NSLog(@"BUTTON TOUCHED");
+    if([self.patchToLoad isEqualToString:@"proto1.pd"]){
+        [PdBase sendFloat:sender.tag toReceiver:@"midinote"];
+        [PdBase sendBangToReceiver:@"noteTrigger"];
+    } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"]){ 
+        [PdBase sendBangToReceiver:sender.titleLabel.text];
+    } else if([self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
+        [PdBase sendBangToReceiver:sender.titleLabel.text];
     }
 }
 
 - (void)swipeHandler:(UISwipeGestureRecognizer *)gesture
 {
-    #warning Deixar isso sem tá dependende do patch!
+#warning Deixar isso sem tá dependende do patch!
     
     NSLog(@"Swipe Detected");
     
@@ -301,49 +261,27 @@
     }
 }
 
-- (void)aMethod:(UIButton *)sender
-{
-    NSLog(@"BUTTON TOUCHED");
-    if([self.patchToLoad isEqualToString:@"proto1.pd"]){
-        [PdBase sendFloat:sender.tag toReceiver:@"midinote"];
-        [PdBase sendBangToReceiver:@"noteTrigger"];
-    } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"]){ 
-        [PdBase sendBangToReceiver:sender.titleLabel.text];
-    } else if([self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
-        [PdBase sendBangToReceiver:sender.titleLabel.text];
-    }
-}
-
 - (void)playTouchableAction:(UITapGestureRecognizer *)gesture
 {
     P1PlayTouchable * playTouchable = (P1PlayTouchable *) gesture.view;
     
-    if([self.patchToLoad isEqualToString:@"proto1.pd"]){
-        [PdBase sendFloat:playTouchable.value toReceiver:@"midinote"];
-        [PdBase sendBangToReceiver:@"noteTrigger"];
-    } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"]){ 
-        [PdBase sendBangToReceiver:playTouchable.action];
+    NSLog([NSString stringWithFormat:@"%i", gesture.state]);
+    
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"PlayTouchableAction!"); 
+        if([self.patchToLoad isEqualToString:@"proto1.pd"]){
+            
+            //NSLog([NSString stringWithFormat:@"%@, %@", playTouchable.value, playTouchable.action]);
+            
+            [PdBase sendFloat:playTouchable.value toReceiver:@"midinote"];
+            [PdBase sendBangToReceiver:@"noteTrigger"];
+        } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"] || [self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
+            NSLog(playTouchable.action);
+            [PdBase sendBangToReceiver:playTouchable.action];
+        }
+        
     }
-    
-    
-    NSLog(@"PlayTouchableAction!");    
-//    if (gesture.state == UIGestureRecognizerStateRecognized) {
-//        gesture.view.backgroundColor = [UIColor blackColor];
-//        [gesture.view setNeedsDisplay];
-//        
-//    } else if (gesture.state == UIGestureRecognizerStateEnded){
-//        gesture.view.layer.backgroundColor = [UIColor orangeColor].CGColor;
-//        [gesture.view setNeedsDisplay];
-//    }
-}
-
--(float)mapThis:(float)a fromMin:(float)fmin fromMax:(float)fmax toMin:(float)tmin toMax:(float)tmax
-{
-    float result = 0;
-    float deltaFrom = fmax - fmin;
-    float deltaTo = tmax - tmin;
-    result = (a*deltaTo - fmin*deltaTo + tmin*deltaFrom)/deltaFrom;
-    return result;
+       
 }
 
 - (void)touch:(UIPanGestureRecognizer *)gesture
@@ -386,6 +324,64 @@
     }
 }
 
+- (void)panOnTheButtonAction:(UIPanGestureRecognizer *)gesture
+{
+    //UIButton* buttonForAction = (UIButton *)gesture.view;
+    //[PdBase sendFloat:buttonForAction.tag toReceiver:@"midinote"];
+    //[PdBase sendBangToReceiver:@"noteTrigger"];
+}
+
+- (void)panOnEverything:(UIPanGestureRecognizer *)gesture
+{
+    CGPoint point = [gesture locationInView:self.playArea];
+    UIView* pickedView = [self.playArea hitTest:point withEvent:nil];
+    
+    if ([pickedView isKindOfClass:[P1PlayTouchable class]]) {
+        if (pickedView != self.currentPannedView) {
+            P1PlayTouchable * pickedTouchable = (P1PlayTouchable *) pickedView;
+            [self playNote:pickedTouchable.value];
+            self.currentPannedView = pickedView;
+        }
+    }
+    
+    if ([pickedView isKindOfClass:[P1PlayView class]]) {
+        self.currentPannedView = self.playArea;
+    }
+    
+    //NSLog(pickedView.debugDescription);
+    //    if ([pickedView isKindOfClass:[UIButton class]]) {
+    //        UIButton* button = (UIButton *)pickedView;
+    //        //button.backgroundColor = [UIColor redColor];
+    //        [PdBase sendFloat:button.tag toReceiver:@"midinote"];
+    //        [PdBase sendBangToReceiver:@"noteTrigger"];
+    //    }
+}
+
+//======== GESTURES DELEGATE METHODS ========
+#pragma mark - Gesture Delegate Methods
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer
+{
+    return YES;
+}
+
+//======== DEFAULT METHODS ========
+#pragma mark - Default Methods
+
+- (void)viewDidLoad
+{
+    NSLog(@"viewDidLoad");
+    
+    [super viewDidLoad];
+    
+    [self initializeSwipeDictionary];
+    
+    [self setupForPlayWith];
+    
+    [self loadPatch:self.patchToLoad];
+    
+}
+
 - (void)viewDidUnload
 {
     [self setPlayArea:nil];
@@ -400,4 +396,45 @@
     return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
 }
 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
+    }
+    return self;
+}
+
+//======== SOUND-RELATED METHODS ========
+#pragma mark - Sound-related methods
+
+- (void) loadPatch:(NSString*)patchName
+{
+    NSLog([NSString stringWithFormat:@"Carregando patch: %@", patchName]);
+    
+    dispatcher = [[PdDispatcher alloc] init];
+    [PdBase setDelegate:dispatcher];
+    patch = [PdFile openFileNamed:patchName path:[[NSBundle mainBundle] resourcePath]];
+    if (!patch) {
+        NSLog(@"Failed to open patch!");
+    }
+}
+
+-(void) playNote:(int)note
+{
+    [PdBase sendFloat:note toReceiver:@"midinote"];
+    [PdBase sendBangToReceiver:@"noteTrigger"];
+}
+
+//======== MANDAR PRA UTILS ========
+-(float)mapThis:(float)a fromMin:(float)fmin fromMax:(float)fmax toMin:(float)tmin toMax:(float)tmax
+{
+    float result = 0;
+    float deltaFrom = fmax - fmin;
+    float deltaTo = tmax - tmin;
+    result = (a*deltaTo - fmin*deltaTo + tmin*deltaFrom)/deltaFrom;
+    return result;
+}
+
 @end
+

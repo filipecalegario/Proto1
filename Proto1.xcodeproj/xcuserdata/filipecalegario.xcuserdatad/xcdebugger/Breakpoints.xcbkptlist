@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Proto1/P1PlayViewController.m"
-         timestampString = "366085240.619935"
+         timestampString = "366157643.519945"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "72"
-         endingLineNumber = "72"
+         startingLineNumber = "62"
+         endingLineNumber = "62"
          landmarkName = "-setupForPlayWith"
          landmarkType = "5">
       </FileBreakpoint>

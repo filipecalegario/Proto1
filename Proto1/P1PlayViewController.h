@@ -11,7 +11,7 @@
 #import "PdFile.h"
 #import "P1PlayView.h"
 
-@interface P1PlayViewController : UIViewController
+@interface P1PlayViewController : UIViewController <UIGestureRecognizerDelegate>
 {
     PdDispatcher *dispatcher;
     PdFile *patch;

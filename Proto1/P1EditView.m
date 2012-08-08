@@ -206,8 +206,8 @@
                 connectedView.hasToBeDrawn = YES;
             }
             
-            [P1Utils drawCircleAtPoint:cp1 withRadius:4 withColor:[UIColor redColor] inContext:UIGraphicsGetCurrentContext()];
-            [P1Utils drawCircleAtPoint:cp2 withRadius:4 withColor:[UIColor redColor] inContext:UIGraphicsGetCurrentContext()];
+            //[P1Utils drawCircleAtPoint:cp1 withRadius:4 withColor:[UIColor redColor] inContext:UIGraphicsGetCurrentContext()];
+            //[P1Utils drawCircleAtPoint:cp2 withRadius:4 withColor:[UIColor redColor] inContext:UIGraphicsGetCurrentContext()];
             
             
             //CGPoint centerOwn = castedView.center;
