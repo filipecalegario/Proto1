@@ -48,13 +48,13 @@
 
 - (CGPoint)auxPoint
 {
-    CGFloat distance = 200;
+    CGFloat distance = 100;
     
     CGPoint auxPoint;
     if([self.objectType isEqualToString:@"input"]){
-        auxPoint = CGPointMake(self.center.x + distance, self.center.y);
+        auxPoint = CGPointMake(self.connector.center.x + distance, self.connector.center.y);
     } else if([self.objectType isEqualToString:@"output"]){
-        auxPoint = CGPointMake(self.center.x - distance, self.center.y);
+        auxPoint = CGPointMake(self.connector.center.x - distance, self.connector.center.y);
     }
 
     return auxPoint;
@@ -81,21 +81,23 @@
         self.icon = [[P1IconView alloc] initWithFrame:CGRectMake(50, 0, 100, 100) withType:iconType];
     }
     
-    UIPanGestureRecognizer* panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panIcon:)];
-    UIPanGestureRecognizer* panConnectorGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panConnector:)];
+    [self setupDefaultGestures:NO];
     
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapIcon:)];
-    tapGesture.numberOfTouchesRequired = 1;
-    tapGesture.numberOfTapsRequired = 2;
-    
-    UITapGestureRecognizer *tapGesture2 = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapConnector:)];
-    tapGesture2.numberOfTouchesRequired = 1;
-    tapGesture2.numberOfTapsRequired = 2;
-    
-    [_icon addGestureRecognizer:tapGesture];
-    [_icon addGestureRecognizer:panIconGesture];
-    [_connector addGestureRecognizer:panConnectorGesture];
-    [_connector addGestureRecognizer:tapGesture2];
+//    UIPanGestureRecognizer* panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panIcon:)];
+//    UIPanGestureRecognizer* panConnectorGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panConnector:)];
+//    
+//    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapIcon:)];
+//    tapGesture.numberOfTouchesRequired = 1;
+//    tapGesture.numberOfTapsRequired = 2;
+//    
+//    UITapGestureRecognizer *tapGesture2 = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapConnector:)];
+//    tapGesture2.numberOfTouchesRequired = 1;
+//    tapGesture2.numberOfTapsRequired = 2;
+//    
+//    [_icon addGestureRecognizer:tapGesture];
+//    [_icon addGestureRecognizer:panIconGesture];
+//    [_connector addGestureRecognizer:panConnectorGesture];
+//    [_connector addGestureRecognizer:tapGesture2];
     
     [self addSubview:_icon];
     [self addSubview:_connector];
@@ -110,7 +112,7 @@
     }
 }
 
-- (id)initWithFrame:(CGRect)frame withObjectType:(NSString*)objectType withIcon:(P1IconView*)iconObject withConnector:(P1IconView*)connectorObject withCanvas:(P1EditView*)canvas
+- (id)initWithFrame:(CGRect)frame withObjectType:(NSString*)objectType withIcon:(P1IconView*)iconObject withConnector:(P1IconView*)connectorObject withCanvas:(P1EditView*)canvas groupedGestures:(BOOL)grouped
 {
     self = [super initWithFrame:frame];
     if (self) {
@@ -127,21 +129,23 @@
         self.icon = iconObject;
         self.connector = connectorObject;
         
-        UIPanGestureRecognizer* panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panIconMultiple:)];
-        UIPanGestureRecognizer* panConnectorGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panConnector:)];
+        [self setupDefaultGestures:grouped];
         
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapIconMultiple:)];
-        tapGesture.numberOfTouchesRequired = 1;
-        tapGesture.numberOfTapsRequired = 2;
-        
-        UITapGestureRecognizer *tapGesture2 = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapConnector:)];
-        tapGesture2.numberOfTouchesRequired = 1;
-        tapGesture2.numberOfTapsRequired = 2;
-        
-        [_icon addGestureRecognizer:tapGesture];
-        [_icon addGestureRecognizer:panIconGesture];
-        [_connector addGestureRecognizer:panConnectorGesture];
-        [_connector addGestureRecognizer:tapGesture2];
+//        UIPanGestureRecognizer* panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panIconMultiple:)];
+//        UIPanGestureRecognizer* panConnectorGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panConnector:)];
+//        
+//        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapIconMultiple:)];
+//        tapGesture.numberOfTouchesRequired = 1;
+//        tapGesture.numberOfTapsRequired = 2;
+//        
+//        UITapGestureRecognizer *tapGesture2 = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapConnector:)];
+//        tapGesture2.numberOfTouchesRequired = 1;
+//        tapGesture2.numberOfTapsRequired = 2;
+//        
+//        [_icon addGestureRecognizer:tapGesture];
+//        [_icon addGestureRecognizer:panIconGesture];
+//        [_connector addGestureRecognizer:panConnectorGesture];
+//        [_connector addGestureRecognizer:tapGesture2];
         
         [self addSubview:_icon];
         [self addSubview:_connector];
@@ -151,14 +155,46 @@
         } else {
             self.noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
         }
-            self.noteLabel.text = _iconType;
-            self.noteLabel.textAlignment = UITextAlignmentCenter;
-            self.noteLabel.backgroundColor = [UIColor clearColor];
-            self.noteLabel.font = [UIFont fontWithName:@"Helvetica" size:18];
+        
+        self.noteLabel.text = _iconType;
+        self.noteLabel.textAlignment = UITextAlignmentCenter;
+        self.noteLabel.backgroundColor = [UIColor clearColor];
+        self.noteLabel.font = [UIFont fontWithName:@"Helvetica" size:18];
+        
+        if (![self.iconType isEqualToString:@"touchable"]) {
             [self addSubview:self.noteLabel];
-        //}
+        }
     }
     return self;
+}
+
+- (void) setupDefaultGestures:(BOOL)grouped
+{
+    UIPanGestureRecognizer *panIconGesture = nil;
+    UITapGestureRecognizer *tapGesture = nil;
+
+    if (grouped) {
+        panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panIconMultiple:)];
+        
+        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapIconMultiple:)];
+    } else {
+        panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panIcon:)];
+        
+        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapIcon:)];
+    }
+    tapGesture.numberOfTouchesRequired = 1;
+    tapGesture.numberOfTapsRequired = 2;
+    
+    UIPanGestureRecognizer* panConnectorGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panConnector:)];
+    
+    UITapGestureRecognizer *tapGesture2 = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapConnector:)];
+    tapGesture2.numberOfTouchesRequired = 1;
+    tapGesture2.numberOfTapsRequired = 2;
+    
+    [_icon addGestureRecognizer:tapGesture];
+    [_icon addGestureRecognizer:panIconGesture];
+    [_connector addGestureRecognizer:panConnectorGesture];
+    [_connector addGestureRecognizer:tapGesture2];    
 }
 
 - (id)initWithFrame:(CGRect)frame withObjectType:(NSString *)objectType withIconType:(NSString *)iconType withConnectorType:(NSString *)connectorType withCanvas:(P1EditView *)canvas

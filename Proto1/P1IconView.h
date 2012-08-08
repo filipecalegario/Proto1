@@ -16,4 +16,6 @@
 
 - (id)initWithFrame:(CGRect)frame withType:(NSString *)type withImageSource:(NSString*)imageSource;
 
+- (id)initWithFrame:(CGRect)frame withType:(NSString *)type withColor:(UIColor*)color;
+
 @end

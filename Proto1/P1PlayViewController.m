@@ -9,6 +9,8 @@
 #import "P1PlayViewController.h"
 #import "P1InputObjectView.h"
 #import "P1IconView.h"
+#import "P1PlayTouchable.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface P1PlayViewController ()
 
@@ -18,6 +20,7 @@
 @property (nonatomic, strong) NSMutableArray *touchableObjects;
 @property (nonatomic, strong) NSMutableDictionary *swipeDictionary;
 @property (nonatomic, strong) NSString* patchToLoad;
+@property (nonatomic, strong) UIView* currentPannedView;
 
 @end
 
@@ -31,6 +34,7 @@
 @synthesize touchableObjects = _touchableObjects;
 @synthesize swipeDictionary = _swipeDictionary;
 @synthesize patchToLoad = _patchToLoad;
+@synthesize currentPannedView = _currentPannedView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -58,9 +62,9 @@
 {
     //self.touchableObjects = [[NSMutableArray alloc] init];
     
-    //UIPanGestureRecognizer* panOnEverything = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panOnEverything:)];
+    UIPanGestureRecognizer* panOnEverything = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panOnEverything:)];
     
-    //[self.playArea addGestureRecognizer:panOnEverything];
+    [self.playArea addGestureRecognizer:panOnEverything];
     
     //NSArray *objects = self.objectArray;
     if(self.objectArray){
@@ -79,18 +83,29 @@
                 //[self.touchableObjects addObject:currentObject];
                 self.mainAction = @"touchable-playNote";
                 P1InputObjectView * touchable = currentObject;
-                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-                [button addTarget:self action:@selector(aMethod:) forControlEvents:UIControlEventTouchDown];
-                button.frame = CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height);
-                button.tag = touchable.connectedTo.myTag;
-                [button setBackgroundImage:[UIImage imageNamed:touchable.iconType] forState:UIControlStateNormal];
-                [button setTitle:touchable.noteLabel.text forState:UIControlStateNormal];
                 
-                UIPanGestureRecognizer* panOnTheButton = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panOnTheButtonAction:)];
+                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height)];
+                playTouchable.value = touchable.connectedTo.myTag;
+                playTouchable.action = touchable.noteLabel.text;
                 
-                [button addGestureRecognizer:panOnTheButton];
+                UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
                 
-                [self.playArea addSubview:button];
+                [playTouchable addGestureRecognizer:tapGesture];
+                [self.playArea addSubview:playTouchable];
+                
+                
+                //                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                //                [button addTarget:self action:@selector(aMethod:) forControlEvents:UIControlEventTouchDown];
+                //                button.frame = CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height);
+                //                button.tag = touchable.connectedTo.myTag;
+                //                [button setBackgroundImage:[UIImage imageNamed:touchable.iconType] forState:UIControlStateNormal];
+                //                [button setTitle:touchable.noteLabel.text forState:UIControlStateNormal];
+                //                
+                //                UIPanGestureRecognizer* panOnTheButton = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panOnTheButtonAction:)];
+                //                
+                //                [button addGestureRecognizer:panOnTheButton];
+                //                
+                //                [self.playArea addSubview:button];
                 
             } else if([currentObject.iconType hasPrefix:@"swipe"]){
                 UISwipeGestureRecognizer * swipe = [self createSwipe:currentObject];
@@ -122,7 +137,7 @@
                 
                 NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
                 [self.swipeDictionary setObject:messageToSend forKey:keyToStore];
-
+                
                 [self.playArea addGestureRecognizer:swipe];
             }
             
@@ -185,13 +200,32 @@
 {
     CGPoint point = [gesture locationInView:self.playArea];
     UIView* pickedView = [self.playArea hitTest:point withEvent:nil];
-    //NSLog(pickedView.debugDescription);
-    if ([pickedView isKindOfClass:[UIButton class]]) {
-        UIButton* button = (UIButton *)pickedView;
-        //button.backgroundColor = [UIColor redColor];
-        [PdBase sendFloat:button.tag toReceiver:@"midinote"];
-        [PdBase sendBangToReceiver:@"noteTrigger"];
+    
+    if ([pickedView isKindOfClass:[P1PlayTouchable class]]) {
+        if (pickedView != self.currentPannedView) {
+            P1PlayTouchable * pickedTouchable = (P1PlayTouchable *) pickedView;
+            [self playNote:pickedTouchable.value];
+            self.currentPannedView = pickedView;
+        }
     }
+    
+    if ([pickedView isKindOfClass:[P1PlayView class]]) {
+        self.currentPannedView = self.playArea;
+    }
+    
+    //NSLog(pickedView.debugDescription);
+//    if ([pickedView isKindOfClass:[UIButton class]]) {
+//        UIButton* button = (UIButton *)pickedView;
+//        //button.backgroundColor = [UIColor redColor];
+//        [PdBase sendFloat:button.tag toReceiver:@"midinote"];
+//        [PdBase sendBangToReceiver:@"noteTrigger"];
+//    }
+}
+
+-(void) playNote:(int)note
+{
+    [PdBase sendFloat:note toReceiver:@"midinote"];
+    [PdBase sendBangToReceiver:@"noteTrigger"];
 }
 
 - (void)panOnTheButtonAction:(UIPanGestureRecognizer *)gesture
@@ -278,8 +312,29 @@
     } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"]){ 
         [PdBase sendBangToReceiver:sender.titleLabel.text];
     }
+}
+
+- (void)playTouchableAction:(UITapGestureRecognizer *)gesture
+{
+    P1PlayTouchable * playTouchable = (P1PlayTouchable *) gesture.view;
+    
+    if([self.patchToLoad isEqualToString:@"proto1.pd"]){
+        [PdBase sendFloat:playTouchable.value toReceiver:@"midinote"];
+        [PdBase sendBangToReceiver:@"noteTrigger"];
+    } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"]){ 
+        [PdBase sendBangToReceiver:playTouchable.action];
+    }
     
     
+    NSLog(@"PlayTouchableAction!");    
+//    if (gesture.state == UIGestureRecognizerStateRecognized) {
+//        gesture.view.backgroundColor = [UIColor blackColor];
+//        [gesture.view setNeedsDisplay];
+//        
+//    } else if (gesture.state == UIGestureRecognizerStateEnded){
+//        gesture.view.layer.backgroundColor = [UIColor orangeColor].CGColor;
+//        [gesture.view setNeedsDisplay];
+//    }
 }
 
 -(float)mapThis:(float)a fromMin:(float)fmin fromMax:(float)fmax toMin:(float)tmin toMax:(float)tmax

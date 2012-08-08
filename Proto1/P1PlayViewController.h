@@ -27,5 +27,6 @@
 - (void)swipeHandler:(UISwipeGestureRecognizer *)gesture;
 - (void)panOnTheButtonAction:(UIPanGestureRecognizer *)gesture;
 - (void)panOnEverything:(UIPanGestureRecognizer *)gesture;
+- (void)playTouchableAction:(UITapGestureRecognizer *)gesture;
 
 @end

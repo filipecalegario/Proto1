@@ -8,6 +8,7 @@
 
 #import "P1Touchable.h"
 #import "P1Utils.h"
+#import "P1IconView.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface P1Touchable()
@@ -27,7 +28,13 @@
 
 - (id)initWithFrame:(CGRect)frame withCanvas:(P1EditView *)canvas
 {
-    self = [super initWithFrame:frame withObjectType:@"input" withIconType:@"touchable" withConnectorType:@"trigger" withCanvas:canvas];
+    
+    P1IconView* icon = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 100, 100) withType:@"touchable" withColor:[UIColor orangeColor]];
+    
+    P1IconView* connector = [[P1IconView alloc] initWithFrame:CGRectMake(100, 0, 50, 100) withType:@"trigger"];
+    
+    self = [super initWithFrame:frame withObjectType:@"input" withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:NO];
+    
     if (self) {
         [self setup];
     }
@@ -36,7 +43,10 @@
 
 - (void) setup
 {
-    //self.layer.anchorPoint = CGPointMake(0, 0);
+    CGRect oldFrame = self.frame;
+    self.layer.anchorPoint = CGPointMake(0, 0);
+    self.frame = oldFrame;
+    
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapHandle:)];
     [self.icon addGestureRecognizer:longPress];
     
@@ -61,12 +71,18 @@
     [self.corner3 addGestureRecognizer:panGesture3];
     [self.corner4 addGestureRecognizer:panGesture4];
     
+    
+    UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
+    doubleTap.numberOfTouchesRequired = 2;
+    doubleTap.numberOfTapsRequired = 2;
+    [self.icon addGestureRecognizer:doubleTap];
+    
     [self updateCorners];
     
-    [self addSubview:self.corner1];
-    [self addSubview:self.corner2];
+    //[self addSubview:self.corner1];
+    //[self addSubview:self.corner2];
     [self addSubview:self.corner3];
-    [self addSubview:self.corner4];
+    //[self addSubview:self.corner4];
 }
 
 - (void) updateCorners
@@ -85,6 +101,14 @@
     }
 }
 
+- (void) doubleTap:(UITapGestureRecognizer *)gesture
+{
+    NSLog(@"Touchable: Double Tap");
+    P1Touchable * copied = [self duplicate];
+    [self.canvas addSubview:copied];
+    [self.canvas setNeedsDisplay];
+}
+
 - (void) panCorners1:(UIPanGestureRecognizer *)gesture
 {
     NSLog(@"Pan Corner 1");
@@ -92,21 +116,16 @@
 
 - (void) panCorners2:(UIPanGestureRecognizer *)gesture
 {
-        
+    NSLog(@"Pan Corner 2");        
 }
 
 - (void) panCorners3:(UIPanGestureRecognizer *)gesture
 {
     NSLog(@"Pan Corner 3");
+    
     CGPoint translation = [gesture translationInView:self.canvas];
-    
-    self.translationPoint = translation;
-    //CGPoint location = [gesture locationInView:self.canvas];
-    
-    //self.icon.bounds = CGRectMake(self.icon.bounds.origin.x, self.icon.bounds.origin.y, self.icon.bounds.size.width + translation.x, self.icon.bounds.size.height - translation.y);
-    
-    self.icon.frame = CGRectMake(0, 0, self.icon.bounds.size.width + translation.x, self.icon.bounds.size.height + translation.y);
-    
+
+    self.icon.frame = CGRectMake(0, 0, self.icon.frame.size.width + translation.x, self.icon.frame.size.height + translation.y);
     
     [gesture setTranslation:CGPointMake(0, 0) inView:self.canvas];
     [self updateLayout];
@@ -114,28 +133,21 @@
 
 - (void) panCorners4:(UIPanGestureRecognizer *)gesture
 {
-    NSLog(@"Pan Corner 4");
+
 }
 
 - (void) updateLayout
 {
-    self.icon.backgroundColor = [P1Utils myColor:@"strongOrange"];
+    self.icon.backgroundColor = [UIColor orangeColor];
     //self.backgroundColor = [UIColor orangeColor];
     //self.connector.backgroundColor = [UIColor yellowColor];
     
     float newWidth = self.icon.frame.size.width + self.connector.frame.size.width;
     float newHeight = self.icon.frame.size.height;
-    //CGPoint newOrigin = self.icon.frame.origin;
     
     self.bounds = CGRectMake(0, 0, newWidth, newHeight);
     
-    //NSLog([NSString stringWithFormat:@"%f, %f", self.icon.frame.size.width]);
-    
-    //self.connector.bounds = CGRectMake(self.icon.bounds.size.width + self.connector.bounds.size.width/2, self.icon.center.y, self.connector.frame.size.width, self.connector.frame.size.height);
-    //self.connector.center = CGPointMake(self.connector.center.x + self.translationPoint.x, self.icon.center.y);
-    
-    self.connector.center = CGPointMake(self.icon.bounds.size.width + self.connector.bounds.size.width/2, self.icon.center.y);
-    
+    self.connector.center = CGPointMake(self.icon.frame.size.width + self.connector.frame.size.width/2, self.icon.center.y);
     
     [self updateCorners];
     [self.icon setNeedsDisplay];
@@ -143,20 +155,33 @@
     [self.canvas setNeedsDisplay];
 }
 
+- (P1Touchable *)duplicate
+{
+    P1IconView* icon = [[P1IconView alloc] initWithFrame:self.icon.frame withType:@"touchable" withColor:[UIColor orangeColor]];
+    
+    P1IconView* connector = [[P1IconView alloc] initWithFrame:self.connector.frame withType:@"trigger"];
+    
+    P1Touchable* copiedTouchable = [[P1Touchable alloc] initWithFrame:CGRectMake(self.frame.origin.x + 100, self.frame.origin.y, self.frame.size.width, self.frame.size.height) withObjectType:@"input" withIcon:icon withConnector:connector withCanvas:self.canvas groupedGestures:NO];
+    
+    [copiedTouchable setup];
+    
+    return copiedTouchable;
+}
+
 - (void)drawRect:(CGRect)rect
 {
     if (editable) {
         NSLog(@"Editable");
-        [self.corner1 setHidden:false];
-        [self.corner2 setHidden:false];
+        //[self.corner1 setHidden:false];
+        //[self.corner2 setHidden:false];
         [self.corner3 setHidden:false];
-        [self.corner4 setHidden:false];
+        //[self.corner4 setHidden:false];
     } else {
         NSLog(@"Not Editable");
-        [self.corner1 setHidden:true];
-        [self.corner2 setHidden:true];
+        //[self.corner1 setHidden:true];
+        //[self.corner2 setHidden:true];
         [self.corner3 setHidden:true];
-        [self.corner4 setHidden:true];
+        //[self.corner4 setHidden:true];
     }
 }
 

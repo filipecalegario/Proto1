@@ -186,8 +186,8 @@
             
             CGPoint p1 = [self convertPoint:castedView.connector.center fromView:castedView];
             CGPoint p2 = [self convertPoint:connectedView.connector.center fromView:connectedView];
-            CGPoint cp1 = [self convertPoint:castedView.auxPoint fromView:castedView.superview];
-            CGPoint cp2 = [self convertPoint:connectedView.auxPoint fromView:connectedView.superview];
+            CGPoint cp1 = [self convertPoint:castedView.auxPoint fromView:castedView];
+            CGPoint cp2 = [self convertPoint:connectedView.auxPoint fromView:connectedView];
             
             if (self.current && !self.current.connectedTo && !connectedView){
                 

@@ -7,6 +7,7 @@
 //
 
 #import "P1IconView.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation P1IconView
 
@@ -34,6 +35,24 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self setup:type withImageSource:type];
+    }
+    return self;
+}
+
+- (id)initWithFrame:(CGRect)frame withType:(NSString *)type withColor:(UIColor*)color
+{
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.contentMode = UIViewContentModeRedraw;
+        self.type = type;
+        self.backgroundColor = color;
+        self.layer.shadowOffset = CGSizeMake(0, 3);
+        self.layer.shadowRadius = 5.0;
+        self.layer.shadowColor = [UIColor grayColor].CGColor;
+        self.layer.shadowOpacity = 0.8;
+        self.layer.borderColor = [UIColor blackColor].CGColor;
+        self.layer.borderWidth = 1.0;
+        self.layer.cornerRadius = 5.0;
     }
     return self;
 }
