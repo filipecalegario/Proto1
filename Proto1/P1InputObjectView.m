@@ -29,6 +29,7 @@
 @synthesize noteLabel = _noteLabel;
 @synthesize auxPoint = _auxPoint;
 @synthesize connectorState = _connectorState;
+@synthesize name = _name;
 
 - (void) setConnectedTo:(P1InputObjectView *)connectedTo
 {

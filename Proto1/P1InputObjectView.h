@@ -21,7 +21,9 @@
 @property (nonatomic, weak) P1InputObjectView* connectedTo;
 @property (nonatomic, assign) BOOL hasToBeDrawn;
 @property (nonatomic, assign) int myTag;
+#warning consertar essa representação de noteLabel e name
 @property (nonatomic, strong) UILabel *noteLabel;
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) CGPoint auxPoint;
 
 - (id)initWithFrame:(CGRect)frame withObjectType:(NSString *)objectType withIconType:(NSString *)iconType withConnectorType:(NSString *)connectorType withCanvas:(P1EditView *)canvas;

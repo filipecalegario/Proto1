@@ -16,7 +16,6 @@
 		4512E4D715BF7BD800843A60 /* specialTrackConnector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4512E4D015BF7BD800843A60 /* specialTrackConnector@2x.png */; };
 		4512E4D915BF7D2300843A60 /* touchable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4512E4D815BF7D2300843A60 /* touchable@2x.png */; };
 		45314CBA15D1A58700BE7364 /* P1PlayTouchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 45314CB915D1A58600BE7364 /* P1PlayTouchable.m */; };
-		45314D0815D1F1AA00BE7364 /* mySimpleSamplePlayer.pd in Resources */ = {isa = PBXBuildFile; fileRef = 45314D0115D1F1AA00BE7364 /* mySimpleSamplePlayer.pd */; };
 		45314D1515D2120A00BE7364 /* sample1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45314D0F15D2120A00BE7364 /* sample1.wav */; };
 		45314D1615D2120A00BE7364 /* sample2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45314D1015D2120A00BE7364 /* sample2.wav */; };
 		45314D1715D2120A00BE7364 /* sample3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45314D1115D2120A00BE7364 /* sample3.wav */; };
@@ -82,6 +81,8 @@
 		45EDB44C15BE6FFF00FD9040 /* triggerFlipped@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45EDB44815BE6FFE00FD9040 /* triggerFlipped@2x.png */; };
 		45EDB44D15BE6FFF00FD9040 /* track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45EDB44915BE6FFE00FD9040 /* track@2x.png */; };
 		45EDB44E15BE6FFF00FD9040 /* trackFlipped@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45EDB44A15BE6FFF00FD9040 /* trackFlipped@2x.png */; };
+		45EF470515D3FB980038BD8C /* mySimpleSamplePlayer.pd in Resources */ = {isa = PBXBuildFile; fileRef = 45EF470415D3FB980038BD8C /* mySimpleSamplePlayer.pd */; };
+		45EF470715D47F130038BD8C /* noteArray.pd in Resources */ = {isa = PBXBuildFile; fileRef = 45EF470615D47F130038BD8C /* noteArray.pd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -119,7 +120,6 @@
 		4512E4D815BF7D2300843A60 /* touchable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touchable@2x.png"; sourceTree = "<group>"; };
 		45314CB815D1A58600BE7364 /* P1PlayTouchable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1PlayTouchable.h; sourceTree = "<group>"; };
 		45314CB915D1A58600BE7364 /* P1PlayTouchable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = P1PlayTouchable.m; sourceTree = "<group>"; };
-		45314D0115D1F1AA00BE7364 /* mySimpleSamplePlayer.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mySimpleSamplePlayer.pd; sourceTree = "<group>"; };
 		45314D0F15D2120A00BE7364 /* sample1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample1.wav; sourceTree = "<group>"; };
 		45314D1015D2120A00BE7364 /* sample2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample2.wav; sourceTree = "<group>"; };
 		45314D1115D2120A00BE7364 /* sample3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample3.wav; sourceTree = "<group>"; };
@@ -203,6 +203,8 @@
 		45EDB44815BE6FFE00FD9040 /* triggerFlipped@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "triggerFlipped@2x.png"; sourceTree = "<group>"; };
 		45EDB44915BE6FFE00FD9040 /* track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "track@2x.png"; sourceTree = "<group>"; };
 		45EDB44A15BE6FFF00FD9040 /* trackFlipped@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trackFlipped@2x.png"; sourceTree = "<group>"; };
+		45EF470415D3FB980038BD8C /* mySimpleSamplePlayer.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = mySimpleSamplePlayer.pd; sourceTree = "<group>"; };
+		45EF470615D47F130038BD8C /* noteArray.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = noteArray.pd; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,7 +361,7 @@
 				45314D1215D2120A00BE7364 /* sample4.wav */,
 				45314D1315D2120A00BE7364 /* sample5.wav */,
 				45314D1415D2120A00BE7364 /* sample6.wav */,
-				45314D0115D1F1AA00BE7364 /* mySimpleSamplePlayer.pd */,
+				45EF470415D3FB980038BD8C /* mySimpleSamplePlayer.pd */,
 				45943BBB15BF32A9008E6002 /* afro-beat_machine.pd */,
 				45943BBC15BF32A9008E6002 /* afro-beat_colonial_mentality.pd */,
 				45943BBD15BF32A9008E6002 /* afro-beat_excuse_o.pd */,
@@ -371,6 +373,7 @@
 				45943BC315BF32A9008E6002 /* ratinhos.pd */,
 				45943BC415BF32A9008E6002 /* teclado.pd */,
 				45943BC515BF32A9008E6002 /* volume.pd */,
+				45EF470615D47F130038BD8C /* noteArray.pd */,
 				458B871815B65CF700DB125E /* proto1.pd */,
 				458B871F15B660AC00DB125E /* tuner.pd */,
 			);
@@ -532,13 +535,14 @@
 				4512E4D615BF7BD800843A60 /* specialIconLong@2x.png in Resources */,
 				4512E4D715BF7BD800843A60 /* specialTrackConnector@2x.png in Resources */,
 				4512E4D915BF7D2300843A60 /* touchable@2x.png in Resources */,
-				45314D0815D1F1AA00BE7364 /* mySimpleSamplePlayer.pd in Resources */,
 				45314D1515D2120A00BE7364 /* sample1.wav in Resources */,
 				45314D1615D2120A00BE7364 /* sample2.wav in Resources */,
 				45314D1715D2120A00BE7364 /* sample3.wav in Resources */,
 				45314D1815D2120A00BE7364 /* sample4.wav in Resources */,
 				45314D1915D2120A00BE7364 /* sample5.wav in Resources */,
 				45314D1A15D2120A00BE7364 /* sample6.wav in Resources */,
+				45EF470515D3FB980038BD8C /* mySimpleSamplePlayer.pd in Resources */,
+				45EF470715D47F130038BD8C /* noteArray.pd in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

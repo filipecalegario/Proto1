@@ -69,7 +69,8 @@
                 
                 P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height)];
                 playTouchable.value = touchable.connectedTo.myTag;
-                playTouchable.action = touchable.noteLabel.text;
+                //playTouchable.action = touchable.noteLabel.text;
+                playTouchable.action = touchable.connectedTo.name;
                 
 //                UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
 //                [playTouchable addGestureRecognizer:tapGesture];
@@ -258,6 +259,12 @@
         NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
         NSString* messageToSend = [self.swipeDictionary objectForKey:indexacao];
         [PdBase sendBangToReceiver:messageToSend];
+    } else if([self.patchToLoad isEqualToString:@"noteArray.pd"]){ 
+        NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
+        NSNumber* noteToSend = [self.swipeDictionary objectForKey:indexacao];
+        NSLog([NSString stringWithFormat:@"NOTE TO SEND: %f, %i, %i, %i",noteToSend.floatValue, gesture.direction, gesture.numberOfTouches, indexacao.intValue]);
+        [PdBase sendFloat:noteToSend.floatValue toReceiver:@"genericNoteV"];
+        [PdBase sendBangToReceiver:@"genericNote"];
     }
 }
 
@@ -278,6 +285,14 @@
         } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"] || [self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
             //NSLog(playTouchable.action);
             [PdBase sendBangToReceiver:playTouchable.action];
+        } else if([self.patchToLoad isEqualToString:@"noteArray.pd"]){ 
+            
+            NSLog([NSString stringWithFormat:@"noteArray: value = %i | action = %@", playTouchable.value, playTouchable.action]);
+            
+//            [PdBase sendFloat:playTouchable.value toReceiver:[NSString stringWithFormat:@"%@v",playTouchable.action]];
+//            [PdBase sendBangToReceiver:playTouchable.action];
+            [self playNote:playTouchable];
+            
         }
         
     }
@@ -339,7 +354,9 @@
     if ([pickedView isKindOfClass:[P1PlayTouchable class]]) {
         if (pickedView != self.currentPannedView) {
             P1PlayTouchable * pickedTouchable = (P1PlayTouchable *) pickedView;
-            [self playNote:pickedTouchable.value];
+
+            [self playNote:pickedTouchable];
+            
             self.currentPannedView = pickedView;
         }
     }
@@ -420,10 +437,16 @@
     }
 }
 
--(void) playNote:(int)note
+-(void) playNote:(P1PlayTouchable *)touchable
 {
-    [PdBase sendFloat:note toReceiver:@"midinote"];
-    [PdBase sendBangToReceiver:@"noteTrigger"];
+    if ([self.patchToLoad isEqualToString:@"proto1.pd"]) {
+        [PdBase sendFloat:touchable.value toReceiver:@"midinote"];
+        [PdBase sendBangToReceiver:@"noteTrigger"];
+    } else if ([self.patchToLoad isEqualToString:@"noteArray.pd"]){
+        [PdBase sendFloat:touchable.value toReceiver:[NSString stringWithFormat:@"%@v",touchable.action]];
+        [PdBase sendBangToReceiver:touchable.action];
+    }
+    
 }
 
 //======== MANDAR PRA UTILS ========
