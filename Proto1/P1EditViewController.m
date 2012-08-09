@@ -210,6 +210,14 @@
     [self performSegueWithIdentifier: @"AddOutputObject" sender:gesture];
 }
 
+//======== GESTURES HANDLERS ========
+#pragma mark - Gesture Delegate Methods
+
+-(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
+{
+    
+}
+
 //======== DEFAULT METHODS ========
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -226,7 +234,7 @@
     [super viewDidLoad];
     
     UITapGestureRecognizer* tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openMenuToAddObject:)];
-    tapGest.numberOfTapsRequired = 2;
+    tapGest.numberOfTapsRequired = 1;
     tapGest.numberOfTouchesRequired = 1;
     [self.canvas addGestureRecognizer:tapGest];
     

@@ -171,30 +171,30 @@
 - (void) setupDefaultGestures:(BOOL)grouped
 {
     UIPanGestureRecognizer *panIconGesture = nil;
-    UITapGestureRecognizer *tapGesture = nil;
+    UITapGestureRecognizer *tapIconGesture = nil;
 
     if (grouped) {
         panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panIconMultiple:)];
         
-        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapIconMultiple:)];
+        tapIconGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapIconMultiple:)];
     } else {
         panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panIcon:)];
         
-        tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapIcon:)];
+        tapIconGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapIcon:)];
     }
-    tapGesture.numberOfTouchesRequired = 1;
-    tapGesture.numberOfTapsRequired = 2;
+    tapIconGesture.numberOfTouchesRequired = 1;
+    tapIconGesture.numberOfTapsRequired = 1;
     
-    UIPanGestureRecognizer* panConnectorGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panConnector:)];
+    UIPanGestureRecognizer *panConnectorGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panConnector:)];
     
-    UITapGestureRecognizer *tapGesture2 = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapConnector:)];
-    tapGesture2.numberOfTouchesRequired = 1;
-    tapGesture2.numberOfTapsRequired = 2;
+    UITapGestureRecognizer *tapConnectorGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapConnector:)];
+    tapConnectorGesture.numberOfTouchesRequired = 1;
+    tapConnectorGesture.numberOfTapsRequired = 1;
     
-    [_icon addGestureRecognizer:tapGesture];
+    [_icon addGestureRecognizer:tapIconGesture];
     [_icon addGestureRecognizer:panIconGesture];
     [_connector addGestureRecognizer:panConnectorGesture];
-    [_connector addGestureRecognizer:tapGesture2];    
+    [_connector addGestureRecognizer:tapConnectorGesture];    
 }
 
 - (id)initWithFrame:(CGRect)frame withObjectType:(NSString *)objectType withIconType:(NSString *)iconType withConnectorType:(NSString *)connectorType withCanvas:(P1EditView *)canvas

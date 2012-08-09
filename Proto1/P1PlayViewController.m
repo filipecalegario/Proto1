@@ -265,7 +265,7 @@
 {
     P1PlayTouchable * playTouchable = (P1PlayTouchable *) gesture.view;
     
-    NSLog([NSString stringWithFormat:@"%i", gesture.state]);
+    //NSLog([NSString stringWithFormat:@"%i", gesture.state]);
     
     if (gesture.state == UIGestureRecognizerStateBegan) {
         NSLog(@"PlayTouchableAction!"); 
@@ -276,7 +276,7 @@
             [PdBase sendFloat:playTouchable.value toReceiver:@"midinote"];
             [PdBase sendBangToReceiver:@"noteTrigger"];
         } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"] || [self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
-            NSLog(playTouchable.action);
+            //NSLog(playTouchable.action);
             [PdBase sendBangToReceiver:playTouchable.action];
         }
         
