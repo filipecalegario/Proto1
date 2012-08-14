@@ -11,6 +11,11 @@
 #import "P1IconView.h"
 #import <QuartzCore/QuartzCore.h>
 
+#import <QuartzCore/CALayer.h>
+#import <QuartzCore/CATransaction.h>
+
+#define RESIZE_BUTTON_SIZE 44
+
 @interface P1Touchable()
 
 @property (nonatomic, assign) CGPoint translationPoint;
@@ -50,26 +55,26 @@
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapHandle:)];
     [self.icon addGestureRecognizer:longPress];
     
-    self.corner1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    self.corner1.backgroundColor = [P1Utils myColor:@"brown"];
+//    self.corner1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+//    self.corner1.backgroundColor = [P1Utils myColor:@"brown"];
+//    
+//    self.corner2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+//    self.corner2.backgroundColor = [P1Utils myColor:@"brown"];
     
-    self.corner2 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    self.corner2.backgroundColor = [P1Utils myColor:@"brown"];
-    
-    self.corner3 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    self.corner3 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, RESIZE_BUTTON_SIZE, RESIZE_BUTTON_SIZE)];
     self.corner3.backgroundColor = [P1Utils myColor:@"brown"];
     
-    self.corner4 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    self.corner4.backgroundColor = [P1Utils myColor:@"brown"];
+//    self.corner4 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+//    self.corner4.backgroundColor = [P1Utils myColor:@"brown"];
     
-    UIPanGestureRecognizer *panGesture1 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panCorners1:)];
-    UIPanGestureRecognizer *panGesture2 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panCorners2:)];
+    //UIPanGestureRecognizer *panGesture1 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panCorners1:)];
+    //UIPanGestureRecognizer *panGesture2 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panCorners2:)];
     UIPanGestureRecognizer *panGesture3 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panCorners3:)];
-    UIPanGestureRecognizer *panGesture4 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panCorners4:)];
-    [self.corner1 addGestureRecognizer:panGesture1];
-    [self.corner2 addGestureRecognizer:panGesture2];
+    //UIPanGestureRecognizer *panGesture4 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panCorners4:)];
+    //[self.corner1 addGestureRecognizer:panGesture1];
+    //[self.corner2 addGestureRecognizer:panGesture2];
     [self.corner3 addGestureRecognizer:panGesture3];
-    [self.corner4 addGestureRecognizer:panGesture4];
+    //[self.corner4 addGestureRecognizer:panGesture4];
     
     
     UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(doubleTap:)];
@@ -87,10 +92,16 @@
 
 - (void) updateCorners
 {
-    self.corner1.frame = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, 20, 20);
-    self.corner2.frame = CGRectMake(self.icon.frame.origin.x + self.icon.frame.size.width - 20, self.bounds.origin.y, 20, 20);
-    self.corner3.frame = CGRectMake(self.icon.frame.origin.x + self.icon.frame.size.width - 20, self.icon.frame.origin.y + self.icon.frame.size.height - 20, 20, 20);
-    self.corner4.frame = CGRectMake(self.bounds.origin.x, self.icon.frame.origin.y + self.icon.frame.size.height - 20, 20, 20);
+    
+//    [CATransaction begin];
+//    [CATransaction setDisableActions:YES];
+    
+    //self.corner1.frame = CGRectMake(self.bounds.origin.x, self.bounds.origin.y, 20, 20);
+    //self.corner2.frame = CGRectMake(self.icon.frame.origin.x + self.icon.frame.size.width - 20, self.bounds.origin.y, 20, 20);
+    self.corner3.frame = CGRectMake(self.icon.frame.origin.x + self.icon.frame.size.width - RESIZE_BUTTON_SIZE, self.icon.frame.origin.y + self.icon.frame.size.height - RESIZE_BUTTON_SIZE, RESIZE_BUTTON_SIZE, RESIZE_BUTTON_SIZE);
+    //self.corner4.frame = CGRectMake(self.bounds.origin.x, self.icon.frame.origin.y + self.icon.frame.size.height - 20, 20, 20);
+    
+//    [CATransaction commit];
 }
 
 - (void) longTapHandle:(UILongPressGestureRecognizer *)gesture
@@ -124,11 +135,18 @@
     NSLog(@"Pan Corner 3");
     
     CGPoint translation = [gesture translationInView:self.canvas];
-
+    
+    [CATransaction begin];
+    [CATransaction setDisableActions:YES];
+    
     self.icon.frame = CGRectMake(0, 0, self.icon.frame.size.width + translation.x, self.icon.frame.size.height + translation.y);
+    
+    
     
     [gesture setTranslation:CGPointMake(0, 0) inView:self.canvas];
     [self updateLayout];
+    
+    [CATransaction commit];
 }
 
 - (void) panCorners4:(UIPanGestureRecognizer *)gesture
@@ -138,6 +156,9 @@
 
 - (void) updateLayout
 {
+    //[CATransaction begin];
+    //[CATransaction setDisableActions:YES];
+    
     self.icon.backgroundColor = [UIColor orangeColor];
     //self.backgroundColor = [UIColor orangeColor];
     //self.connector.backgroundColor = [UIColor yellowColor];
@@ -148,6 +169,8 @@
     self.bounds = CGRectMake(0, 0, newWidth, newHeight);
     
     self.connector.center = CGPointMake(self.icon.frame.size.width + self.connector.frame.size.width/2, self.icon.center.y);
+    
+    //[CATransaction commit];
     
     [self updateCorners];
     [self.icon setNeedsDisplay];

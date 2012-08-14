@@ -31,67 +31,62 @@
 @synthesize contextMenuPopover = _contextMenuPopover;
 
 
+
 //======== METHODS FOR REMOTE ACCESS ========
 
 - (void) addObject:(NSString *)identifier
 {
     UIView *object;
     
-    CGRect defaultRect = CGRectMake(0, 0, 150, 100);
-    
-    if([identifier isEqualToString:@"Touch"]){
-        NSLog(@"adding a touch input object");
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"touch" withConnectorType:@"trigger" withCanvas:canvas];
-        
-    } else if ([identifier isEqualToString:@"Horizontal Slide"]) {
-        NSLog(@"adding a horizontal slide input object");     
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"horizontalSlide" withConnectorType:@"track" withCanvas:canvas];
-        
-    } else if ([identifier isEqualToString:@"Vertical Slide"]) {
-        NSLog(@"adding a vertical slide input object");       
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"verticalSlide" withConnectorType:@"track" withCanvas:canvas];
-        
-    } else if ([identifier isEqualToString:@"Note Flow"]) {
-        NSLog(@"adding a play notes output object");
-        object = [P1ObjectFactory createNoteFlowWithCanvas:self.canvas];
-        
-    } else if ([identifier isEqualToString:@"Touchable"]) {
-        NSLog(@"adding a touchable input object");  
-        object = [P1ObjectFactory createTouchable:self.canvas];
-        
-    } else if ([identifier isEqualToString:@"swipeUp"]) {
-        NSLog(@"adding a swipeUp input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeUp" withConnectorType:@"trigger" withCanvas:canvas];
-        
-    } else if ([identifier isEqualToString:@"swipeDown"]) {
-        NSLog(@"adding a swipeDown input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDown" withConnectorType:@"trigger" withCanvas:canvas];
-        
-    } else if ([identifier isEqualToString:@"swipeLeft"]) {
-        NSLog(@"adding a swipeLeft input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeLeft" withConnectorType:@"trigger" withCanvas:canvas];
-        
-    } else if ([identifier isEqualToString:@"swipeRight"]) {
-        NSLog(@"adding a swipeRight input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeRight" withConnectorType:@"trigger" withCanvas:canvas];
-        
-    } else if ([identifier isEqualToString:@"swipeDoubleUp"]) {
-        NSLog(@"adding a swipeDoubleUp input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDoubleUp" withConnectorType:@"trigger" withCanvas:canvas];
-        
-    } else if ([identifier isEqualToString:@"swipeDoubleDown"]) {
-        NSLog(@"adding a swipeDoubleDown input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDoubleDown" withConnectorType:@"trigger" withCanvas:canvas];
-        
-    } else if ([identifier isEqualToString:@"swipeDoubleLeft"]) {
-        NSLog(@"adding a swipeDoubleLeft input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDoubleLeft" withConnectorType:@"trigger" withCanvas:canvas];
-        
-    } else if ([identifier isEqualToString:@"swipeDoubleRight"]) {
-        NSLog(@"adding a swipeDoubleRight input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDoubleRight" withConnectorType:@"trigger" withCanvas:canvas];
-        
-    } else if ([identifier isEqualToString:@"Play Note"]) {
+//    CGRect defaultRect = CGRectMake(0, 0, 150, 100);
+//    
+//    if([identifier isEqualToString:@"touch"]){
+//        NSLog(@"adding a touch input object");
+//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"touch" withConnectorType:@"trigger" withCanvas:canvas];
+//        
+//    } else if ([identifier isEqualToString:@"horizontalSlide"]) {
+//        NSLog(@"adding a horizontal slide input object");     
+//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"horizontalSlide" withConnectorType:@"track" withCanvas:canvas];
+//        
+//    } else if ([identifier isEqualToString:@"verticalSlide"]) {
+//        NSLog(@"adding a vertical slide input object");       
+//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"verticalSlide" withConnectorType:@"track" withCanvas:canvas];
+//        
+//    } else if ([identifier isEqualToString:@"swipeUp"]) {
+//        NSLog(@"adding a swipeUp input object");  
+//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeUp" withConnectorType:@"trigger" withCanvas:canvas];
+//        
+//    } else if ([identifier isEqualToString:@"swipeDown"]) {
+//        NSLog(@"adding a swipeDown input object");  
+//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDown" withConnectorType:@"trigger" withCanvas:canvas];
+//        
+//    } else if ([identifier isEqualToString:@"swipeLeft"]) {
+//        NSLog(@"adding a swipeLeft input object");  
+//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeLeft" withConnectorType:@"trigger" withCanvas:canvas];
+//        
+//    } else if ([identifier isEqualToString:@"swipeRight"]) {
+//        NSLog(@"adding a swipeRight input object");  
+//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeRight" withConnectorType:@"trigger" withCanvas:canvas];
+//        
+//    } else if ([identifier isEqualToString:@"swipeDoubleUp"]) {
+//        NSLog(@"adding a swipeDoubleUp input object");  
+//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDoubleUp" withConnectorType:@"trigger" withCanvas:canvas];
+//        
+//    } else if ([identifier isEqualToString:@"swipeDoubleDown"]) {
+//        NSLog(@"adding a swipeDoubleDown input object");  
+//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDoubleDown" withConnectorType:@"trigger" withCanvas:canvas];
+//        
+//    } else if ([identifier isEqualToString:@"swipeDoubleLeft"]) {
+//        NSLog(@"adding a swipeDoubleLeft input object");  
+//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDoubleLeft" withConnectorType:@"trigger" withCanvas:canvas];
+//        
+//    } else if ([identifier isEqualToString:@"swipeDoubleRight"]) {
+//        NSLog(@"adding a swipeDoubleRight input object");  
+//        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:@"swipeDoubleRight" withConnectorType:@"trigger" withCanvas:canvas];
+//        
+//    } 
+    // MOVER ATÉ AQUI ============================
+    if ([identifier isEqualToString:@"Play Note"]) {
         NSLog(@"adding a touchable input object");
         object = [P1ObjectFactory createNoteArrayWithCanvas:self.canvas withGestureHandler:self];
         
@@ -102,7 +97,18 @@
     } else if ([identifier isEqualToString:@"sample player"]) {
         NSLog(@"Sample Player");
         object = [P1ObjectFactory createSamplePlayerWithCanvas:self.canvas];
+        
+    } else if ([identifier isEqualToString:@"Note Flow"]) {
+        NSLog(@"adding a play notes output object");
+        object = [P1ObjectFactory createNoteFlowWithCanvas:self.canvas];
+        
+    } else if ([identifier isEqualToString:@"touchable"]) {
+        NSLog(@"adding a touchable input object");  
+        object = [P1ObjectFactory createTouchable:self.canvas];
+    } else {
+        object = [P1ObjectFactory createInputObject:identifier withCanvas:self.canvas];
     }
+        
     
     object.center = botao.center;
     [self.canvas addSubview:object];
@@ -210,12 +216,12 @@
     [self performSegueWithIdentifier: @"AddOutputObject" sender:gesture];
 }
 
-//======== GESTURES HANDLERS ========
+//======== GESTURES DELEGATE METHODS ========
 #pragma mark - Gesture Delegate Methods
 
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer
 {
-    
+    return YES;
 }
 
 //======== DEFAULT METHODS ========
@@ -232,11 +238,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    UITapGestureRecognizer* tapGest = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openMenuToAddObject:)];
-    tapGest.numberOfTapsRequired = 1;
-    tapGest.numberOfTouchesRequired = 1;
-    [self.canvas addGestureRecognizer:tapGest];
+#warning Por que isso não tá no canvas? Porque ele precisa handle o openMenuToAdd!! E o canvas não tem referencia para o ViewController, to certo?
+    self.canvas.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openMenuToAddObject:)];
+    self.canvas.tapGesture.numberOfTapsRequired = 1;
+    self.canvas.tapGesture.numberOfTouchesRequired = 1;
+    self.canvas.tapGesture.delegate = self;
+    [self.canvas addGestureRecognizer:self.canvas.tapGesture];
     
 }
 
@@ -251,7 +258,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
 @end

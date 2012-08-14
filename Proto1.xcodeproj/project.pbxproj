@@ -40,6 +40,7 @@
 		454C91A115B89ED900313CC3 /* P1AddObjectTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 454C91A015B89ED900313CC3 /* P1AddObjectTableViewController.m */; };
 		454C91A315B8B07200313CC3 /* playNote@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 454C91A215B8B07100313CC3 /* playNote@2x.png */; };
 		454C91A615B8CAAF00313CC3 /* P1ContextMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 454C91A515B8CAAE00313CC3 /* P1ContextMenuViewController.m */; };
+		455D099215D57722006A42DA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 455D099115D57722006A42DA /* QuartzCore.framework */; };
 		457192A015D00E69008DEF35 /* P1Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4571929F15D00E69008DEF35 /* P1Utils.m */; };
 		457192A815D03F44008DEF35 /* P1Touchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 457192A715D03F44008DEF35 /* P1Touchable.m */; };
 		458B871315B65BA600DB125E /* libpd-ios.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 458B870D15B65B4E00DB125E /* libpd-ios.a */; };
@@ -147,6 +148,7 @@
 		454C91A215B8B07100313CC3 /* playNote@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "playNote@2x.png"; sourceTree = "<group>"; };
 		454C91A415B8CAAE00313CC3 /* P1ContextMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1ContextMenuViewController.h; sourceTree = "<group>"; };
 		454C91A515B8CAAE00313CC3 /* P1ContextMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = P1ContextMenuViewController.m; sourceTree = "<group>"; };
+		455D099115D57722006A42DA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		4571929E15D00E69008DEF35 /* P1Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1Utils.h; sourceTree = "<group>"; };
 		4571929F15D00E69008DEF35 /* P1Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = P1Utils.m; sourceTree = "<group>"; };
 		457192A615D03F43008DEF35 /* P1Touchable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1Touchable.h; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 				458E90E615B4886D00A82826 /* UIKit.framework in Frameworks */,
 				458E90E815B4886D00A82826 /* Foundation.framework in Frameworks */,
 				458E90EA15B4886D00A82826 /* CoreGraphics.framework in Frameworks */,
+				455D099215D57722006A42DA /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +248,7 @@
 		458E90D615B4886C00A82826 = {
 			isa = PBXGroup;
 			children = (
+				455D099115D57722006A42DA /* QuartzCore.framework */,
 				4512E4C615BF712500843A60 /* mainIcon.png */,
 				459B4F5115BEA1C900FE092D /* iTunesArtwork.png */,
 				459B4F4F15BEA16100FE092D /* Icon-72.png */,

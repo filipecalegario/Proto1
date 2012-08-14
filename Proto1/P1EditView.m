@@ -26,6 +26,7 @@
 @synthesize endPoint;
 @synthesize drawPossibilities;
 @synthesize current = _current;
+@synthesize tapGesture = _tapGesture;
 
 - (void)panIcon:(UIPanGestureRecognizer *)gesture
 {
@@ -139,17 +140,6 @@
     }
     return self;
 }
-
-//- (void)drawCircleAtPoint:(CGPoint)p withRadius:(CGFloat)radius withColor:(UIColor *)color inContext:(CGContextRef)context
-//{
-//    UIGraphicsPushContext(context);
-//    CGContextSetLineWidth(context, 2*radius);
-//    [color setStroke];
-//    CGContextBeginPath(context);
-//    CGContextAddArc(context, p.x, p.y, radius, 0, 2*M_PI, YES);
-//    CGContextStrokePath(context);
-//    UIGraphicsPopContext();
-//}
 
 -(NSArray*)getAllObjects
 {

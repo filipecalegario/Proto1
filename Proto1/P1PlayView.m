@@ -29,8 +29,8 @@
 
 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.tapPoint = [[touches anyObject] locationInView:self];
-    [self setNeedsDisplay];
+    //self.tapPoint = [[touches anyObject] locationInView:self];
+    //[self setNeedsDisplay];
 }
 
 

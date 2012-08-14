@@ -349,6 +349,7 @@
 - (void)panOnEverything:(UIPanGestureRecognizer *)gesture
 {
     CGPoint point = [gesture locationInView:self.playArea];
+    self.playArea.tapPoint = point;
     UIView* pickedView = [self.playArea hitTest:point withEvent:nil];
     
     if ([pickedView isKindOfClass:[P1PlayTouchable class]]) {
@@ -364,6 +365,8 @@
     if ([pickedView isKindOfClass:[P1PlayView class]]) {
         self.currentPannedView = self.playArea;
     }
+    
+    [self.playArea setNeedsDisplay];
     
     //NSLog(pickedView.debugDescription);
     //    if ([pickedView isKindOfClass:[UIButton class]]) {
@@ -410,7 +413,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil

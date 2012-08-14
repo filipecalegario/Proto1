@@ -183,6 +183,7 @@
         
         tapIconGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapIcon:)];
     }
+    
     tapIconGesture.numberOfTouchesRequired = 1;
     tapIconGesture.numberOfTapsRequired = 1;
     
@@ -191,6 +192,12 @@
     UITapGestureRecognizer *tapConnectorGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapConnector:)];
     tapConnectorGesture.numberOfTouchesRequired = 1;
     tapConnectorGesture.numberOfTapsRequired = 1;
+    
+    //[_canvas.tapGesture requireGestureRecognizerToFail:tapConnectorGesture];
+    //[_canvas.tapGesture requireGestureRecognizerToFail:tapIconGesture];
+    
+    //[tapIconGesture requireGestureRecognizerToFail:_canvas.tapGesture];
+    //[tapConnectorGesture requireGestureRecognizerToFail:_canvas.tapGesture];
     
     [_icon addGestureRecognizer:tapIconGesture];
     [_icon addGestureRecognizer:panIconGesture];

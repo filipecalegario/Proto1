@@ -10,6 +10,8 @@
 
 @interface P1EditView : UIView
 
+@property (nonatomic, strong) UITapGestureRecognizer* tapGesture;
+
 - (void)panIcon:(UIPanGestureRecognizer *)gesture;
 - (void)panIconMultiple:(UIPanGestureRecognizer *)gesture;
 - (void)panConnector:(UIPanGestureRecognizer *)gesture;
