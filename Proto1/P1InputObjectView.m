@@ -185,16 +185,19 @@
     }
     
     tapIconGesture.numberOfTouchesRequired = 1;
-    tapIconGesture.numberOfTapsRequired = 1;
+    tapIconGesture.numberOfTapsRequired = 2;
     
     UIPanGestureRecognizer *panConnectorGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panConnector:)];
     
     UITapGestureRecognizer *tapConnectorGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapConnector:)];
     tapConnectorGesture.numberOfTouchesRequired = 1;
-    tapConnectorGesture.numberOfTapsRequired = 1;
+    tapConnectorGesture.numberOfTapsRequired = 2;
     
-    //[_canvas.tapGesture requireGestureRecognizerToFail:tapConnectorGesture];
-    //[_canvas.tapGesture requireGestureRecognizerToFail:tapIconGesture];
+    tapConnectorGesture.delegate = self.canvas;
+    tapIconGesture.delegate = self.canvas;
+    
+    [self.canvas.tapGesture requireGestureRecognizerToFail:tapConnectorGesture];
+    [self.canvas.tapGesture requireGestureRecognizerToFail:tapIconGesture];
     
     //[tapIconGesture requireGestureRecognizerToFail:_canvas.tapGesture];
     //[tapConnectorGesture requireGestureRecognizerToFail:_canvas.tapGesture];

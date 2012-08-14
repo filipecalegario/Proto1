@@ -348,25 +348,42 @@
 
 - (void)panOnEverything:(UIPanGestureRecognizer *)gesture
 {
-    CGPoint point = [gesture locationInView:self.playArea];
-    self.playArea.tapPoint = point;
-    UIView* pickedView = [self.playArea hitTest:point withEvent:nil];
-    
-    if ([pickedView isKindOfClass:[P1PlayTouchable class]]) {
-        if (pickedView != self.currentPannedView) {
-            P1PlayTouchable * pickedTouchable = (P1PlayTouchable *) pickedView;
-
-            [self playNote:pickedTouchable];
-            
-            self.currentPannedView = pickedView;
+    if (gesture.state == UIGestureRecognizerStateBegan || gesture.state == UIGestureRecognizerStateChanged) {
+        
+        CGPoint point = [gesture locationInView:self.playArea];
+        self.playArea.tapPoint = point;
+        UIView* pickedView = [self.playArea hitTest:point withEvent:nil];
+        
+        if ([pickedView isMemberOfClass:[P1PlayTouchable class]]) {
+            if (pickedView != self.currentPannedView) {
+                P1PlayTouchable * pickedTouchable = (P1PlayTouchable *) pickedView;
+                
+                [self playNote:pickedTouchable];
+                
+                self.currentPannedView = pickedView;
+                self.currentPannedView.backgroundColor = [UIColor brownColor];
+            } else {
+                self.currentPannedView.backgroundColor = [UIColor orangeColor];
+            }
+        } else {
+            self.currentPannedView.backgroundColor = [UIColor orangeColor];
+            self.currentPannedView = nil;
         }
+        
+        //if ([pickedView isKindOfClass:[P1PlayView class]]) {
+        //    self.currentPannedView = self.playArea;
+        //}
+        
+        
+
+    } else {
+        self.currentPannedView.backgroundColor = [UIColor orangeColor];
+        //self.currentPannedView = nil;
     }
     
-    if ([pickedView isKindOfClass:[P1PlayView class]]) {
-        self.currentPannedView = self.playArea;
-    }
-    
+    [self.currentPannedView setNeedsDisplay];
     [self.playArea setNeedsDisplay];
+    
     
     //NSLog(pickedView.debugDescription);
     //    if ([pickedView isKindOfClass:[UIButton class]]) {

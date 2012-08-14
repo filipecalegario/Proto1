@@ -55,6 +55,8 @@
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapHandle:)];
     [self.icon addGestureRecognizer:longPress];
     
+    [self.canvas.tapGesture requireGestureRecognizerToFail:longPress];
+    
 //    self.corner1 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
 //    self.corner1.backgroundColor = [P1Utils myColor:@"brown"];
 //    
@@ -136,17 +138,21 @@
     
     CGPoint translation = [gesture translationInView:self.canvas];
     
-    [CATransaction begin];
-    [CATransaction setDisableActions:YES];
+    float futureWidth = self.icon.frame.size.width + translation.x;
+    float futureHeight = self.icon.frame.size.height + translation.y;
     
-    self.icon.frame = CGRectMake(0, 0, self.icon.frame.size.width + translation.x, self.icon.frame.size.height + translation.y);
-    
-    
+    if (futureWidth >= RESIZE_BUTTON_SIZE && futureHeight >= RESIZE_BUTTON_SIZE) {
+        [CATransaction begin];
+        [CATransaction setDisableActions:YES];
+        
+        self.icon.frame = CGRectMake(0, 0, futureWidth, futureHeight);
+        
+        [self updateLayout];
+        
+        [CATransaction commit];
+    }
     
     [gesture setTranslation:CGPointMake(0, 0) inView:self.canvas];
-    [self updateLayout];
-    
-    [CATransaction commit];
 }
 
 - (void) panCorners4:(UIPanGestureRecognizer *)gesture

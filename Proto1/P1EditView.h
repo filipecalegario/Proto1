@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface P1EditView : UIView
+@interface P1EditView : UIView <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UITapGestureRecognizer* tapGesture;
 
