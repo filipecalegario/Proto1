@@ -15,6 +15,7 @@
 		4512E4D615BF7BD800843A60 /* specialIconLong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4512E4CF15BF7BD800843A60 /* specialIconLong@2x.png */; };
 		4512E4D715BF7BD800843A60 /* specialTrackConnector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4512E4D015BF7BD800843A60 /* specialTrackConnector@2x.png */; };
 		4512E4D915BF7D2300843A60 /* touchable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4512E4D815BF7D2300843A60 /* touchable@2x.png */; };
+		4528FF5E15DB27B8005A3A9E /* P1FromTopReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4528FF5D15DB27B8005A3A9E /* P1FromTopReplaceSegue.m */; };
 		45314CBA15D1A58700BE7364 /* P1PlayTouchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 45314CB915D1A58600BE7364 /* P1PlayTouchable.m */; };
 		45314D1515D2120A00BE7364 /* sample1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45314D0F15D2120A00BE7364 /* sample1.wav */; };
 		45314D1615D2120A00BE7364 /* sample2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45314D1015D2120A00BE7364 /* sample2.wav */; };
@@ -119,6 +120,8 @@
 		4512E4CF15BF7BD800843A60 /* specialIconLong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "specialIconLong@2x.png"; sourceTree = "<group>"; };
 		4512E4D015BF7BD800843A60 /* specialTrackConnector@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "specialTrackConnector@2x.png"; sourceTree = "<group>"; };
 		4512E4D815BF7D2300843A60 /* touchable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touchable@2x.png"; sourceTree = "<group>"; };
+		4528FF5C15DB27B8005A3A9E /* P1FromTopReplaceSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1FromTopReplaceSegue.h; sourceTree = "<group>"; };
+		4528FF5D15DB27B8005A3A9E /* P1FromTopReplaceSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = P1FromTopReplaceSegue.m; sourceTree = "<group>"; };
 		45314CB815D1A58600BE7364 /* P1PlayTouchable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1PlayTouchable.h; sourceTree = "<group>"; };
 		45314CB915D1A58600BE7364 /* P1PlayTouchable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = P1PlayTouchable.m; sourceTree = "<group>"; };
 		45314D0F15D2120A00BE7364 /* sample1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample1.wav; sourceTree = "<group>"; };
@@ -352,6 +355,8 @@
 				454C91A015B89ED900313CC3 /* P1AddObjectTableViewController.m */,
 				458E912315B48D6900A82826 /* P1AddObjectMenuViewController.h */,
 				458E912415B48D6900A82826 /* P1AddObjectMenuViewController.m */,
+				4528FF5C15DB27B8005A3A9E /* P1FromTopReplaceSegue.h */,
+				4528FF5D15DB27B8005A3A9E /* P1FromTopReplaceSegue.m */,
 			);
 			name = Subs;
 			sourceTree = "<group>";
@@ -574,6 +579,7 @@
 				457192A815D03F44008DEF35 /* P1Touchable.m in Sources */,
 				45314CBA15D1A58700BE7364 /* P1PlayTouchable.m in Sources */,
 				45327D0115D31C85005E4571 /* P1TouchGestureRecognizer.m in Sources */,
+				4528FF5E15DB27B8005A3A9E /* P1FromTopReplaceSegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

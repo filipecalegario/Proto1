@@ -12,6 +12,7 @@
 #import "P1PlayTouchable.h"
 #import <QuartzCore/QuartzCore.h>
 #import "P1TouchGestureRecognizer.h"
+#import "P1Utils.h"
 
 @interface P1PlayViewController ()
 
@@ -36,6 +37,7 @@
 @synthesize swipeDictionary = _swipeDictionary;
 @synthesize patchToLoad = _patchToLoad;
 @synthesize currentPannedView = _currentPannedView;
+@synthesize backgroundForPlayArea = _backgroundForPlayArea;
 
 
 //======== SETUP/INITIALIZATION ========
@@ -47,6 +49,16 @@
     panOnEverything.delegate = self;
     
     [self.playArea addGestureRecognizer:panOnEverything];
+    
+    //self.playArea.backgroundColor = [UIColor colorWithPatternImage:self.backgroundForPlayArea];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:self.backgroundForPlayArea];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:1];
+    imageView.alpha = 0.3;
+    [UIView commitAnimations];
+    
+    [self.playArea addSubview:imageView];
     
     //NSArray *objects = self.objectArray;
     if(self.objectArray){
@@ -71,6 +83,11 @@
                 playTouchable.value = touchable.connectedTo.myTag;
                 //playTouchable.action = touchable.noteLabel.text;
                 playTouchable.action = touchable.connectedTo.name;
+                
+                playTouchable.label.text = [P1Utils convertNumberToNoteName:playTouchable.value];
+                [playTouchable setNeedsDisplay];
+                
+                NSLog(playTouchable.label.text);
                 
 //                UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
 //                [playTouchable addGestureRecognizer:tapGesture];
@@ -97,7 +114,7 @@
             
         } else if(currentObject.connectedTo.myTag == 128.0){
             #warning Corrigir essa GAMBIARRA tosca de usar o 128 como definidor de ação!!!
-            NSString * messageToSend = currentObject.connectedTo.noteLabel.text;
+            NSString * messageToSend = currentObject.connectedTo.label.text;
             //NSLog([NSString stringWithFormat:@"Message To Send is: %@", messageToSend]);
             
             if ([currentObject.iconType isEqualToString:@"touchable"]){
@@ -116,6 +133,9 @@
                 P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height)];
                 playTouchable.value = touchable.connectedTo.myTag;
                 playTouchable.action = messageToSend;//touchable.noteLabel.text;
+                
+                playTouchable.label.text = playTouchable.action;
+                [playTouchable.label setNeedsDisplay];
                 
                 //UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
                 //[playTouchable addGestureRecognizer:tapGesture];
@@ -382,7 +402,7 @@
     }
     
     [self.currentPannedView setNeedsDisplay];
-    [self.playArea setNeedsDisplay];
+    //[self.playArea setNeedsDisplay];
     
     
     //NSLog(pickedView.debugDescription);

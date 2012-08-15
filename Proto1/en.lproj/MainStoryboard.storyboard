@@ -80,7 +80,7 @@
                     <navigationItem key="navigationItem" title="Edit Mode" id="jUV-Jh-beu">
                         <barButtonItem key="rightBarButtonItem" systemItem="play" id="Nz0-pX-g4d">
                             <connections>
-                                <segue destination="Hsn-LB-GQh" kind="push" identifier="GoingToPlayMode" id="Gn2-OI-ybD"/>
+                                <segue destination="Hsn-LB-GQh" kind="push" identifier="GoingToPlayMode" customClass="P1FromTopReplaceSegue" id="Gn2-OI-ybD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

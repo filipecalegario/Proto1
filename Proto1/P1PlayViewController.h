@@ -22,6 +22,8 @@
 
 @property (nonatomic, strong) NSString* patchToLoad;
 
+@property (nonatomic, strong) UIImage * backgroundForPlayArea;
+
 - (void)touch:(UIPanGestureRecognizer *)gesture;
 
 - (void)aMethod:(UIButton *)sender;

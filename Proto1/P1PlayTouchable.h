@@ -12,6 +12,7 @@
 
 @property (nonatomic, assign) int value;
 @property (nonatomic, strong) NSString * action;
+@property (nonatomic, strong) UILabel * label;
 
 - (id)initWithFrame:(CGRect)frame;
 

@@ -34,10 +34,10 @@
 }
 
 
-- (void)drawRect:(CGRect)rect
-{
-    [P1Utils drawCircleAtPoint:self.tapPoint withRadius:10 withColor:[UIColor redColor] inContext:UIGraphicsGetCurrentContext()];
-}
+//- (void)drawRect:(CGRect)rect
+//{
+//    [P1Utils drawCircleAtPoint:self.tapPoint withRadius:10 withColor:[UIColor redColor] inContext:UIGraphicsGetCurrentContext()];
+//}
 
 
 @end

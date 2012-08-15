@@ -13,6 +13,7 @@
 
 @synthesize value = _value;
 @synthesize action = _action;
+@synthesize label = _label;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -26,7 +27,7 @@
 - (void)setup
 {
     self.action = [[NSString alloc] init];
-    self.value = 60;
+    self.value = 0;
     
     self.backgroundColor = [UIColor orangeColor];
     self.layer.shadowOffset = CGSizeMake(0, 3);
@@ -37,6 +38,15 @@
     self.layer.borderColor = [UIColor blackColor].CGColor;
     self.layer.borderWidth = 1.0;
     self.layer.cornerRadius = 5.0;
+    
+    self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
+    self.label.textAlignment = UITextAlignmentCenter;
+    self.label.backgroundColor = [UIColor clearColor];
+    self.label.font = [UIFont fontWithName:@"Helvetica" size:18];
+    
+    self.label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
+    
+    [self addSubview:self.label];
 }
 
 /*

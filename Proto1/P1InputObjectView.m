@@ -26,7 +26,7 @@
 @synthesize connectedTo = _connectedTo;
 @synthesize hasToBeDrawn = _hasToBeDrawn;
 @synthesize myTag = _myTag;
-@synthesize noteLabel = _noteLabel;
+@synthesize label = _label;
 @synthesize auxPoint = _auxPoint;
 @synthesize connectorState = _connectorState;
 @synthesize name = _name;
@@ -104,12 +104,12 @@
     [self addSubview:_connector];
     
     if ([self.iconType isEqualToString:@"playNote"]) {
-        self.noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 100, 25, 25)];
-        self.noteLabel.text = [NSString stringWithFormat:@"%i", self.myTag];
-        self.noteLabel.textAlignment = UITextAlignmentCenter;
-        self.noteLabel.backgroundColor = [UIColor clearColor];
-        self.noteLabel.font = [UIFont fontWithName:@"Helvetica" size:18];
-        [self addSubview:self.noteLabel];
+        self.label = [[UILabel alloc] initWithFrame:CGRectMake(90, 100, 25, 25)];
+        self.label.text = [NSString stringWithFormat:@"%i", self.myTag];
+        self.label.textAlignment = UITextAlignmentCenter;
+        self.label.backgroundColor = [UIColor clearColor];
+        self.label.font = [UIFont fontWithName:@"Helvetica" size:18];
+        [self addSubview:self.label];
     }
 }
 
@@ -152,18 +152,18 @@
         [self addSubview:_connector];
         
         if ([self.iconType isEqualToString:@"playNote"]) {
-            self.noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(90, 100, 25, 25)];
+            self.label = [[UILabel alloc] initWithFrame:CGRectMake(90, 100, 25, 25)];
         } else {
-            self.noteLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
+            self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
         }
         
-        self.noteLabel.text = _iconType;
-        self.noteLabel.textAlignment = UITextAlignmentCenter;
-        self.noteLabel.backgroundColor = [UIColor clearColor];
-        self.noteLabel.font = [UIFont fontWithName:@"Helvetica" size:18];
+        self.label.text = _iconType;
+        self.label.textAlignment = UITextAlignmentCenter;
+        self.label.backgroundColor = [UIColor clearColor];
+        self.label.font = [UIFont fontWithName:@"Helvetica" size:18];
         
         if (![self.iconType isEqualToString:@"touchable"]) {
-            [self addSubview:self.noteLabel];
+            [self addSubview:self.label];
         }
     }
     return self;
@@ -220,13 +220,13 @@
 - (void)drawRect:(CGRect)rect
 {
     if ([self.iconType isEqualToString:@"playNote"]) {
-        self.noteLabel.text = [P1Utils convertNumberToNoteName:self.myTag];
+        self.label.text = [P1Utils convertNumberToNoteName:self.myTag];
         //CGPointMake(self.icon.center.x, 60);
     } else {
         //self.noteLabel.text = self.;
         //self.noteLabel.center = self.icon.center;
     }
-    self.noteLabel.center = self.icon.center;
+    self.label.center = self.icon.center;
     
 }
 

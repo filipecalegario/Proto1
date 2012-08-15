@@ -22,7 +22,7 @@
 @property (nonatomic, assign) BOOL hasToBeDrawn;
 @property (nonatomic, assign) int myTag;
 #warning consertar essa representação de noteLabel e name
-@property (nonatomic, strong) UILabel *noteLabel;
+@property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, assign) CGPoint auxPoint;
 

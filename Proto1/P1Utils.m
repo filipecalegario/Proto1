@@ -7,6 +7,7 @@
 //
 
 #import "P1Utils.h"
+#import <QuartzCore/QuartzCore.h>
 
 @implementation P1Utils
 
@@ -119,6 +120,60 @@
             break;
     }
     return noteName;
+}
+
++ (UIImage *) imageWithView:(UIView *)view
+{
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, [[UIScreen mainScreen] scale]); 
+    //UIGraphicsBeginImageContext(view.bounds.size);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return img;
+}
+
++ (UIImage *) setImage:(UIImage *)image withAlpha:(CGFloat)alpha{
+    
+    // Create a pixel buffer in an easy to use format
+    CGImageRef imageRef = [image CGImage];
+    NSUInteger width = CGImageGetWidth(imageRef);
+    NSUInteger height = CGImageGetHeight(imageRef);
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    UInt8 * m_PixelBuf = malloc(sizeof(UInt8) * height * width * 4);
+    
+    NSUInteger bytesPerPixel = 4;
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger bitsPerComponent = 8;
+    CGContextRef context = CGBitmapContextCreate(m_PixelBuf, width, height,
+                                                 bitsPerComponent, bytesPerRow, colorSpace,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    CGContextRelease(context);
+    
+    //alter the alpha
+    int length = height * width * 4;
+    for (int i=0; i<length; i+=4)
+    {
+        m_PixelBuf[i+3] =  255*alpha;
+    }
+    
+    
+    //create a new image
+    CGContextRef ctx = CGBitmapContextCreate(m_PixelBuf, width, height,
+                                             bitsPerComponent, bytesPerRow, colorSpace,
+                                             kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    
+    CGImageRef newImgRef = CGBitmapContextCreateImage(ctx);  
+    CGColorSpaceRelease(colorSpace);
+    CGContextRelease(ctx);  
+    free(m_PixelBuf);
+    
+    UIImage *finalImage = [UIImage imageWithCGImage:newImgRef];
+    CGImageRelease(newImgRef);  
+    
+    return finalImage;
 }
 
 @end

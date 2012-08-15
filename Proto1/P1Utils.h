@@ -26,4 +26,6 @@
 
 + (UIColor *) colorBrown;
 
++ (UIImage *) imageWithView:(UIView *)view;
+
 @end

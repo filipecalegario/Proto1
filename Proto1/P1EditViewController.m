@@ -14,6 +14,8 @@
 #import "P1ContextMenuViewController.h"
 #import "P1OutputObjectView.h"
 #import "P1ObjectFactory.h"
+#import "P1Utils.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface P1EditViewController ()
 
@@ -155,6 +157,20 @@
         //TODO Ver isso depois!
         [segue.destinationViewController setPatchToLoad:[self whichPatchToLoad]];
         [segue.destinationViewController populateArray:[self.canvas getAllObjects]];
+        [segue.destinationViewController setBackgroundForPlayArea:[P1Utils imageWithView:self.canvas]];
+        
+        
+//        CATransition *transition = [CATransition animation];
+//        transition.duration =  0.5;
+//        transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//        transition.type = kCATransitionPush;
+//        transition.subtype = kCATransitionFromTop;
+//        //transitioning = YES;
+//        transition.delegate = self;
+//        [self.navigationController.view.layer addAnimation:transition forKey:nil];
+//        
+//        self.navigationController.navigationBarHidden = NO;
+//        [self.navigationController pushViewController:segue.destinationViewController animated:YES];
         
     } else if ([segue.identifier isEqualToString:@"AddObjectTableView"]) {
         //#################################################################
@@ -269,6 +285,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    //self.navigationController 
 
     self.canvas.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openMenuToAddObject:)];
     self.canvas.tapGesture.numberOfTapsRequired = 1;
