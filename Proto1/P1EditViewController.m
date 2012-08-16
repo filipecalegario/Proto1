@@ -107,6 +107,9 @@
     } else if ([identifier isEqualToString:@"touchable"]) {
         NSLog(@"adding a touchable input object");  
         object = [P1ObjectFactory createTouchable:self.canvas];
+    } else if ([identifier isEqualToString:@"OSCNoteArray"]) {
+        NSLog(@"adding a touchable input object");  
+        object = [P1ObjectFactory createOSCNoteArrayWithCanvas:self.canvas withGestureHandler:self];
     } else {
         object = [P1ObjectFactory createInputObject:identifier withCanvas:self.canvas];
     }
@@ -253,7 +256,7 @@
 {
     if(gesture.numberOfTouches == 1){
         [self performSegueWithIdentifier: @"AddObjectTableView" sender:gesture];
-    } else if (gesture.numberOfTouches == 2){
+    } else if (gesture.numberOfTouches == 3){
         [self performSegueWithIdentifier: @"AddOutputObject" sender:gesture];
     }
 }
@@ -296,8 +299,10 @@
     
     UITapGestureRecognizer* doubleTouch = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openMenuToAddObject:)];
     doubleTouch.numberOfTapsRequired = 1;
-    doubleTouch.numberOfTouchesRequired = 2;
+    doubleTouch.numberOfTouchesRequired = 3;
     [self.canvas addGestureRecognizer:doubleTouch];
+    
+    [self.canvas.tapGesture requireGestureRecognizerToFail:doubleTouch];
     
 }
 

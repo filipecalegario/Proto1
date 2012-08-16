@@ -14,6 +14,7 @@
 #import "P1TouchGestureRecognizer.h"
 #import "P1Utils.h"
 
+
 @interface P1PlayViewController ()
 
 @property (nonatomic, strong) NSString *pitchOrientation;
@@ -21,6 +22,8 @@
 @property (nonatomic, strong) NSString *mainAction;
 @property (nonatomic, strong) NSMutableArray *touchableObjects;
 @property (nonatomic, strong) NSMutableDictionary *swipeDictionary;
+@property (nonatomic, strong) OSCOutPort * outPort;
+@property (nonatomic, strong) UILabel * feedbackMessage;
 
 @property (nonatomic, strong) UIView* currentPannedView;
 
@@ -38,6 +41,8 @@
 @synthesize patchToLoad = _patchToLoad;
 @synthesize currentPannedView = _currentPannedView;
 @synthesize backgroundForPlayArea = _backgroundForPlayArea;
+@synthesize outPort = _outPort;
+@synthesize feedbackMessage = _feedbackMessage;
 
 
 //======== SETUP/INITIALIZATION ========
@@ -45,6 +50,8 @@
 
 - (void)setupForPlayWith
 {
+    [self setupOSCManager];
+    
     UIPanGestureRecognizer* panOnEverything = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panOnEverything:)];
     panOnEverything.delegate = self;
     
@@ -89,8 +96,8 @@
                 
                 NSLog(playTouchable.label.text);
                 
-//                UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
-//                [playTouchable addGestureRecognizer:tapGesture];
+                //                UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
+                //                [playTouchable addGestureRecognizer:tapGesture];
                 
                 P1TouchGestureRecognizer * touchGesture = [[P1TouchGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
                 [playTouchable addGestureRecognizer:touchGesture];
@@ -113,7 +120,7 @@
             }
             
         } else if(currentObject.connectedTo.myTag == 128.0){
-            #warning Corrigir essa GAMBIARRA tosca de usar o 128 como definidor de ação!!!
+#warning Corrigir essa GAMBIARRA tosca de usar o 128 como definidor de ação!!!
             NSString * messageToSend = currentObject.connectedTo.label.text;
             //NSLog([NSString stringWithFormat:@"Message To Send is: %@", messageToSend]);
             
@@ -121,13 +128,13 @@
                 
                 P1InputObjectView * touchable = currentObject;
                 {
-//                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-//                [button addTarget:self action:@selector(aMethod:) forControlEvents:UIControlEventTouchDown];
-//                button.frame = CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height);
-//                button.tag = touchable.connectedTo.myTag;
-//                button.titleLabel.text = messageToSend;
-//                [button setImage:[UIImage imageNamed:touchable.iconType] forState:UIControlStateNormal];
-//                [self.playArea addSubview:button];
+                    //                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                    //                [button addTarget:self action:@selector(aMethod:) forControlEvents:UIControlEventTouchDown];
+                    //                button.frame = CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height);
+                    //                button.tag = touchable.connectedTo.myTag;
+                    //                button.titleLabel.text = messageToSend;
+                    //                [button setImage:[UIImage imageNamed:touchable.iconType] forState:UIControlStateNormal];
+                    //                [self.playArea addSubview:button];
                 }
                 
                 P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height)];
@@ -185,6 +192,41 @@
         
     }
     //NSLog(self.mainAction);
+    
+    [self setupFeedbackLabel];
+}
+
+- (void)setupFeedbackLabel
+{
+    self.feedbackMessage = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
+    self.feedbackMessage.textAlignment = UITextAlignmentCenter;
+    self.feedbackMessage.backgroundColor = [UIColor whiteColor];
+    self.feedbackMessage.font = [UIFont fontWithName:@"Helvetica" size:50];
+    
+    self.feedbackMessage.center = CGPointMake(self.playArea.bounds.size.width/2, self.playArea.bounds.size.height/2);
+    self.feedbackMessage.alpha = 0;
+    self.feedbackMessage.layer.cornerRadius = 7.0;
+    
+    [self.playArea addSubview:self.feedbackMessage];
+}
+
+- (void) animateFeedbackMessage:(NSString*) feedbackMessage
+{
+    self.feedbackMessage.text = feedbackMessage;
+    self.feedbackMessage.center = CGPointMake(self.playArea.bounds.size.width/2, self.playArea.bounds.size.height/2);
+    self.feedbackMessage.alpha = 1;
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseIn];
+    [UIView setAnimationDuration:0.75f];
+    self.feedbackMessage.alpha=0;
+    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:)];
+    [UIView commitAnimations];
+}
+
+- (void)animationDidStop:(CAAnimation *)theAnimation finished:(BOOL)flag
+{
+    //self.feedbackMessage.alpha = 1;
+    self.feedbackMessage.text = @"";
 }
 
 - (void)populateArray:(NSArray *)objectArray
@@ -268,24 +310,43 @@
 #warning Deixar isso sem tá dependende do patch!
     
     NSLog(@"Swipe Detected");
+
+    NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
+    
+    NSString * feedbackMessage = @"";
     
     if([self.patchToLoad isEqualToString:@"proto1.pd"]){
-        NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
+        
         NSNumber* noteToSend = [self.swipeDictionary objectForKey:indexacao];
         //NSLog([NSString stringWithFormat:@"NOTE TO SEND: %f, %i, %i, %i",noteToSend.floatValue, gesture.direction, gesture.numberOfTouches, indexacao.intValue]);
         [PdBase sendFloat:noteToSend.floatValue toReceiver:@"midinote"];
         [PdBase sendBangToReceiver:@"noteTrigger"];
+        feedbackMessage = [P1Utils convertNumberToNoteName:noteToSend.intValue];
+        
     } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"] || [self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
-        NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
+        //NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
         NSString* messageToSend = [self.swipeDictionary objectForKey:indexacao];
         [PdBase sendBangToReceiver:messageToSend];
+        feedbackMessage = messageToSend;
+        
     } else if([self.patchToLoad isEqualToString:@"noteArray.pd"]){ 
-        NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
+        //NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
         NSNumber* noteToSend = [self.swipeDictionary objectForKey:indexacao];
-        NSLog([NSString stringWithFormat:@"NOTE TO SEND: %f, %i, %i, %i",noteToSend.floatValue, gesture.direction, gesture.numberOfTouches, indexacao.intValue]);
+        //NSLog([NSString stringWithFormat:@"NOTE TO SEND: %f, %i, %i, %i",noteToSend.floatValue, gesture.direction, gesture.numberOfTouches, indexacao.intValue]);
         [PdBase sendFloat:noteToSend.floatValue toReceiver:@"genericNoteV"];
         [PdBase sendBangToReceiver:@"genericNote"];
+        
+        feedbackMessage = [P1Utils convertNumberToNoteName:noteToSend.intValue];
+    } else if([self.patchToLoad isEqualToString:@"NotPD"]){ 
+        //NSLog([NSString stringWithFormat:@"%@, %i", playTouchable.action, playTouchable.value]);
+        NSString* messageToSend = [self.swipeDictionary objectForKey:indexacao];
+        //NSLog([NSString stringWithFormat:@"Message to send: %@", messageToSend]);
+        [self sendMessageWithAddress:messageToSend value:0];
+        feedbackMessage = messageToSend;
+
     }
+    
+    [self animateFeedbackMessage:feedbackMessage];
 }
 
 - (void)playTouchableAction:(UITapGestureRecognizer *)gesture
@@ -309,14 +370,18 @@
             
             NSLog([NSString stringWithFormat:@"noteArray: value = %i | action = %@", playTouchable.value, playTouchable.action]);
             
-//            [PdBase sendFloat:playTouchable.value toReceiver:[NSString stringWithFormat:@"%@v",playTouchable.action]];
-//            [PdBase sendBangToReceiver:playTouchable.action];
+            //            [PdBase sendFloat:playTouchable.value toReceiver:[NSString stringWithFormat:@"%@v",playTouchable.action]];
+            //            [PdBase sendBangToReceiver:playTouchable.action];
             [self playNote:playTouchable];
             
+        } else if([self.patchToLoad isEqualToString:@"NotPD"]){ 
+            //NSLog([NSString stringWithFormat:@"%@, %i", playTouchable.action, playTouchable.value]);
+            
+            [self sendMessageWithAddress:playTouchable.action value:0];
         }
         
     }
-       
+    
 }
 
 - (void)touch:(UIPanGestureRecognizer *)gesture
@@ -349,6 +414,7 @@
             duration = 250;
         }
         
+        [self animateFeedbackMessage:[NSString stringWithFormat:@"%@\t%@", [P1Utils convertNumberToNoteName: [[P1Utils formatNumberAndGiveString:pitch] intValue]], [P1Utils formatNumberAndGiveString:duration]]];
         //NSLog([NSString stringWithFormat:@"Pitch: %f Duration: %f", pitch, duration]);
         
         [PdBase sendFloat:pitch toReceiver:@"midinote"];
@@ -395,7 +461,7 @@
         //}
         
         
-
+        
     } else {
         self.currentPannedView.backgroundColor = [UIColor orangeColor];
         //self.currentPannedView = nil;
@@ -469,12 +535,15 @@
 {
     NSLog([NSString stringWithFormat:@"Carregando patch: %@", patchName]);
     
-    dispatcher = [[PdDispatcher alloc] init];
-    [PdBase setDelegate:dispatcher];
-    patch = [PdFile openFileNamed:patchName path:[[NSBundle mainBundle] resourcePath]];
-    if (!patch) {
-        NSLog(@"Failed to open patch!");
+    if (![patchName isEqualToString:@"NotPD"]) {
+        dispatcher = [[PdDispatcher alloc] init];
+        [PdBase setDelegate:dispatcher];
+        patch = [PdFile openFileNamed:patchName path:[[NSBundle mainBundle] resourcePath]];
+        if (!patch) {
+            NSLog(@"Failed to open patch!");
+        }
     }
+    
 }
 
 -(void) playNote:(P1PlayTouchable *)touchable
@@ -485,8 +554,48 @@
     } else if ([self.patchToLoad isEqualToString:@"noteArray.pd"]){
         [PdBase sendFloat:touchable.value toReceiver:[NSString stringWithFormat:@"%@v",touchable.action]];
         [PdBase sendBangToReceiver:touchable.action];
+    } else if ([self.patchToLoad isEqualToString:@"NotPD"]){
+        [self sendMessageWithAddress:touchable.action value:0];
     }
     
+}
+
+//======== OSC MESSAGES ========
+
+- (void)setupOSCManager
+{
+    // create an OSCManager- set myself up as its delegate
+    OSCManager* manager = [[OSCManager alloc] init];
+    [manager setDelegate:self];
+    
+    // create an input port for receiving OSC data
+    [manager createNewInputForPort:1234];
+    
+    // create an output so i can send OSC data to myself
+    self.outPort = [manager createNewOutputToAddress:@"192.168.1.18" atPort:8000];
+}
+
+- (void)sendMessageWithAddress:(NSString*)address value:(int)value
+{
+    // make an OSC message
+    //OSCMessage * newMsg = [OSCMessage createWithAddress:@"/Address/Path/1"];
+    OSCMessage * newMsg = [OSCMessage createWithAddress:[NSString stringWithFormat:@"/%@", address]];
+    
+    // add a bunch arguments to the message
+    //[newMsg addInt:value];
+    //[newMsg addFloat:12.34];
+    //[newMsg addColor:[NSColor colorWithDeviceRed:0.0 green:1.0 blue:0.0 alpha:1.0]];
+    //[newMsg addBOOL:YES];
+    //[newMsg addString:@"Hello World!"];
+    
+    // send the OSC message
+    [self.outPort sendThisMessage:newMsg];
+    NSLog(@"message sent");
+}
+
+-(void)receivedOSCMessage:(OSCMessage *)m
+{
+    //NSLog(m.address);
 }
 
 //======== MANDAR PRA UTILS ========

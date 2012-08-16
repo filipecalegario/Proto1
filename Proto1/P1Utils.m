@@ -80,39 +80,51 @@
     NSString* noteName;
     switch (number) {
         case 60:
+        case 72:
             noteName = @"C";
             break;
         case 61:
+        case 73:
             noteName = @"C#";
             break;
         case 62:
+        case 74:
             noteName = @"D";
             break;
         case 63:
+        case 75:
             noteName = @"D#";
             break;
         case 64:
+        case 76:
             noteName = @"E";
             break;
         case 65:
+        case 77:
             noteName = @"F";
             break;
         case 66:
+        case 78:
             noteName = @"F#";
             break;
         case 67:
+        case 79:
             noteName = @"G";
             break;
         case 68:
+        case 80:
             noteName = @"G#";
             break;
         case 69:
+        case 81:
             noteName = @"A";
             break;
         case 70:
+        case 82:
             noteName = @"A#";
             break;
         case 71:
+        case 83:
             noteName = @"B";
             break;
         default:
@@ -174,6 +186,22 @@
     CGImageRelease(newImgRef);  
     
     return finalImage;
+}
+
++ (NSString *)formatNumberAndGiveString:(float)number
+{
+    float roundedValue = round(2.0f * number) / 2.0f;
+    
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+    [formatter setMaximumFractionDigits:0];
+    [formatter setRoundingMode: NSNumberFormatterRoundDown];
+
+    NSNumber * finalNumber = [NSNumber numberWithFloat:roundedValue];
+    NSString * finalString = [formatter stringFromNumber:finalNumber];
+    
+    NSLog([NSString stringWithFormat:@"rounded:%f, %@",roundedValue, finalString]);
+    
+    return finalString;
 }
 
 @end

@@ -103,6 +103,38 @@
     return object;
 }
 
++(UIView *)createOSCNoteArrayWithCanvas:(P1EditView *)canvas withGestureHandler:(id)gestureHandler
+{
+    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 350) relatedPatch:@"NotPD"];
+    
+    NSString * connectorTypeString = @"trigger";
+    
+    CGRect defaultIconRect = CGRectMake(50, 0, 100, 50);
+    NSString* defaultIconImageSource = @"specialIconLong";
+    
+    NSArray *icons = [[NSArray alloc] initWithObjects:
+                      [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"note1" withImageSource:defaultIconImageSource],
+                      [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"note2"  withImageSource:defaultIconImageSource],
+                      [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"note3"  withImageSource:defaultIconImageSource],
+                      [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"note4"  withImageSource:defaultIconImageSource],
+                      [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"note5"  withImageSource:defaultIconImageSource],
+                      [[P1IconView alloc] initWithFrame:defaultIconRect withType:@"note6" withImageSource:defaultIconImageSource],
+                      nil];
+    
+    for (int i = 0; i < 6; i++)
+    {
+        P1IconView* connector = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 50, 50) withType:connectorTypeString withImageSource:@"specialConnector"];
+        
+        P1IconView* icon = [icons objectAtIndex:i];
+        
+        P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 150, 50) withObjectType:@"output" withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
+        noteObject.myTag = 128;
+        
+        [object addSubview:noteObject];
+    }
+    return object;
+}
+
 +(UIView *)createNoteFlowWithCanvas:(P1EditView *)canvas
 {
     NSLog(@"NoteFlow");

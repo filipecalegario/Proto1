@@ -64,7 +64,7 @@
 //    self.corner2.backgroundColor = [P1Utils myColor:@"brown"];
     
     self.corner3 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, RESIZE_BUTTON_SIZE, RESIZE_BUTTON_SIZE)];
-    self.corner3.backgroundColor = [P1Utils myColor:@"brown"];
+    self.corner3.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"resize"]];//[P1Utils myColor:@"brown"];
     
 //    self.corner4 = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
 //    self.corner4.backgroundColor = [P1Utils myColor:@"brown"];

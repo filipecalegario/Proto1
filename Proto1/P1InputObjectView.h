@@ -24,6 +24,7 @@
 #warning consertar essa representação de noteLabel e name
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) int value;
 @property (nonatomic, assign) CGPoint auxPoint;
 
 - (id)initWithFrame:(CGRect)frame withObjectType:(NSString *)objectType withIconType:(NSString *)iconType withConnectorType:(NSString *)connectorType withCanvas:(P1EditView *)canvas;

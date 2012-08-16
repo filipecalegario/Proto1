@@ -10,8 +10,9 @@
 #import "PdDispatcher.h"
 #import "PdFile.h"
 #import "P1PlayView.h"
+#import <VVOSC/VVOSC.h> 
 
-@interface P1PlayViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface P1PlayViewController : UIViewController <UIGestureRecognizerDelegate, OSCDelegateProtocol>
 {
     PdDispatcher *dispatcher;
     PdFile *patch;
@@ -32,5 +33,7 @@
 - (void)panOnTheButtonAction:(UIPanGestureRecognizer *)gesture;
 - (void)panOnEverything:(UIPanGestureRecognizer *)gesture;
 - (void)playTouchableAction:(UITapGestureRecognizer *)gesture;
+
+-(void)receivedOSCMessage:(OSCMessage *)m;
 
 @end

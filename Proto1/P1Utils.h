@@ -28,4 +28,6 @@
 
 + (UIImage *) imageWithView:(UIView *)view;
 
++ (NSString *)formatNumberAndGiveString:(float)number;
+
 @end

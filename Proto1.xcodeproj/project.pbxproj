@@ -16,6 +16,7 @@
 		4512E4D715BF7BD800843A60 /* specialTrackConnector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4512E4D015BF7BD800843A60 /* specialTrackConnector@2x.png */; };
 		4512E4D915BF7D2300843A60 /* touchable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4512E4D815BF7D2300843A60 /* touchable@2x.png */; };
 		4528FF5E15DB27B8005A3A9E /* P1FromTopReplaceSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 4528FF5D15DB27B8005A3A9E /* P1FromTopReplaceSegue.m */; };
+		4528FF9B15DC6B32005A3A9E /* resize@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4528FF9A15DC6B32005A3A9E /* resize@2x.png */; };
 		45314CBA15D1A58700BE7364 /* P1PlayTouchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 45314CB915D1A58600BE7364 /* P1PlayTouchable.m */; };
 		45314D1515D2120A00BE7364 /* sample1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45314D0F15D2120A00BE7364 /* sample1.wav */; };
 		45314D1615D2120A00BE7364 /* sample2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45314D1015D2120A00BE7364 /* sample2.wav */; };
@@ -122,6 +123,7 @@
 		4512E4D815BF7D2300843A60 /* touchable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "touchable@2x.png"; sourceTree = "<group>"; };
 		4528FF5C15DB27B8005A3A9E /* P1FromTopReplaceSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1FromTopReplaceSegue.h; sourceTree = "<group>"; };
 		4528FF5D15DB27B8005A3A9E /* P1FromTopReplaceSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = P1FromTopReplaceSegue.m; sourceTree = "<group>"; };
+		4528FF9A15DC6B32005A3A9E /* resize@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "resize@2x.png"; sourceTree = "<group>"; };
 		45314CB815D1A58600BE7364 /* P1PlayTouchable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1PlayTouchable.h; sourceTree = "<group>"; };
 		45314CB915D1A58600BE7364 /* P1PlayTouchable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = P1PlayTouchable.m; sourceTree = "<group>"; };
 		45314D0F15D2120A00BE7364 /* sample1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample1.wav; sourceTree = "<group>"; };
@@ -392,6 +394,7 @@
 		45A611BB15BF207700A1156F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4528FF9A15DC6B32005A3A9E /* resize@2x.png */,
 				4512E4D815BF7D2300843A60 /* touchable@2x.png */,
 				4512E4CB15BF7BD700843A60 /* notesArray@2x.png */,
 				4512E4CC15BF7BD700843A60 /* afrobeat@2x.png */,
@@ -552,6 +555,7 @@
 				45314D1A15D2120A00BE7364 /* sample6.wav in Resources */,
 				45EF470515D3FB980038BD8C /* mySimpleSamplePlayer.pd in Resources */,
 				45EF470715D47F130038BD8C /* noteArray.pd in Resources */,
+				4528FF9B15DC6B32005A3A9E /* resize@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,9 +667,15 @@
 		458E910015B4886D00A82826 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "/Users/filipecalegario/Library/SDKs/VVBasics/iphoneos.sdk /Users/filipecalegario/Library/SDKs/VVOSC/iphoneos.sdk";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Proto1/Proto1-Prefix.pch";
 				INFOPLIST_FILE = "Proto1/Proto1-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lVVOSC",
+					"-lVVBasics",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "/Users/filipecalegario/Developer/libpd/pd-for-ios/libpd/**";
 				WRAPPER_EXTENSION = app;
@@ -675,9 +685,15 @@
 		458E910115B4886D00A82826 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "/Users/filipecalegario/Library/SDKs/VVBasics/iphoneos.sdk /Users/filipecalegario/Library/SDKs/VVOSC/iphoneos.sdk";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Proto1/Proto1-Prefix.pch";
 				INFOPLIST_FILE = "Proto1/Proto1-Info.plist";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lVVOSC",
+					"-lVVBasics",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "/Users/filipecalegario/Developer/libpd/pd-for-ios/libpd/**";
 				WRAPPER_EXTENSION = app;

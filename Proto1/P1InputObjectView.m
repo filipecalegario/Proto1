@@ -30,6 +30,7 @@
 @synthesize auxPoint = _auxPoint;
 @synthesize connectorState = _connectorState;
 @synthesize name = _name;
+@synthesize value = _value;
 
 - (void) setConnectedTo:(P1InputObjectView *)connectedTo
 {
