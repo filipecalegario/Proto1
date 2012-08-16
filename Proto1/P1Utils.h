@@ -30,4 +30,6 @@
 
 + (NSString *)formatNumberAndGiveString:(float)number;
 
++ (NSString*)defaultFont;
+
 @end

@@ -204,4 +204,9 @@
     return finalString;
 }
 
++ (NSString*)defaultFont
+{
+    return @"ProximaNova-Semibold";
+}
+
 @end

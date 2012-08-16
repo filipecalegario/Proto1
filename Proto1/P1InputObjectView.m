@@ -109,7 +109,7 @@
         self.label.text = [NSString stringWithFormat:@"%i", self.myTag];
         self.label.textAlignment = UITextAlignmentCenter;
         self.label.backgroundColor = [UIColor clearColor];
-        self.label.font = [UIFont fontWithName:@"Helvetica" size:18];
+        self.label.font = [UIFont fontWithName:[P1Utils defaultFont] size:18];
         [self addSubview:self.label];
     }
 }
@@ -161,7 +161,7 @@
         self.label.text = _iconType;
         self.label.textAlignment = UITextAlignmentCenter;
         self.label.backgroundColor = [UIColor clearColor];
-        self.label.font = [UIFont fontWithName:@"Helvetica" size:18];
+        self.label.font = [UIFont fontWithName:[P1Utils defaultFont] size:18];
         
         if (![self.iconType isEqualToString:@"touchable"]) {
             [self addSubview:self.label];

@@ -8,6 +8,7 @@
 
 #import "P1PlayTouchable.h"
 #import <QuartzCore/QuartzCore.h>
+#import "P1Utils.h"
 
 @implementation P1PlayTouchable
 
@@ -42,7 +43,7 @@
     self.label = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 50)];
     self.label.textAlignment = UITextAlignmentCenter;
     self.label.backgroundColor = [UIColor clearColor];
-    self.label.font = [UIFont fontWithName:@"Helvetica" size:18];
+    self.label.font = [UIFont fontWithName:[P1Utils defaultFont] size:18];
     
     self.label.center = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
     

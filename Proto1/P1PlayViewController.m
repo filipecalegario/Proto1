@@ -201,7 +201,7 @@
     self.feedbackMessage = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 200)];
     self.feedbackMessage.textAlignment = UITextAlignmentCenter;
     self.feedbackMessage.backgroundColor = [UIColor whiteColor];
-    self.feedbackMessage.font = [UIFont fontWithName:@"Helvetica" size:50];
+    self.feedbackMessage.font = [UIFont fontWithName:[P1Utils defaultFont] size:50];
     
     self.feedbackMessage.center = CGPointMake(self.playArea.bounds.size.width/2, self.playArea.bounds.size.height/2);
     self.feedbackMessage.alpha = 0;
