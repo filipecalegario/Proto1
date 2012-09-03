@@ -30,7 +30,7 @@
     self.action = [[NSString alloc] init];
     self.value = 0;
     
-    self.backgroundColor = [UIColor orangeColor];
+    self.backgroundColor = [P1Utils myColor:@"green"];//[UIColor orangeColor];
     self.layer.shadowOffset = CGSizeMake(0, 3);
     self.layer.shadowRadius = 5.0;
     self.layer.shadowColor = [UIColor grayColor].CGColor;

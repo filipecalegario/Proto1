@@ -221,6 +221,9 @@
 - (void)drawRect:(CGRect)rect
 {
     if ([self.iconType isEqualToString:@"playNote"]) {
+        self.label.numberOfLines = 1;
+        self.label.minimumFontSize = 8.;
+        self.label.adjustsFontSizeToFitWidth = YES;
         self.label.text = [P1Utils convertNumberToNoteName:self.myTag];
         //CGPointMake(self.icon.center.x, 60);
     } else {

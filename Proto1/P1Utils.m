@@ -71,6 +71,8 @@
         result = [UIColor colorWithRed:0.98 green:0.412 blue:0 alpha:100];
     } else if ([colorName isEqualToString:@"brown"]){
         result = [UIColor colorWithRed:0.427 green:0.031 blue:0.224 alpha:100];
+    } else if ([colorName isEqualToString:@"green"]){
+        result = [UIColor colorWithRed:0.373 green:0.827 blue:0.373 alpha:100];
     }
     return result;
 }
@@ -80,52 +82,76 @@
     NSString* noteName;
     switch (number) {
         case 60:
+            noteName = @"C4";
+            break;
         case 72:
-            noteName = @"C";
+            noteName = @"C5";
             break;
         case 61:
+            noteName = @"C#4";
+            break;
         case 73:
-            noteName = @"C#";
+            noteName = @"C#5";
             break;
         case 62:
+            noteName = @"D4";
+            break;
         case 74:
-            noteName = @"D";
+            noteName = @"D5";
             break;
         case 63:
+            noteName = @"D#4";
+            break;
         case 75:
-            noteName = @"D#";
+            noteName = @"D#5";
             break;
         case 64:
+            noteName = @"E4";
+            break;
         case 76:
-            noteName = @"E";
+            noteName = @"E5";
             break;
         case 65:
+            noteName = @"F4";
+            break;
         case 77:
-            noteName = @"F";
+            noteName = @"F5";
             break;
         case 66:
+            noteName = @"F#4";
+            break;
         case 78:
-            noteName = @"F#";
+            noteName = @"F#5";
             break;
         case 67:
+            noteName = @"G4";
+            break;
         case 79:
-            noteName = @"G";
+            noteName = @"G5";
             break;
         case 68:
+            noteName = @"G#4";
+            break;
         case 80:
-            noteName = @"G#";
+            noteName = @"G#5";
             break;
         case 69:
+            noteName = @"A4";
+            break;
         case 81:
-            noteName = @"A";
+            noteName = @"A5";
             break;
         case 70:
+            noteName = @"A#4";
+            break;
         case 82:
-            noteName = @"A#";
+            noteName = @"A#5";
             break;
         case 71:
+            noteName = @"B4";
+            break;
         case 83:
-            noteName = @"B";
+            noteName = @"B5";
             break;
         default:
             noteName = [NSString stringWithFormat:@"%i", number];

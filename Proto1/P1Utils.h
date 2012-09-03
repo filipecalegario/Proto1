@@ -26,6 +26,8 @@
 
 + (UIColor *) colorBrown;
 
++ (UIColor *) colorGreen;
+
 + (UIImage *) imageWithView:(UIView *)view;
 
 + (NSString *)formatNumberAndGiveString:(float)number;

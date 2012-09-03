@@ -87,13 +87,26 @@
     NSString* connectorTypeString = @"trigger";
     P1OutputObjectView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 100, 400) relatedPatch:@"noteArray.pd"];
     
-    for (int i = 0; i < 8; i++)
+    NSArray * initialNotes = [NSArray arrayWithObjects: 
+                              [NSNumber numberWithInt:60],
+                              [NSNumber numberWithInt:62],
+                              [NSNumber numberWithInt:64],
+                              [NSNumber numberWithInt:67],
+                              [NSNumber numberWithInt:69],
+                              [NSNumber numberWithInt:60+12],
+                              [NSNumber numberWithInt:62+12],
+                              [NSNumber numberWithInt:64+12],
+                              [NSNumber numberWithInt:67+12],
+                              [NSNumber numberWithInt:69+12],
+                              nil];
+    
+    for (int i = 0; i < 10; i++)
     {
         P1IconView* connector = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 50, 50) withType:connectorTypeString withImageSource:@"specialConnector"];
         P1IconView* icon = [[P1IconView alloc] initWithFrame:CGRectMake(50, 0, 50, 50) withType:iconTypeString withImageSource:@"specialIcon"];
         P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 100, 50) withObjectType:@"output" withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
         
-        noteObject.myTag = 60 + i;
+        noteObject.myTag = [[initialNotes objectAtIndex:i] intValue];
         noteObject.name = [NSString stringWithFormat:@"note%i",i];
         
         [object addSubview:noteObject];

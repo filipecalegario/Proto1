@@ -70,11 +70,11 @@
         NSLog(@"adding a touchable input object");  
         object = [P1ObjectFactory createOSCNoteArrayWithCanvas:self.canvas withGestureHandler:self];
         
-        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapHandle:)];
-        P1InputObjectView * objectAux = (P1InputObjectView*) object;
-        [objectAux.icon addGestureRecognizer:longPress];
+        //UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapHandle:)];
+        //P1InputObjectView * objectAux = (P1InputObjectView*) object;
+        //[objectAux.icon addGestureRecognizer:longPress];
         
-        [self.canvas.tapGesture requireGestureRecognizerToFail:longPress];
+        //[self.canvas.tapGesture requireGestureRecognizerToFail:longPress];
         
     } else if ([identifier isEqualToString:@"circleTouchable"]) {
         NSLog(@"adding a circle touchable");  
@@ -223,9 +223,9 @@
 
 - (void) openMenuToAddObject:(UITapGestureRecognizer *)gesture
 {
-    if(gesture.numberOfTouches == 1){
+    if(gesture.numberOfTouches == 3){
         [self performSegueWithIdentifier: @"AddObjectTableView" sender:gesture];
-    } else if (gesture.numberOfTouches == 3){
+    } else if (gesture.numberOfTouches == 1){
         [self performSegueWithIdentifier: @"AddOutputObject" sender:gesture];
     }
 }

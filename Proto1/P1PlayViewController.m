@@ -368,7 +368,7 @@
             [PdBase sendBangToReceiver:playTouchable.action];
         } else if([self.patchToLoad isEqualToString:@"noteArray.pd"]){ 
             
-            NSLog([NSString stringWithFormat:@"noteArray: value = %i | action = %@", playTouchable.value, playTouchable.action]);
+            //NSLog([NSString stringWithFormat:@"noteArray: value = %i | action = %@", playTouchable.value, playTouchable.action]);
             
             //            [PdBase sendFloat:playTouchable.value toReceiver:[NSString stringWithFormat:@"%@v",playTouchable.action]];
             //            [PdBase sendBangToReceiver:playTouchable.action];
@@ -447,12 +447,12 @@
                 [self playNote:pickedTouchable];
                 
                 self.currentPannedView = pickedView;
-                self.currentPannedView.backgroundColor = [UIColor brownColor];
+                //self.currentPannedView.backgroundColor = [UIColor brownColor];
             } else {
-                self.currentPannedView.backgroundColor = [UIColor orangeColor];
+                //self.currentPannedView.backgroundColor = [UIColor orangeColor];
             }
         } else {
-            self.currentPannedView.backgroundColor = [UIColor orangeColor];
+            //self.currentPannedView.backgroundColor = [UIColor orangeColor];
             self.currentPannedView = nil;
         }
         
@@ -463,7 +463,7 @@
         
         
     } else {
-        self.currentPannedView.backgroundColor = [UIColor orangeColor];
+        //self.currentPannedView.backgroundColor = [UIColor orangeColor];
         //self.currentPannedView = nil;
     }
     

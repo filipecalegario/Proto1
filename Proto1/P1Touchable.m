@@ -34,7 +34,7 @@
 - (id)initWithFrame:(CGRect)frame withCanvas:(P1EditView *)canvas
 {
     
-    P1IconView* icon = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 100, 100) withType:@"touchable" withColor:[UIColor orangeColor]];
+    P1IconView* icon = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 100, 100) withType:@"touchable" withColor:[P1Utils myColor:@"green"]];
     
     P1IconView* connector = [[P1IconView alloc] initWithFrame:CGRectMake(100, 0, 50, 100) withType:@"trigger"];
     
@@ -165,7 +165,7 @@
     //[CATransaction begin];
     //[CATransaction setDisableActions:YES];
     
-    self.icon.backgroundColor = [UIColor orangeColor];
+    self.icon.backgroundColor = [P1Utils myColor:@"green"];//[UIColor orangeColor];
     //self.backgroundColor = [UIColor orangeColor];
     //self.connector.backgroundColor = [UIColor yellowColor];
     
