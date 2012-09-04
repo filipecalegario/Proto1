@@ -18,5 +18,6 @@
 @property (nonatomic, strong) UIView * corner4;
 
 - (id)initWithFrame:(CGRect)frame withCanvas:(P1EditView *)canvas;
+- (id)initWithFrame:(CGRect)frame withCanvas:(P1EditView *)canvas withGroupedFlag:(BOOL)flag;
 
 @end

@@ -79,6 +79,10 @@
     } else if ([identifier isEqualToString:@"circleTouchable"]) {
         NSLog(@"adding a circle touchable");  
         object = [P1ObjectFactory createCircleTouchable:self.canvas];
+    } else if ([identifier isEqualToString:@"multipleTouchable"]) {
+        NSLog(@"adding a circle touchable");  
+        object = [P1ObjectFactory createMultipleTouchable:self.canvas];
+        
     } else {
         object = [P1ObjectFactory createInputObject:identifier withCanvas:self.canvas];
     }

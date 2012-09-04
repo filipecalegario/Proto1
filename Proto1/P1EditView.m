@@ -10,6 +10,7 @@
 #import "P1InputObjectView.h"
 #import "P1OutputObjectView.h"
 #import "P1Utils.h"
+#import "P1MultipleInputObject.h"
 
 @interface P1EditView()
 
@@ -147,7 +148,7 @@
     for(UIView * currentView in self.subviews){
         if ([currentView isKindOfClass:[P1InputObjectView class]]) {
             [tempArray addObject:currentView];
-        } else if([currentView isKindOfClass:[P1OutputObjectView class]]){
+        } else if([currentView isKindOfClass:[P1OutputObjectView class]] || [currentView isKindOfClass:[P1MultipleInputObject class]]){
             for(UIView *subCurrentView in currentView.subviews){
                 if ([subCurrentView isKindOfClass:[P1InputObjectView class]]) {
                     [tempArray addObject:subCurrentView];

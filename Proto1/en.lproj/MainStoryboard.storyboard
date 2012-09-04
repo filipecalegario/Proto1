@@ -985,14 +985,14 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="circleTouchable" textLabel="0u5-Ut-sSx" imageView="oq7-lI-WcC" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Wpy-EQ-3u8">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="multipleTouchable" textLabel="0u5-Ut-sSx" imageView="oq7-lI-WcC" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Wpy-EQ-3u8">
                                         <rect key="frame" x="0.0" y="72" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Circular Touchable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0u5-Ut-sSx">
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Multiple Touchable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0u5-Ut-sSx">
                                                     <rect key="frame" x="59" y="0.0" width="955" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>

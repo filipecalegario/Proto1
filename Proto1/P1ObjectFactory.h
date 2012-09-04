@@ -10,6 +10,7 @@
 #import "P1InputObjectView.h"
 #import "P1EditView.h"
 #import "P1CircleTouchable.h"
+#import "P1MultipleInputObject.h"
 
 @interface P1ObjectFactory : NSObject
 
@@ -23,5 +24,7 @@
 +(UIView *)createOSCNoteArrayWithCanvas:(P1EditView *)canvas withGestureHandler:(id)gestureHandler;
 
 +(P1CircleTouchable *)createCircleTouchable:(P1EditView *)canvas;
+
++(P1MultipleInputObject *)createMultipleTouchable:(P1EditView *)canvas;
 
 @end

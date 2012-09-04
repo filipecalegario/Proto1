@@ -12,6 +12,7 @@
 #import "P1Touchable.h"
 
 
+
 @implementation P1ObjectFactory
 
 +(UIView *)createAfrobeatWithCanvas:(P1EditView *)canvas
@@ -85,7 +86,7 @@
 {
     NSString* iconTypeString = @"playNote";
     NSString* connectorTypeString = @"trigger";
-    P1OutputObjectView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 100, 400) relatedPatch:@"noteArray.pd"];
+    P1OutputObjectView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 100, 500) relatedPatch:@"noteArray.pd"];
     
     NSArray * initialNotes = [NSArray arrayWithObjects: 
                               [NSNumber numberWithInt:60],
@@ -108,6 +109,8 @@
         
         noteObject.myTag = [[initialNotes objectAtIndex:i] intValue];
         noteObject.name = [NSString stringWithFormat:@"note%i",i];
+        
+        //NSLog([NSString stringWithFormat:@"Nota %@ com valor %i adicionada na iteração %i", noteObject.name, noteObject.myTag, i]);
         
         [object addSubview:noteObject];
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:gestureHandler action:@selector(longTapHandle:)];
@@ -200,6 +203,39 @@
     CGRect defaultRect = CGRectMake(0, 0, 125, 125);
     
     return [[P1CircleTouchable alloc] initWithFrame:defaultRect];
+}
+
++(P1MultipleInputObject *)createMultipleTouchable:(P1EditView *)canvas
+{
+    P1MultipleInputObject * multipleObject = [[P1MultipleInputObject alloc] initWithFrame:CGRectMake(0, 0, 250, 250)];
+    
+    CGRect rect = CGRectMake(0, 0, 100, 50);
+    
+    P1Touchable * west = [[P1Touchable alloc] initWithFrame:rect withCanvas:canvas withGroupedFlag:YES];
+    P1Touchable * north = [[P1Touchable alloc] initWithFrame:rect withCanvas:canvas withGroupedFlag:YES];
+    P1Touchable * east = [[P1Touchable alloc] initWithFrame:rect withCanvas:canvas withGroupedFlag:YES];
+    P1Touchable * south = [[P1Touchable alloc] initWithFrame:rect withCanvas:canvas withGroupedFlag:YES];
+    
+    west.transform = CGAffineTransformMakeRotation(M_PI);
+    west.frame = CGRectMake(100, 150, 100, 50);
+    
+    north.transform = CGAffineTransformMakeRotation(-M_PI/2);
+    north.frame = CGRectMake(100, 100, 50, 100);
+    
+    //east.transform = CGAffineTransformMakeRotation(0);
+    east.frame = CGRectMake(150, 100, 100, 50);
+    
+    south.transform = CGAffineTransformMakeRotation(M_PI/2);
+    south.frame = CGRectMake(150, 150, 50, 100);
+    
+    //multipleObject.backgroundColor = [UIColor redColor];
+    
+    [multipleObject addSubview:west];
+    [multipleObject addSubview:north];
+    [multipleObject addSubview:east];
+    [multipleObject addSubview:south];
+    
+    return multipleObject;
 }
 
 +(P1InputObjectView *)createInputObject:(NSString *)iconType withCanvas:(P1EditView *)canvas

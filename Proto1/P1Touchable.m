@@ -46,6 +46,24 @@
     return self;
 }
 
+
+- (id)initWithFrame:(CGRect)frame withCanvas:(P1EditView *)canvas withGroupedFlag:(BOOL)flag
+{
+    
+    P1IconView* icon = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 50, 50) withType:@"touchable" withColor:[P1Utils myColor:@"green"]];
+    
+    P1IconView* connector = [[P1IconView alloc] initWithFrame:CGRectMake(50, 0, 50, 50) withType:@"trigger" withImageSource:@"specialConnector"];
+    
+    connector.transform = CGAffineTransformMakeRotation(M_PI);
+    
+    self = [super initWithFrame:frame withObjectType:@"input" withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:flag];
+    
+    if (self) {
+        [self setup];
+    }
+    return self;
+}
+
 - (void) setup
 {
     CGRect oldFrame = self.frame;
