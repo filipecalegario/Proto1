@@ -83,6 +83,7 @@
 		45943BD015BF32A9008E6002 /* volume.pd in Resources */ = {isa = PBXBuildFile; fileRef = 45943BC515BF32A9008E6002 /* volume.pd */; };
 		459B4F5015BEA16100FE092D /* Icon-72.png in Resources */ = {isa = PBXBuildFile; fileRef = 459B4F4F15BEA16100FE092D /* Icon-72.png */; };
 		459B4F5215BEA1C900FE092D /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 459B4F5115BEA1C900FE092D /* iTunesArtwork.png */; };
+		459F8D1715F6C1330028D271 /* multipleTouchable@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 459F8D1615F6C1330028D271 /* multipleTouchable@2x.png */; };
 		45CCDE4615DCAF6F004F980A /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 45CCDE4515DCAF6F004F980A /* ProximaNova-Regular.otf */; };
 		45DEC1B015DCB8AA000133F4 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 45DEC1AE15DCB8AA000133F4 /* ProximaNova-Bold.otf */; };
 		45DEC1B115DCB8AA000133F4 /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 45DEC1AF15DCB8AA000133F4 /* ProximaNova-Semibold.otf */; };
@@ -218,6 +219,7 @@
 		45943BC515BF32A9008E6002 /* volume.pd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = volume.pd; sourceTree = "<group>"; };
 		459B4F4F15BEA16100FE092D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		459B4F5115BEA1C900FE092D /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		459F8D1615F6C1330028D271 /* multipleTouchable@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "multipleTouchable@2x.png"; sourceTree = "<group>"; };
 		45CCDE4515DCAF6F004F980A /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
 		45DEC1AE15DCB8AA000133F4 /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
 		45DEC1AF15DCB8AA000133F4 /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
@@ -447,6 +449,7 @@
 				4520B57915F5673900C78B9D /* notesFlow@2x.png */,
 				4520B57A15F5673900C78B9D /* notesArray@2x.png */,
 				4520B58615F56DF600C78B9D /* touchable@2x.png */,
+				459F8D1615F6C1330028D271 /* multipleTouchable@2x.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				4520B57E15F5673900C78B9D /* notesFlow@2x.png in Resources */,
 				4520B57F15F5673900C78B9D /* notesArray@2x.png in Resources */,
 				4520B58715F56DF600C78B9D /* touchable@2x.png in Resources */,
+				459F8D1715F6C1330028D271 /* multipleTouchable@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

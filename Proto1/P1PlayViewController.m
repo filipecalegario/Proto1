@@ -86,9 +86,11 @@
                 
                 P1InputObjectView * touchable = currentObject;
                 
-                CGRect touchableIconRect = [touchable convertRect:touchable.icon.frame toView:touchable.canvas];
+                
                 
 //                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:CGRectMake(touchable.icon.frame.origin.x, touchable.icon.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height)];
+                
+                CGRect touchableIconRect = [touchable convertRect:touchable.icon.frame toView:touchable.canvas];
                 
                 P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:touchableIconRect];
                 
@@ -142,7 +144,12 @@
                     //                [self.playArea addSubview:button];
                 }
                 
-                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height)];
+//                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height)];
+                
+                CGRect touchableIconRect = [touchable convertRect:touchable.icon.frame toView:touchable.canvas];
+                
+                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:touchableIconRect];
+                
                 playTouchable.value = touchable.connectedTo.myTag;
                 playTouchable.action = messageToSend;//touchable.noteLabel.text;
                 
