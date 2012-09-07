@@ -204,7 +204,7 @@
 
 - (P1Touchable *)duplicate
 {
-    P1IconView* icon = [[P1IconView alloc] initWithFrame:self.icon.frame withType:@"touchable" withColor:[UIColor orangeColor]];
+    P1IconView* icon = [[P1IconView alloc] initWithFrame:self.icon.frame withType:@"touchable" withColor:[P1Utils myColor:@"green"]];
     
     P1IconView* connector = [[P1IconView alloc] initWithFrame:self.connector.frame withType:@"trigger"];
     
