@@ -523,6 +523,7 @@
     [super viewDidUnload];
     //    [PdBase closeFile:patch];
     [PdBase setDelegate:nil];
+    [TestFlight passCheckpoint:@"Returning to Edit"];
     patch = nil;
 }
 

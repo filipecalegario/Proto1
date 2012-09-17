@@ -106,6 +106,9 @@
 }
 
 //======== SEGUES ========
+- (IBAction)launchFeedback:(id)sender {
+    [TestFlight openFeedbackView];
+}
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -151,6 +154,7 @@
 //        
 //        self.navigationController.navigationBarHidden = NO;
 //        [self.navigationController pushViewController:segue.destinationViewController animated:YES];
+        [TestFlight passCheckpoint:@"Going to Play Mode"];
         
     } else if ([segue.identifier isEqualToString:@"AddObjectTableView"]) {
         //#################################################################

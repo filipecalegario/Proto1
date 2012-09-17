@@ -78,6 +78,11 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <navigationItem key="navigationItem" title="Edit Mode" id="jUV-Jh-beu">
+                        <barButtonItem key="leftBarButtonItem" title="Feedback" id="O0x-Np-f5z">
+                            <connections>
+                                <action selector="launchFeedback:" destination="2" id="ysr-kW-eOe"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="play" id="Nz0-pX-g4d">
                             <connections>
                                 <segue destination="Hsn-LB-GQh" kind="push" identifier="GoingToPlayMode" customClass="P1FromTopReplaceSegue" id="Gn2-OI-ybD"/>
