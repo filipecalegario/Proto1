@@ -20,6 +20,11 @@
 	[self.audioController setActive:YES];
 	[self.audioController print];
     NSLog(@"Passou por aqui!");
+    #define TESTING 1
+    #ifdef TESTING
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+    #endif
+    [TestFlight takeOff:@"a858c00629e3ec7a4c0608f1a3129172_MTMyMTg3MjAxMi0wOS0xNCAwOToxNzoyOC4zOTA3NTY"];
     return YES;
 }
 							

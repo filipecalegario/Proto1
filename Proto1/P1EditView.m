@@ -88,6 +88,7 @@
         self.endPoint = CGPointMake(-5, -5);
         self.drawPossibilities = NO;
         self.current = nil;
+        [TestFlight passCheckpoint:@"Connection added"];
     }
     [self setNeedsDisplay];
 }

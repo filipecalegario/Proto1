@@ -11,6 +11,8 @@
 		4512E4D515BF7BD800843A60 /* specialIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4512E4CE15BF7BD800843A60 /* specialIcon@2x.png */; };
 		4512E4D615BF7BD800843A60 /* specialIconLong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4512E4CF15BF7BD800843A60 /* specialIconLong@2x.png */; };
 		4512E4D715BF7BD800843A60 /* specialTrackConnector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4512E4D015BF7BD800843A60 /* specialTrackConnector@2x.png */; };
+		45159AED16079C5A00DBEE06 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45159AEB16079C5A00DBEE06 /* libTestFlight.a */; };
+		45159AEF16079CB800DBEE06 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45159AEE16079CB800DBEE06 /* libz.dylib */; };
 		4520B57B15F5673900C78B9D /* samplesPlayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4520B57615F5673900C78B9D /* samplesPlayer@2x.png */; };
 		4520B57C15F5673900C78B9D /* OSCNotesArray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4520B57715F5673900C78B9D /* OSCNotesArray@2x.png */; };
 		4520B57D15F5673900C78B9D /* afrobeatMachine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4520B57815F5673900C78B9D /* afrobeatMachine@2x.png */; };
@@ -125,6 +127,9 @@
 		4512E4CE15BF7BD800843A60 /* specialIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "specialIcon@2x.png"; sourceTree = "<group>"; };
 		4512E4CF15BF7BD800843A60 /* specialIconLong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "specialIconLong@2x.png"; sourceTree = "<group>"; };
 		4512E4D015BF7BD800843A60 /* specialTrackConnector@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "specialTrackConnector@2x.png"; sourceTree = "<group>"; };
+		45159AEB16079C5A00DBEE06 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		45159AEC16079C5A00DBEE06 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		45159AEE16079CB800DBEE06 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		4520B57615F5673900C78B9D /* samplesPlayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "samplesPlayer@2x.png"; sourceTree = "<group>"; };
 		4520B57715F5673900C78B9D /* OSCNotesArray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OSCNotesArray@2x.png"; sourceTree = "<group>"; };
 		4520B57815F5673900C78B9D /* afrobeatMachine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "afrobeatMachine@2x.png"; sourceTree = "<group>"; };
@@ -244,6 +249,8 @@
 				458E90E815B4886D00A82826 /* Foundation.framework in Frameworks */,
 				458E90EA15B4886D00A82826 /* CoreGraphics.framework in Frameworks */,
 				455D099215D57722006A42DA /* QuartzCore.framework in Frameworks */,
+				45159AED16079C5A00DBEE06 /* libTestFlight.a in Frameworks */,
+				45159AEF16079CB800DBEE06 /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,6 +260,8 @@
 		4571929D15D00E54008DEF35 /* Auxiliary */ = {
 			isa = PBXGroup;
 			children = (
+				45159AEB16079C5A00DBEE06 /* libTestFlight.a */,
+				45159AEC16079C5A00DBEE06 /* TestFlight.h */,
 				4571929E15D00E69008DEF35 /* P1Utils.h */,
 				4571929F15D00E69008DEF35 /* P1Utils.m */,
 			);
@@ -271,6 +280,7 @@
 		458E90D615B4886C00A82826 = {
 			isa = PBXGroup;
 			children = (
+				45159AEE16079CB800DBEE06 /* libz.dylib */,
 				455D099115D57722006A42DA /* QuartzCore.framework */,
 				4512E4C615BF712500843A60 /* mainIcon.png */,
 				459B4F5115BEA1C900FE092D /* iTunesArtwork.png */,
@@ -704,15 +714,22 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "/Users/filipecalegario/Library/SDKs/VVBasics/iphoneos.sdk /Users/filipecalegario/Library/SDKs/VVOSC/iphoneos.sdk";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Proto1/Proto1-Prefix.pch";
 				INFOPLIST_FILE = "Proto1/Proto1-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Proto1\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lVVOSC",
 					"-lVVBasics",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				USER_HEADER_SEARCH_PATHS = "/Users/filipecalegario/Developer/libpd/pd-for-ios/libpd/**";
 				WRAPPER_EXTENSION = app;
 			};
@@ -722,15 +739,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ADDITIONAL_SDKS = "/Users/filipecalegario/Library/SDKs/VVBasics/iphoneos.sdk /Users/filipecalegario/Library/SDKs/VVOSC/iphoneos.sdk";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Filipe A Calegario";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Filipe A Calegario";
+				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Proto1/Proto1-Prefix.pch";
 				INFOPLIST_FILE = "Proto1/Proto1-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Proto1\"",
+				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lVVOSC",
 					"-lVVBasics",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "A8C7C028-5BF5-427F-A3DF-D559F9ABF590";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A8C7C028-5BF5-427F-A3DF-D559F9ABF590";
 				USER_HEADER_SEARCH_PATHS = "/Users/filipecalegario/Developer/libpd/pd-for-ios/libpd/**";
 				WRAPPER_EXTENSION = app;
 			};

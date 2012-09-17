@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 FCAC. All rights reserved.
 //
 
+#define NSLog(__FORMAT__, ...) TFLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+
 #import "P1EditViewController.h"
 
 #import "P1InputObjectView.h"
@@ -92,6 +94,8 @@
     [self.canvas addSubview:object];
     [self.canvas setNeedsDisplay];
     [self.myPopover dismissPopoverAnimated:NO];
+    
+    [TestFlight passCheckpoint:@"Object added"];
 }
 
 - (void) configContextMenu:(P1InputObjectView *)objectView withTag:(int)tag
