@@ -11,8 +11,6 @@
 #import "P1OutputObjectView.h"
 #import "P1Touchable.h"
 
-
-
 @implementation P1ObjectFactory
 
 +(UIView *)createAfrobeatWithCanvas:(P1EditView *)canvas
@@ -40,8 +38,11 @@
         
         P1IconView* icon = [icons objectAtIndex:i];
         
-        P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 150, 50) withObjectType:@"output" withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
-        noteObject.myTag = 128;
+        P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 150, 50) withObjectType:OUTPUT withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
+        //noteObject.myTag = 128;
+        
+        noteObject.action.description = icon.type;
+        noteObject.action.value = -1;
         
         [object addSubview:noteObject];
     }
@@ -72,8 +73,10 @@
         
         P1IconView* icon = [icons objectAtIndex:i];
         
-        P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 150, 50) withObjectType:@"output" withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
-        noteObject.myTag = 128;
+        P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 150, 50) withObjectType:OUTPUT withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
+        
+        noteObject.action.description = icon.type;
+        noteObject.action.value = -1;
         
         [object addSubview:noteObject];
     }
@@ -105,10 +108,10 @@
     {
         P1IconView* connector = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 50, 50) withType:connectorTypeString withImageSource:@"specialConnector"];
         P1IconView* icon = [[P1IconView alloc] initWithFrame:CGRectMake(50, 0, 50, 50) withType:iconTypeString withImageSource:@"specialIcon"];
-        P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 100, 50) withObjectType:@"output" withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
+        P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 100, 50) withObjectType:OUTPUT withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
         
-        noteObject.myTag = [[initialNotes objectAtIndex:i] intValue];
-        noteObject.name = [NSString stringWithFormat:@"note%i",i];
+        noteObject.action.description = [NSString stringWithFormat:@"note%i",i];
+        noteObject.action.value = [[initialNotes objectAtIndex:i] intValue];
         
         //NSLog([NSString stringWithFormat:@"Nota %@ com valor %i adicionada na iteração %i", noteObject.name, noteObject.myTag, i]);
         
@@ -146,8 +149,10 @@
         
         P1IconView* icon = [icons objectAtIndex:i];
         
-        P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 150, 50) withObjectType:@"output" withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
-        noteObject.myTag = 128;
+        P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 150, 50) withObjectType:OUTPUT withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
+        
+        noteObject.action.description = icon.type;
+        noteObject.action.value = -1;
         
         [object addSubview:noteObject];
     }
@@ -181,7 +186,7 @@
         P1IconView* icon = [icons objectAtIndex:i];
         P1IconView* connector = [connectors objectAtIndex:i];
         
-        P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 150, 50) withObjectType:@"output" withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
+        P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 150, 50) withObjectType:OUTPUT withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
         //noteObject.myTag = 128;
         
         [object addSubview:noteObject];
@@ -245,47 +250,47 @@
     
     if([iconType isEqualToString:@"touch"]){
         NSLog(@"adding a touch input object");
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
+        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"horizontalSlide"]) {
         NSLog(@"adding a horizontal slide input object");     
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:iconType withConnectorType:@"track" withCanvas:canvas];
+        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"track" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"verticalSlide"]) {
         NSLog(@"adding a vertical slide input object");       
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:iconType withConnectorType:@"track" withCanvas:canvas];
+        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"track" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeUp"]) {
         NSLog(@"adding a swipeUp input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
+        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeDown"]) {
         NSLog(@"adding a swipeDown input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
+        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeLeft"]) {
         NSLog(@"adding a swipeLeft input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
+        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeRight"]) {
         NSLog(@"adding a swipeRight input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
+        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeDoubleUp"]) {
         NSLog(@"adding a swipeDoubleUp input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
+        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeDoubleDown"]) {
         NSLog(@"adding a swipeDoubleDown input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
+        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeDoubleLeft"]) {
         NSLog(@"adding a swipeDoubleLeft input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
+        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeDoubleRight"]) {
         NSLog(@"adding a swipeDoubleRight input object");  
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:@"input" withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
+        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
     }
     
     return object;

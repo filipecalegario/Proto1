@@ -38,7 +38,7 @@
     
     P1IconView* connector = [[P1IconView alloc] initWithFrame:CGRectMake(100, 0, 50, 100) withType:@"trigger"];
     
-    self = [super initWithFrame:frame withObjectType:@"input" withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:NO];
+    self = [super initWithFrame:frame withObjectType:INPUT withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:NO];
     
     if (self) {
         [self setup];
@@ -56,7 +56,7 @@
     
     connector.transform = CGAffineTransformMakeRotation(M_PI);
     
-    self = [super initWithFrame:frame withObjectType:@"input" withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:flag];
+    self = [super initWithFrame:frame withObjectType:INPUT withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:flag];
     
     if (self) {
         [self setup];
@@ -208,7 +208,7 @@
     
     P1IconView* connector = [[P1IconView alloc] initWithFrame:self.connector.frame withType:@"trigger"];
     
-    P1Touchable* copiedTouchable = [[P1Touchable alloc] initWithFrame:CGRectMake(self.frame.origin.x + 100, self.frame.origin.y, self.frame.size.width, self.frame.size.height) withObjectType:@"input" withIcon:icon withConnector:connector withCanvas:self.canvas groupedGestures:NO];
+    P1Touchable* copiedTouchable = [[P1Touchable alloc] initWithFrame:CGRectMake(self.frame.origin.x + 100, self.frame.origin.y, self.frame.size.width, self.frame.size.height) withObjectType:INPUT withIcon:icon withConnector:connector withCanvas:self.canvas groupedGestures:NO];
     
     [copiedTouchable setup];
     

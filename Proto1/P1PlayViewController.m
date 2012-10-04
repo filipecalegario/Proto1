@@ -13,6 +13,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "P1TouchGestureRecognizer.h"
 #import "P1Utils.h"
+#import "P1PlayAction.h"
 
 
 @interface P1PlayViewController ()
@@ -80,127 +81,214 @@
     
     for (P1InputObjectView *currentObject in self.objectArray) {
         
-        if ([currentObject.connectedTo.iconType isEqualToString:@"playNote"]) {
+        if ([currentObject.iconType isEqualToString:@"touchable"]){
             
-            if ([currentObject.iconType isEqualToString:@"touchable"]){
-                
-                P1InputObjectView * touchable = currentObject;
-                
-                
-                
-//                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:CGRectMake(touchable.icon.frame.origin.x, touchable.icon.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height)];
-                
-                CGRect touchableIconRect = [touchable convertRect:touchable.icon.frame toView:touchable.canvas];
-                
-                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:touchableIconRect];
-                
-                playTouchable.value = touchable.connectedTo.myTag;
-                //playTouchable.action = touchable.noteLabel.text;
-                playTouchable.action = touchable.connectedTo.name;
-                
-                playTouchable.label.text = [P1Utils convertNumberToNoteName:playTouchable.value];
-                [playTouchable setNeedsDisplay];
-                
-                NSLog(playTouchable.label.text);
-                
-                //                UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
-                //                [playTouchable addGestureRecognizer:tapGesture];
-                
-                P1TouchGestureRecognizer * touchGesture = [[P1TouchGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
-                [playTouchable addGestureRecognizer:touchGesture];
-                
-                [self.playArea addSubview:playTouchable];
-                
-            } else if([currentObject.iconType hasPrefix:@"swipe"]){
-                
-                UISwipeGestureRecognizer * swipe = [self createSwipe:currentObject];
-                
-                float indexacao = swipe.direction*(swipe.numberOfTouchesRequired+1);
-                
-                NSNumber * noteToPlay = [NSNumber numberWithInt:currentObject.connectedTo.myTag];
-                NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
-                
-                [self.swipeDictionary setObject:noteToPlay forKey:keyToStore];
-                
-                [self.playArea addGestureRecognizer:swipe];
-                
+            P1InputObjectView * touchable = currentObject;
+            
+            CGRect touchableIconRect = [touchable convertRect:touchable.icon.frame toView:touchable.canvas];
+            
+            P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:touchableIconRect];
+            
+            for (P1InputObjectView* connectedTo in currentObject.connectedObjects) {
+                //P1PlayAction* action = [[P1PlayAction alloc] init];
+                //action.description = connectedTo.action.description;
+                //action.value = connectedTo.action.value;
+                [playTouchable.actions addObject:connectedTo.action];
             }
             
-        } else if(currentObject.connectedTo.myTag == 128.0){
-#warning Corrigir essa GAMBIARRA tosca de usar o 128 como definidor de ação!!!
-            NSString * messageToSend = currentObject.connectedTo.label.text;
-            //NSLog([NSString stringWithFormat:@"Message To Send is: %@", messageToSend]);
+            [playTouchable setNeedsDisplay];
             
-            if ([currentObject.iconType isEqualToString:@"touchable"]){
-                
-                P1InputObjectView * touchable = currentObject;
-                {
-                    //                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-                    //                [button addTarget:self action:@selector(aMethod:) forControlEvents:UIControlEventTouchDown];
-                    //                button.frame = CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height);
-                    //                button.tag = touchable.connectedTo.myTag;
-                    //                button.titleLabel.text = messageToSend;
-                    //                [button setImage:[UIImage imageNamed:touchable.iconType] forState:UIControlStateNormal];
-                    //                [self.playArea addSubview:button];
-                }
-                
-//                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height)];
-                
-                CGRect touchableIconRect = [touchable convertRect:touchable.icon.frame toView:touchable.canvas];
-                
-                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:touchableIconRect];
-                
-                playTouchable.value = touchable.connectedTo.myTag;
-                playTouchable.action = messageToSend;//touchable.noteLabel.text;
-                
-                playTouchable.label.text = playTouchable.action;
-                [playTouchable.label setNeedsDisplay];
-                
-                //UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
-                //[playTouchable addGestureRecognizer:tapGesture];
-                
-                P1TouchGestureRecognizer * touchGesture = [[P1TouchGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
-                [playTouchable addGestureRecognizer:touchGesture];
-                
-                [self.playArea addSubview:playTouchable];
-                
-            } else if([currentObject.iconType hasPrefix:@"swipe"]){
-                
-                UISwipeGestureRecognizer * swipe = [self createSwipe:currentObject];
-                
-                float indexacao = swipe.direction*(swipe.numberOfTouchesRequired+1);
-                
-                NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
-                
-                [self.swipeDictionary setObject:messageToSend forKey:keyToStore];
-                
-                [self.playArea addGestureRecognizer:swipe];
+            P1TouchGestureRecognizer * touchGesture = [[P1TouchGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
+            [playTouchable addGestureRecognizer:touchGesture];
+            
+            [self.playArea addSubview:playTouchable];
+            
+        } else if([currentObject.iconType hasPrefix:@"swipe"]){
+
+            //__________________UM______________________            
+
+            UISwipeGestureRecognizer * swipe = [self createSwipe:currentObject];
+            
+            float indexacao = swipe.direction*(swipe.numberOfTouchesRequired+1);
+            
+            NSMutableArray* actions = [[NSMutableArray alloc] init];
+            
+            for (P1InputObjectView* connectedTo in currentObject.connectedObjects) {
+                [actions addObject:connectedTo.action];
             }
             
+            NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
+            
+            [self.swipeDictionary setObject:actions forKey:keyToStore];
+            
+            [self.playArea addGestureRecognizer:swipe];
+            
+            //__________________DOIS______________________
+            
+//            UISwipeGestureRecognizer * swipe = [self createSwipe:currentObject];
+//            
+//            float indexacao = swipe.direction*(swipe.numberOfTouchesRequired+1);
+//            
+//            NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
+//            
+//            [self.swipeDictionary setObject:messageToSend forKey:keyToStore];
+//            
+//            [self.playArea addGestureRecognizer:swipe];
+            
+            
+        } else if ([currentObject.iconType isEqualToString:@"touch"]) {
             
         }
         
-        if ([currentObject.iconType isEqualToString:@"touch"]) {
-            if ([currentObject.connectedTo.iconType isEqualToString:@"playNotes"]) {
-                self.mainAction = @"touch-playNotes";
-                
-                UIPanGestureRecognizer* panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(touch:)];
-                [self.playArea addGestureRecognizer:panIconGesture];
-                
-            }
-        } else if ([currentObject.iconType isEqualToString:@"horizontalSlide"]) {
-            if ([currentObject.connectedTo.iconType isEqualToString:@"pitch"]) {
-                self.pitchOrientation = @"horizontal";
-            } else if ([currentObject.connectedTo.iconType isEqualToString:@"duration"]) {
-                self.durationOrientation = @"horizontal";
-            }
-        } else if ([currentObject.iconType isEqualToString:@"verticalSlide"]) {
-            if ([currentObject.connectedTo.iconType isEqualToString:@"pitch"]) {
-                self.pitchOrientation = @"vertical";
-            } else if ([currentObject.connectedTo.iconType isEqualToString:@"duration"]) {
-                self.durationOrientation = @"vertical";
-            }
-        }
+        
+        //########################MATA TUDO AÍ EMBAIXO############################
+        
+//        if ([connectedTo.iconType isEqualToString:@"playNote"]) {
+//            
+//            if ([currentObject.iconType isEqualToString:@"touchable"]){
+//                
+//                
+//                
+//                
+//                P1InputObjectView * touchable = currentObject;
+//                
+//                
+//                
+//                //                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:CGRectMake(touchable.icon.frame.origin.x, touchable.icon.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height)];
+//                
+//                CGRect touchableIconRect = [touchable convertRect:touchable.icon.frame toView:touchable.canvas];
+//                
+//                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:touchableIconRect];
+//                
+//                
+//                P1PlayAction* action = [[P1PlayAction alloc] init];
+//                action.description = connectedTo.name;
+//                action.value = connectedTo.myTag;
+//                
+//                [playTouchable.actions addObject:action];
+//                //playTouchable.value = touchable.connectedTo.myTag;
+//                //playTouchable.action = touchable.noteLabel.text;
+//                //playTouchable.action = touchable.connectedTo.name;
+//                
+//                //playTouchable.label.text = [P1Utils convertNumberToNoteName:playTouchable.value];
+//                [playTouchable setNeedsDisplay];
+//                
+//                //NSLog(playTouchable.label.text);
+//                
+//                //                UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
+//                //                [playTouchable addGestureRecognizer:tapGesture];
+//                
+//                P1TouchGestureRecognizer * touchGesture = [[P1TouchGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
+//                [playTouchable addGestureRecognizer:touchGesture];
+//                
+//                [self.playArea addSubview:playTouchable];
+//                
+//            } else if([currentObject.iconType hasPrefix:@"swipe"]){
+//                
+//                UISwipeGestureRecognizer * swipe = [self createSwipe:currentObject];
+//                
+//                float indexacao = swipe.direction*(swipe.numberOfTouchesRequired+1);
+//                
+//                NSNumber * noteToPlay = [NSNumber numberWithInt:connectedTo.myTag];
+//                NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
+//                
+//                [self.swipeDictionary setObject:noteToPlay forKey:keyToStore];
+//                
+//                [self.playArea addGestureRecognizer:swipe];
+//                
+//            } else if ([currentObject.iconType isEqualToString:@"touch"]) {
+//#warning Implementar o disparo da ação aqui
+//                NSLog(@"Implementar o disparo da ação para o gesto touch");
+//            }
+//            
+//        } else if(connectedTo.myTag == 128.0){
+//#warning Corrigir essa GAMBIARRA tosca de usar o 128 como definidor de ação!!!
+//            NSString * messageToSend = connectedTo.label.text;
+//            //NSLog([NSString stringWithFormat:@"Message To Send is: %@", messageToSend]);
+//            
+//            if ([currentObject.iconType isEqualToString:@"touchable"]){
+//                
+//                P1InputObjectView * touchable = currentObject;
+//                {
+//                    //                UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//                    //                [button addTarget:self action:@selector(aMethod:) forControlEvents:UIControlEventTouchDown];
+//                    //                button.frame = CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height);
+//                    //                button.tag = touchable.connectedTo.myTag;
+//                    //                button.titleLabel.text = messageToSend;
+//                    //                [button setImage:[UIImage imageNamed:touchable.iconType] forState:UIControlStateNormal];
+//                    //                [self.playArea addSubview:button];
+//                }
+//                
+//                //                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:CGRectMake(touchable.frame.origin.x, touchable.frame.origin.y, touchable.icon.frame.size.width, touchable.icon.frame.size.height)];
+//                
+//                CGRect touchableIconRect = [touchable convertRect:touchable.icon.frame toView:touchable.canvas];
+//                
+//                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:touchableIconRect];
+//                
+//                P1PlayAction* action = [[P1PlayAction alloc] init];
+//                action.description = connectedTo.name;
+//                action.value = connectedTo.myTag;
+//                
+//                [playTouchable.actions addObject:action];
+//                
+//                
+//                //                    playTouchable.value = touchable.connectedTo.myTag;
+//                //                    playTouchable.action = messageToSend;//touchable.noteLabel.text;
+//                //                    
+//                //                    playTouchable.label.text = playTouchable.action;
+//                [playTouchable.label setNeedsDisplay];
+//                
+//                //UITapGestureRecognizer * tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
+//                //[playTouchable addGestureRecognizer:tapGesture];
+//                
+//                P1TouchGestureRecognizer * touchGesture = [[P1TouchGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
+//                [playTouchable addGestureRecognizer:touchGesture];
+//                
+//                [self.playArea addSubview:playTouchable];
+//                
+//            } else if([currentObject.iconType hasPrefix:@"swipe"]){
+//                
+//                UISwipeGestureRecognizer * swipe = [self createSwipe:currentObject];
+//                
+//                float indexacao = swipe.direction*(swipe.numberOfTouchesRequired+1);
+//                
+//                NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
+//                
+//                [self.swipeDictionary setObject:messageToSend forKey:keyToStore];
+//                
+//                [self.playArea addGestureRecognizer:swipe];
+//            }
+//            
+//            
+//        }
+        
+        //########################MATA TUDO AÍ EM CIMA############################
+        
+        //*********************************************************
+        
+//        if ([currentObject.iconType isEqualToString:@"touch"]) {
+//            if ([connectedTo.iconType isEqualToString:@"playNotes"]) {
+//                self.mainAction = @"touch-playNotes";
+//                
+//                UIPanGestureRecognizer* panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(touch:)];
+//                [self.playArea addGestureRecognizer:panIconGesture];
+//                
+//            }
+//        } else if ([currentObject.iconType isEqualToString:@"horizontalSlide"]) {
+//            if ([connectedTo.iconType isEqualToString:@"pitch"]) {
+//                self.pitchOrientation = @"horizontal";
+//            } else if ([connectedTo.iconType isEqualToString:@"duration"]) {
+//                self.durationOrientation = @"horizontal";
+//            }
+//        } else if ([currentObject.iconType isEqualToString:@"verticalSlide"]) {
+//            if ([connectedTo.iconType isEqualToString:@"pitch"]) {
+//                self.pitchOrientation = @"vertical";
+//            } else if ([connectedTo.iconType isEqualToString:@"duration"]) {
+//                self.durationOrientation = @"vertical";
+//            }
+//        }
+        
+        //*********************************************************
         
     }
     //NSLog(self.mainAction);
@@ -322,43 +410,47 @@
 #warning Deixar isso sem tá dependende do patch!
     
     NSLog(@"Swipe Detected");
-
+    
     NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
     
-    NSString * feedbackMessage = @"";
-    
-    if([self.patchToLoad isEqualToString:@"proto1.pd"]){
-        
-        NSNumber* noteToSend = [self.swipeDictionary objectForKey:indexacao];
-        //NSLog([NSString stringWithFormat:@"NOTE TO SEND: %f, %i, %i, %i",noteToSend.floatValue, gesture.direction, gesture.numberOfTouches, indexacao.intValue]);
-        [PdBase sendFloat:noteToSend.floatValue toReceiver:@"midinote"];
-        [PdBase sendBangToReceiver:@"noteTrigger"];
-        feedbackMessage = [P1Utils convertNumberToNoteName:noteToSend.intValue];
-        
-    } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"] || [self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
-        //NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
-        NSString* messageToSend = [self.swipeDictionary objectForKey:indexacao];
-        [PdBase sendBangToReceiver:messageToSend];
-        feedbackMessage = messageToSend;
-        
-    } else if([self.patchToLoad isEqualToString:@"noteArray.pd"]){ 
-        //NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
-        NSNumber* noteToSend = [self.swipeDictionary objectForKey:indexacao];
-        //NSLog([NSString stringWithFormat:@"NOTE TO SEND: %f, %i, %i, %i",noteToSend.floatValue, gesture.direction, gesture.numberOfTouches, indexacao.intValue]);
-        [PdBase sendFloat:noteToSend.floatValue toReceiver:@"genericNoteV"];
-        [PdBase sendBangToReceiver:@"genericNote"];
-        
-        feedbackMessage = [P1Utils convertNumberToNoteName:noteToSend.intValue];
-    } else if([self.patchToLoad isEqualToString:@"NotPD"]){ 
-        //NSLog([NSString stringWithFormat:@"%@, %i", playTouchable.action, playTouchable.value]);
-        NSString* messageToSend = [self.swipeDictionary objectForKey:indexacao];
-        //NSLog([NSString stringWithFormat:@"Message to send: %@", messageToSend]);
-        [self sendMessageWithAddress:messageToSend value:0];
-        feedbackMessage = messageToSend;
+    [self runActions:[self.swipeDictionary objectForKey:indexacao] withVisualFeedback:YES];
 
-    }
-    
-    [self animateFeedbackMessage:feedbackMessage];
+    // ===========================================================================
+//    NSString * feedbackMessage = @"";
+//    
+//    if([self.patchToLoad isEqualToString:@"proto1.pd"]){
+//        
+//        NSNumber* noteToSend = [self.swipeDictionary objectForKey:indexacao];
+//        //NSLog([NSString stringWithFormat:@"NOTE TO SEND: %f, %i, %i, %i",noteToSend.floatValue, gesture.direction, gesture.numberOfTouches, indexacao.intValue]);
+//        [PdBase sendFloat:noteToSend.floatValue toReceiver:@"midinote"];
+//        [PdBase sendBangToReceiver:@"noteTrigger"];
+//        feedbackMessage = [P1Utils convertNumberToNoteName:noteToSend.intValue];
+//        
+//    } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"] || [self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
+//        //NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
+//        NSString* messageToSend = [self.swipeDictionary objectForKey:indexacao];
+//        [PdBase sendBangToReceiver:messageToSend];
+//        feedbackMessage = messageToSend;
+//        
+//    } else if([self.patchToLoad isEqualToString:@"noteArray.pd"]){ 
+//        //NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
+//        NSNumber* noteToSend = [self.swipeDictionary objectForKey:indexacao];
+//        //NSLog([NSString stringWithFormat:@"NOTE TO SEND: %f, %i, %i, %i",noteToSend.floatValue, gesture.direction, gesture.numberOfTouches, indexacao.intValue]);
+//        [PdBase sendFloat:noteToSend.floatValue toReceiver:@"genericNoteV"];
+//        [PdBase sendBangToReceiver:@"genericNote"];
+//        
+//        feedbackMessage = [P1Utils convertNumberToNoteName:noteToSend.intValue];
+//    } else if([self.patchToLoad isEqualToString:@"NotPD"]){ 
+//        //NSLog([NSString stringWithFormat:@"%@, %i", playTouchable.action, playTouchable.value]);
+//        NSString* messageToSend = [self.swipeDictionary objectForKey:indexacao];
+//        //NSLog([NSString stringWithFormat:@"Message to send: %@", messageToSend]);
+//        [self sendMessageWithAddress:messageToSend value:0];
+//        feedbackMessage = messageToSend;
+//        
+//    }
+//    
+//    [self animateFeedbackMessage:feedbackMessage];
+        // ===========================================================================
 }
 
 - (void)playTouchableAction:(UITapGestureRecognizer *)gesture
@@ -369,28 +461,32 @@
     
     if (gesture.state == UIGestureRecognizerStateBegan) {
         NSLog(@"PlayTouchableAction!"); 
-        if([self.patchToLoad isEqualToString:@"proto1.pd"]){
-            
-            //NSLog([NSString stringWithFormat:@"%@, %@", playTouchable.value, playTouchable.action]);
-            
-            [PdBase sendFloat:playTouchable.value toReceiver:@"midinote"];
-            [PdBase sendBangToReceiver:@"noteTrigger"];
-        } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"] || [self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
-            //NSLog(playTouchable.action);
-            [PdBase sendBangToReceiver:playTouchable.action];
-        } else if([self.patchToLoad isEqualToString:@"noteArray.pd"]){ 
-            
-            //NSLog([NSString stringWithFormat:@"noteArray: value = %i | action = %@", playTouchable.value, playTouchable.action]);
-            
-            //            [PdBase sendFloat:playTouchable.value toReceiver:[NSString stringWithFormat:@"%@v",playTouchable.action]];
-            //            [PdBase sendBangToReceiver:playTouchable.action];
-            [self playNote:playTouchable];
-            
-        } else if([self.patchToLoad isEqualToString:@"NotPD"]){ 
-            //NSLog([NSString stringWithFormat:@"%@, %i", playTouchable.action, playTouchable.value]);
-            
-            [self sendMessageWithAddress:playTouchable.action value:0];
-        }
+        
+        //[self playNote:playTouchable];
+        [self runActions:playTouchable.actions withVisualFeedback:NO];
+        
+//        if([self.patchToLoad isEqualToString:@"proto1.pd"]){
+//            
+//            //NSLog([NSString stringWithFormat:@"%@, %@", playTouchable.value, playTouchable.action]);
+//            
+//            [PdBase sendFloat:playTouchable.value toReceiver:@"midinote"];
+//            [PdBase sendBangToReceiver:@"noteTrigger"];
+//        } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"] || [self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
+//            //NSLog(playTouchable.action);
+//            [PdBase sendBangToReceiver:playTouchable.action];
+//        } else if([self.patchToLoad isEqualToString:@"noteArray.pd"]){ 
+//            
+//            //NSLog([NSString stringWithFormat:@"noteArray: value = %i | action = %@", playTouchable.value, playTouchable.action]);
+//            
+//            //            [PdBase sendFloat:playTouchable.value toReceiver:[NSString stringWithFormat:@"%@v",playTouchable.action]];
+//            //            [PdBase sendBangToReceiver:playTouchable.action];
+//            [self playNote:playTouchable];
+//            
+//        } else if([self.patchToLoad isEqualToString:@"NotPD"]){ 
+//            //NSLog([NSString stringWithFormat:@"%@, %i", playTouchable.action, playTouchable.value]);
+//            
+//            [self sendMessageWithAddress:playTouchable.action value:0];
+//        }
         
     }
     
@@ -456,7 +552,8 @@
             if (pickedView != self.currentPannedView) {
                 P1PlayTouchable * pickedTouchable = (P1PlayTouchable *) pickedView;
                 
-                [self playNote:pickedTouchable];
+                //[self playNote:pickedTouchable];
+                [self runActions:pickedTouchable.actions withVisualFeedback:NO];
                 
                 self.currentPannedView = pickedView;
                 //self.currentPannedView.backgroundColor = [UIColor brownColor];
@@ -559,19 +656,74 @@
     
 }
 
--(void) playNote:(P1PlayTouchable *)touchable
+//-(void) playNote:(P1PlayTouchable *)touchable
+//{
+//    for (P1PlayAction*action in touchable.actions) {
+//        
+//        NSLog([NSString stringWithFormat:@"Action: %@, Value: %d", action.description, action.value]);
+//        
+//        
+//        
+//        if ([self.patchToLoad isEqualToString:@"proto1.pd"]) {
+//            [PdBase sendFloat:action.value toReceiver:@"midinote"];
+//            [PdBase sendBangToReceiver:@"noteTrigger"];
+//        } else if ([self.patchToLoad isEqualToString:@"noteArray.pd"]){
+//            
+//            [PdBase sendFloat:action.value toReceiver:[NSString stringWithFormat:@"%@v",action.description]];
+//            [PdBase sendBangToReceiver:action.description];
+//        } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"] || [self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
+//            //NSLog(playTouchable.action);
+//            [PdBase sendBangToReceiver:action.description];
+//            
+//        } else if ([self.patchToLoad isEqualToString:@"NotPD"]){
+//            [self sendMessageWithAddress:action.description value:0];
+//            
+//        }
+//    }
+//    
+//}
+
+-(void) runActions:(NSMutableArray*) actions withVisualFeedback:(BOOL)feedback
 {
-    if ([self.patchToLoad isEqualToString:@"proto1.pd"]) {
-        [PdBase sendFloat:touchable.value toReceiver:@"midinote"];
-        [PdBase sendBangToReceiver:@"noteTrigger"];
-    } else if ([self.patchToLoad isEqualToString:@"noteArray.pd"]){
-        [PdBase sendFloat:touchable.value toReceiver:[NSString stringWithFormat:@"%@v",touchable.action]];
-        [PdBase sendBangToReceiver:touchable.action];
-    } else if ([self.patchToLoad isEqualToString:@"NotPD"]){
-        [self sendMessageWithAddress:touchable.action value:0];
+    NSMutableString* feedbackMessage = [[NSMutableString alloc] init];
+    
+    for (P1PlayAction* action in actions) {
+        if (action.value != -1) {
+            [feedbackMessage appendString:[P1Utils convertNumberToNoteName:action.value]];
+        } else {
+            [feedbackMessage appendString:action.description];
+        }
+        [feedbackMessage appendString:@" "];        
+        [self runAction:action];
     }
     
+    if (feedback) {
+        [self animateFeedbackMessage:feedbackMessage];
+    }
 }
+
+-(void) runAction:(P1PlayAction *)action
+{
+
+    if ([self.patchToLoad isEqualToString:@"proto1.pd"]) {
+        [PdBase sendFloat:action.value toReceiver:@"midinote"];
+        [PdBase sendBangToReceiver:@"noteTrigger"];
+    } else if ([self.patchToLoad isEqualToString:@"noteArray.pd"]){
+        
+        [PdBase sendFloat:action.value toReceiver:[NSString stringWithFormat:@"%@v",action.description]];
+        [PdBase sendBangToReceiver:action.description];
+    } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"] 
+              || [self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
+        //NSLog(playTouchable.action);
+        [PdBase sendBangToReceiver:action.description];
+        
+    } else if ([self.patchToLoad isEqualToString:@"NotPD"]){
+        [self sendMessageWithAddress:action.description value:0];
+    }
+    
+ }
+
+
 
 //======== OSC MESSAGES ========
 

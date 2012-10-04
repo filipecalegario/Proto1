@@ -37,7 +37,7 @@
         CGPoint translation = [gesture translationInView:self];
         
         gesture.view.superview.center = CGPointMake(gesture.view.superview.center.x + translation.x, 
-                                            gesture.view.superview.center.y + translation.y);
+                                                    gesture.view.superview.center.y + translation.y);
         
         [gesture setTranslation:CGPointMake(0, 0) inView:self];
         [self setNeedsDisplay];
@@ -52,7 +52,7 @@
         CGPoint translation = [gesture translationInView:self];
         
         gesture.view.superview.superview.center = CGPointMake(gesture.view.superview.superview.center.x + translation.x, 
-                                                    gesture.view.superview.superview.center.y + translation.y);
+                                                              gesture.view.superview.superview.center.y + translation.y);
         
         [gesture setTranslation:CGPointMake(0, 0) inView:self];
         [self setNeedsDisplay];
@@ -81,7 +81,7 @@
                 //pickedView.backgroundColor = [UIColor orangeColor];
                 //pickedView.superview.backgroundColor = [UIColor greenColor];
                 P1InputObjectView * castedView = (P1InputObjectView *) gesture.view.superview;
-                castedView.connectedTo = (P1InputObjectView *)pickedView.superview;
+                [castedView connectObject:((P1InputObjectView *)pickedView.superview)];
             }
         }
         self.startPoint = CGPointMake(-5, -5);
@@ -109,16 +109,22 @@
 {
     P1InputObjectView * obj = (P1InputObjectView *) gesture.view.superview;
     obj.hasToBeDrawn = YES;
-    obj.connectedTo.hasToBeDrawn = YES;
-    obj.connectedTo.connectedTo = nil;
-    obj.connectedTo = nil;
+    
+    for (P1InputObjectView* connectedTo in obj.connectedObjects) {
+        [connectedTo.connectedObjects removeObject:obj];
+    }
+    [obj.connectedObjects removeAllObjects];
+    
+    //obj.connectedTo.hasToBeDrawn = YES;
+    //obj.connectedTo.connectedTo = nil;
+    //obj.connectedTo = nil;
     NSLog(@"detectou double tap no connector");
     [self setNeedsDisplay];
 }
 
 - (void) swipeConnection:(UISwipeGestureRecognizer *)gesture
 {
-   
+    
 }
 
 - (void)setup
@@ -173,39 +179,63 @@
     NSArray *allTheSubViews = [self getAllObjects];
     for(UIView * currentView in allTheSubViews){
         if([currentView isKindOfClass:[P1InputObjectView class]]){
+            
             P1InputObjectView * castedView = (P1InputObjectView *) currentView;
-            P1InputObjectView * connectedView = castedView.connectedTo;
-            
-            CGPoint p1 = [self convertPoint:castedView.connector.center fromView:castedView];
-            CGPoint p2 = [self convertPoint:connectedView.connector.center fromView:connectedView];
+            CGPoint p1 = [self convertPoint:castedView.connector.center fromView:castedView];            
             CGPoint cp1 = [self convertPoint:castedView.auxPoint fromView:castedView];
-            CGPoint cp2 = [self convertPoint:connectedView.auxPoint fromView:connectedView];
             
-            if (self.current && !self.current.connectedTo && !connectedView){
+            for (P1InputObjectView* connectedView in castedView.connectedObjects) {
+                CGPoint p2 = [self convertPoint:connectedView.connector.center fromView:connectedView];
+                CGPoint cp2 = [self convertPoint:connectedView.auxPoint fromView:connectedView];
                 
-                if(![castedView.objectType isEqualToString:self.current.objectType]){
-                    
-                    if(([castedView.connectorType isEqualToString:self.current.connectorType])) {
-                        [P1Utils drawCircleAtPoint:p1 withRadius:10 withColor:strongOrange inContext:context];
-                    } 
-                }
-            }
-            
-            if(connectedView && castedView.hasToBeDrawn){
                 [P1Utils drawCircleAtPoint:p1 withRadius:4 withColor:connectorColor inContext:context];
                 [P1Utils drawCircleAtPoint:p2 withRadius:4 withColor:connectorColor inContext:context];
                 [P1Utils drawConnectionFrom:p1 cPoint1:cp1 cPoint2:cp2 endPoint:p2 withColor:connectorColor inContext:context];
-                connectedView.hasToBeDrawn = YES;
             }
             
-            //[P1Utils drawCircleAtPoint:cp1 withRadius:4 withColor:[UIColor redColor] inContext:UIGraphicsGetCurrentContext()];
-            //[P1Utils drawCircleAtPoint:cp2 withRadius:4 withColor:[UIColor redColor] inContext:UIGraphicsGetCurrentContext()];
+            
+            if(castedView.objectType !=self.current.objectType){
+                
+                if(([castedView.connectorType isEqualToString:self.current.connectorType])) {
+                    [P1Utils drawCircleAtPoint:p1 withRadius:10 withColor:strongOrange inContext:context];
+                } 
+            }
             
             
-            //CGPoint centerOwn = castedView.center;
-            //CGPoint auxPoint = CGPointMake(centerOwn.x + 200, centerOwn.y);
-            //[P1Utils drawCircleAtPoint:centerOwn withRadius:10 withColor:[UIColor blueColor] inContext:UIGraphicsGetCurrentContext()];
-            //[P1Utils drawCircleAtPoint:auxPoint withRadius:10 withColor:[UIColor greenColor] inContext:UIGraphicsGetCurrentContext()];
+            
+            //            P1InputObjectView * castedView = (P1InputObjectView *) currentView;
+            //            P1InputObjectView * connectedView = castedView.connectedTo;
+            //            
+            //            CGPoint p1 = [self convertPoint:castedView.connector.center fromView:castedView];
+            //            CGPoint p2 = [self convertPoint:connectedView.connector.center fromView:connectedView];
+            //            CGPoint cp1 = [self convertPoint:castedView.auxPoint fromView:castedView];
+            //            CGPoint cp2 = [self convertPoint:connectedView.auxPoint fromView:connectedView];
+            //            
+            //            if (self.current && !self.current.connectedTo && !connectedView){
+            //                
+            //                if(castedView.objectType !=self.current.objectType){
+            //                    
+            //                    if(([castedView.connectorType isEqualToString:self.current.connectorType])) {
+            //                        [P1Utils drawCircleAtPoint:p1 withRadius:10 withColor:strongOrange inContext:context];
+            //                    } 
+            //                }
+            //            }
+            //            
+            //            if(connectedView && castedView.hasToBeDrawn){
+            //                [P1Utils drawCircleAtPoint:p1 withRadius:4 withColor:connectorColor inContext:context];
+            //                [P1Utils drawCircleAtPoint:p2 withRadius:4 withColor:connectorColor inContext:context];
+            //                [P1Utils drawConnectionFrom:p1 cPoint1:cp1 cPoint2:cp2 endPoint:p2 withColor:connectorColor inContext:context];
+            //                connectedView.hasToBeDrawn = YES;
+            //            }
+            //            
+            //            //[P1Utils drawCircleAtPoint:cp1 withRadius:4 withColor:[UIColor redColor] inContext:UIGraphicsGetCurrentContext()];
+            //            //[P1Utils drawCircleAtPoint:cp2 withRadius:4 withColor:[UIColor redColor] inContext:UIGraphicsGetCurrentContext()];
+            //            
+            //            
+            //            //CGPoint centerOwn = castedView.center;
+            //            //CGPoint auxPoint = CGPointMake(centerOwn.x + 200, centerOwn.y);
+            //            //[P1Utils drawCircleAtPoint:centerOwn withRadius:10 withColor:[UIColor blueColor] inContext:UIGraphicsGetCurrentContext()];
+            //            //[P1Utils drawCircleAtPoint:auxPoint withRadius:10 withColor:[UIColor greenColor] inContext:UIGraphicsGetCurrentContext()];
             
         }
     }

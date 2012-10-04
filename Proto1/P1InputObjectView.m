@@ -23,28 +23,34 @@
 @synthesize objectType = _objectType;
 @synthesize iconType = _iconType;
 @synthesize connectorType = _connectorType;
-@synthesize connectedTo = _connectedTo;
+//@synthesize connectedTo = _connectedTo;
 @synthesize hasToBeDrawn = _hasToBeDrawn;
-@synthesize myTag = _myTag;
+//@synthesize myTag = _myTag;
 @synthesize label = _label;
 @synthesize auxPoint = _auxPoint;
 @synthesize connectorState = _connectorState;
-@synthesize name = _name;
-@synthesize value = _value;
+//@synthesize name = _name;
+//@synthesize value = _value;
+@synthesize connectedObjects = _connectedObjects;
+@synthesize action = _action;
 
-- (void) setConnectedTo:(P1InputObjectView *)connectedTo
+- (void) connectObject:(P1InputObjectView *)connectedTo
 {
-    if(connectedTo != self && _connectedTo == nil){
-        if (![connectedTo.objectType isEqualToString:_objectType] &&[connectedTo.connectorType isEqualToString:_connectorType]) {
-            if(connectedTo.connectedTo == nil || connectedTo.connectedTo == self){
-                _connectedTo = connectedTo;
-                if (connectedTo.connectedTo == nil) {
-                    _connectedTo.connectedTo = self;
-                }
-            }
-        }
-    } else if (!connectedTo){
-        _connectedTo = nil;
+//    if(connectedTo != self && _connectedTo == nil){
+//        if ((connectedTo.objectType != _objectType) &&[connectedTo.connectorType isEqualToString:_connectorType]) {
+//            if(connectedTo.connectedTo == nil || connectedTo.connectedTo == self){
+//                _connectedTo = connectedTo;
+//                if (connectedTo.connectedTo == nil) {
+//                    _connectedTo.connectedTo = self;
+//                }
+//            }
+//        }
+//    } else if (!connectedTo){
+//        _connectedTo = nil;
+//    }
+    if ((connectedTo.objectType != _objectType) &&[connectedTo.connectorType isEqualToString:_connectorType]) {
+        [self.connectedObjects addObject:connectedTo];
+        [connectedTo.connectedObjects addObject:self];
     }
 }
 
@@ -53,16 +59,28 @@
     CGFloat distance = 100;
     
     CGPoint auxPoint;
-    if([self.objectType isEqualToString:@"input"]){
-        auxPoint = CGPointMake(self.connector.center.x + distance, self.connector.center.y);
-    } else if([self.objectType isEqualToString:@"output"]){
-        auxPoint = CGPointMake(self.connector.center.x - distance, self.connector.center.y);
+    
+    switch (self.objectType) {
+        case INPUT:
+            auxPoint = CGPointMake(self.connector.center.x + distance, self.connector.center.y);
+            break;
+        case OUTPUT:
+            auxPoint = CGPointMake(self.connector.center.x - distance, self.connector.center.y);
+            break;
+        default:
+            break;
     }
+    
+//    if(self.objectType == INPUT){
+//        auxPoint = CGPointMake(self.connector.center.x + distance, self.connector.center.y);
+//    } else if(self.objectType == OUTPUT){
+//        auxPoint = CGPointMake(self.connector.center.x - distance, self.connector.center.y);
+//    }
 
     return auxPoint;
 }
 
-- (void)setup:(NSString *)objectType withIconType:(NSString *)iconType withConnectorType:(NSString *)connectorType withCanvas:(P1EditView *)canvas
+- (void)setup:(ObjectType)objectType withIconType:(NSString *)iconType withConnectorType:(NSString *)connectorType withCanvas:(P1EditView *)canvas
 {
 
     self.canvas = canvas;
@@ -75,13 +93,28 @@
     self.backgroundColor = [UIColor clearColor];
     self.contentMode = UIViewContentModeRedraw;
     
-    if([self.objectType isEqualToString:@"input"]){
-        self.icon = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 100, 100) withType:iconType];
-        self.connector = [[P1IconView alloc] initWithFrame:CGRectMake(100, 0, 50, 100) withType:connectorType];
-    } else if([self.objectType isEqualToString:@"output"]){
-        self.connector = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 50, 100) withType:[NSString stringWithFormat:@"%@Flipped", connectorType]];
-        self.icon = [[P1IconView alloc] initWithFrame:CGRectMake(50, 0, 100, 100) withType:iconType];
+    
+    switch (self.objectType) {
+        case INPUT:
+            self.icon = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 100, 100) withType:iconType];
+            self.connector = [[P1IconView alloc] initWithFrame:CGRectMake(100, 0, 50, 100) withType:connectorType];
+            break;
+        case OUTPUT:
+            self.connector = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 50, 100) withType:[NSString stringWithFormat:@"%@Flipped", connectorType]];
+            self.icon = [[P1IconView alloc] initWithFrame:CGRectMake(50, 0, 100, 100) withType:iconType];
+            break;
+        default:
+            break;
     }
+    
+    
+//    if([self.objectType isEqualToString:@"input"]){
+//        self.icon = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 100, 100) withType:iconType];
+//        self.connector = [[P1IconView alloc] initWithFrame:CGRectMake(100, 0, 50, 100) withType:connectorType];
+//    } else if([self.objectType isEqualToString:@"output"]){
+//        self.connector = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 50, 100) withType:[NSString stringWithFormat:@"%@Flipped", connectorType]];
+//        self.icon = [[P1IconView alloc] initWithFrame:CGRectMake(50, 0, 100, 100) withType:iconType];
+//    }
     
     [self setupDefaultGestures:NO];
     
@@ -106,7 +139,7 @@
     
     if ([self.iconType isEqualToString:@"playNote"]) {
         self.label = [[UILabel alloc] initWithFrame:CGRectMake(90, 100, 25, 25)];
-        self.label.text = [NSString stringWithFormat:@"%i", self.myTag];
+        self.label.text = [NSString stringWithFormat:@"%i", self.action.value];
         self.label.textAlignment = UITextAlignmentCenter;
         self.label.backgroundColor = [UIColor clearColor];
         self.label.font = [UIFont fontWithName:[P1Utils defaultFont] size:18];
@@ -114,10 +147,11 @@
     }
 }
 
-- (id)initWithFrame:(CGRect)frame withObjectType:(NSString*)objectType withIcon:(P1IconView*)iconObject withConnector:(P1IconView*)connectorObject withCanvas:(P1EditView*)canvas groupedGestures:(BOOL)grouped
+- (id)initWithFrame:(CGRect)frame withObjectType:(ObjectType)objectType withIcon:(P1IconView*)iconObject withConnector:(P1IconView*)connectorObject withCanvas:(P1EditView*)canvas groupedGestures:(BOOL)grouped
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self initialConfiguration];
         self.canvas = canvas;
         self.hasToBeDrawn = true;
         
@@ -209,13 +243,20 @@
     [_connector addGestureRecognizer:tapConnectorGesture];    
 }
 
-- (id)initWithFrame:(CGRect)frame withObjectType:(NSString *)objectType withIconType:(NSString *)iconType withConnectorType:(NSString *)connectorType withCanvas:(P1EditView *)canvas
+- (id)initWithFrame:(CGRect)frame withObjectType:(ObjectType)objectType withIconType:(NSString *)iconType withConnectorType:(NSString *)connectorType withCanvas:(P1EditView *)canvas
 {
     self = [super initWithFrame:frame];
     if (self) {
+        [self initialConfiguration];
         [self setup:objectType withIconType:iconType withConnectorType:connectorType withCanvas:canvas];
     }
     return self;
+}
+
+-(void)initialConfiguration
+{
+    self.connectedObjects = [[NSMutableArray alloc] init];
+    self.action = [[P1PlayAction alloc] init];
 }
 
 - (void)drawRect:(CGRect)rect
@@ -224,7 +265,7 @@
         self.label.numberOfLines = 1;
         self.label.minimumFontSize = 8.;
         self.label.adjustsFontSizeToFitWidth = YES;
-        self.label.text = [P1Utils convertNumberToNoteName:self.myTag];
+        self.label.text = [P1Utils convertNumberToNoteName:self.action.value];
         //CGPointMake(self.icon.center.x, 60);
     } else {
         //self.noteLabel.text = self.;

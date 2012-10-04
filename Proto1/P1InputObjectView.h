@@ -9,25 +9,37 @@
 #import <UIKit/UIKit.h>
 #import "P1EditView.h"
 #import "P1IconView.h"
+#import "P1PlayAction.h"
+
+typedef enum{
+    INPUT,
+    OUTPUT
+} ObjectType;
+
 
 @interface P1InputObjectView : UIView <UIGestureRecognizerDelegate>
 
 @property (nonatomic, weak) P1EditView* canvas;
 @property (nonatomic, strong) P1IconView* icon;
 @property (nonatomic, strong) P1IconView* connector;
-@property (nonatomic, strong) NSString* objectType;
+@property (nonatomic, assign) ObjectType objectType;
 @property (nonatomic, strong) NSString* iconType;
 @property (nonatomic, strong) NSString* connectorType;
-@property (nonatomic, weak) P1InputObjectView* connectedTo;
+//@property (nonatomic, weak) P1InputObjectView* connectedTo;
+@property (nonatomic, strong) NSMutableArray* connectedObjects;
 @property (nonatomic, assign) BOOL hasToBeDrawn;
-@property (nonatomic, assign) int myTag;
+//@property (nonatomic, assign) int myTag;
 #warning consertar essa representação de noteLabel e name
 @property (nonatomic, strong) UILabel *label;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, assign) int value;
+@property (nonatomic, strong) P1PlayAction* action;
+//@property (nonatomic, strong) NSString *name;
+//@property (nonatomic, assign) int value;
+
+
 @property (nonatomic, assign) CGPoint auxPoint;
 
-- (id)initWithFrame:(CGRect)frame withObjectType:(NSString *)objectType withIconType:(NSString *)iconType withConnectorType:(NSString *)connectorType withCanvas:(P1EditView *)canvas;
-- (id)initWithFrame:(CGRect)frame withObjectType:(NSString*)objectType withIcon:(P1IconView*)iconObject withConnector:(P1IconView*)connectorObject withCanvas:(P1EditView*)canvas groupedGestures:(BOOL)grouped;
+- (void) connectObject:(P1InputObjectView *)connectedTo;
+- (id)initWithFrame:(CGRect)frame withObjectType:(ObjectType)objectType withIconType:(NSString *)iconType withConnectorType:(NSString *)connectorType withCanvas:(P1EditView *)canvas;
+- (id)initWithFrame:(CGRect)frame withObjectType:(ObjectType)objectType withIcon:(P1IconView*)iconObject withConnector:(P1IconView*)connectorObject withCanvas:(P1EditView*)canvas groupedGestures:(BOOL)grouped;
 
 @end

@@ -12,9 +12,9 @@
 
 @implementation P1PlayTouchable
 
-@synthesize value = _value;
-@synthesize action = _action;
+@synthesize actions = _actions;
 @synthesize label = _label;
+
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -27,8 +27,10 @@
 
 - (void)setup
 {
-    self.action = [[NSString alloc] init];
-    self.value = 0;
+//    self.action = [[NSString alloc] init];
+//    self.value = 0;
+    
+    self.actions = [[NSMutableArray alloc] init];
     
     self.backgroundColor = [P1Utils myColor:@"green"];//[UIColor orangeColor];
     self.layer.shadowOffset = CGSizeMake(0, 3);

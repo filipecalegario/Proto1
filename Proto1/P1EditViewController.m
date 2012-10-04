@@ -100,7 +100,7 @@
 
 - (void) configContextMenu:(P1InputObjectView *)objectView withTag:(int)tag
 {
-    objectView.myTag = tag;
+    objectView.action.value = tag;
     [objectView setNeedsDisplay];
     [self.contextMenuPopover dismissPopoverAnimated:NO];
 }
@@ -139,7 +139,14 @@
         
         //TODO Ver isso depois!
         [segue.destinationViewController setPatchToLoad:[self whichPatchToLoad]];
-        [segue.destinationViewController populateArray:[self.canvas getAllObjects]];
+        NSArray* array = [self.canvas getAllObjects];
+//        for (P1InputObjectView* obj in array) {
+//            NSMutableArray* array2 = obj.connectedObjects;
+//            for (P1InputObjectView* connected in array2) {
+//                P1InputObjectView* conne = connected;
+//            }
+//        }
+        [segue.destinationViewController populateArray:array];
         [segue.destinationViewController setBackgroundForPlayArea:[P1Utils imageWithView:self.canvas]];
         
         
