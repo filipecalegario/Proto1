@@ -15,7 +15,7 @@
 
 +(UIView *)createAfrobeatWithCanvas:(P1EditView *)canvas
 {
-    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 350) relatedPatch:@"afro-beat.pd"];
+    P1OutputObjectView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 350) relatedPatch:@"afro-beat.pd"];
     
     NSString * connectorTypeString = @"trigger";
     
@@ -43,6 +43,7 @@
         
         noteObject.action.description = icon.type;
         noteObject.action.value = -1;
+        noteObject.action.patch = object.relatedPatch;
         
         [object addSubview:noteObject];
     }
@@ -51,7 +52,7 @@
 
 +(UIView *)createSamplePlayerWithCanvas:(P1EditView *)canvas
 {
-    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 350) relatedPatch:@"mySimpleSamplePlayer.pd"];
+    P1OutputObjectView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 350) relatedPatch:@"mySimpleSamplePlayer.pd"];
     
     NSString * connectorTypeString = @"trigger";
     
@@ -77,6 +78,7 @@
         
         noteObject.action.description = icon.type;
         noteObject.action.value = -1;
+        noteObject.action.patch = object.relatedPatch;
         
         [object addSubview:noteObject];
     }
@@ -112,6 +114,7 @@
         
         noteObject.action.description = [NSString stringWithFormat:@"note%i",i];
         noteObject.action.value = [[initialNotes objectAtIndex:i] intValue];
+        noteObject.action.patch = object.relatedPatch;
         
         //NSLog([NSString stringWithFormat:@"Nota %@ com valor %i adicionada na iteração %i", noteObject.name, noteObject.myTag, i]);
         
@@ -127,7 +130,7 @@
 
 +(UIView *)createOSCNoteArrayWithCanvas:(P1EditView *)canvas withGestureHandler:(id)gestureHandler
 {
-    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 350) relatedPatch:@"NotPD"];
+    P1OutputObjectView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 350) relatedPatch:@"NotPD"];
     
     NSString * connectorTypeString = @"trigger";
     
@@ -153,6 +156,7 @@
         
         noteObject.action.description = icon.type;
         noteObject.action.value = -1;
+        noteObject.action.patch = object.relatedPatch;
         
         [object addSubview:noteObject];
     }
@@ -162,7 +166,7 @@
 +(UIView *)createNoteFlowWithCanvas:(P1EditView *)canvas
 {
     NSLog(@"NoteFlow");
-    UIView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 150) relatedPatch:@"proto1.pd"];
+    P1OutputObjectView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 150) relatedPatch:@"proto1.pd"];
     
     NSString* defaultIconImageSource = @"specialIconLong";
     CGRect defaultIconRect = CGRectMake(50, 0, 100, 50);
@@ -175,7 +179,7 @@
                       nil];
     
     NSArray *connectors = [[NSArray alloc] initWithObjects:
-                           [[P1IconView alloc] initWithFrame:defaultConnectorRect withType:@"trigger" withImageSource:@"specialConnector"],
+                           [[P1IconView alloc] initWithFrame:defaultConnectorRect withType:@"track" withImageSource:@"specialTrackConnector"],
                            [[P1IconView alloc] initWithFrame:defaultConnectorRect withType:@"track"  withImageSource:@"specialTrackConnector"],
                            [[P1IconView alloc] initWithFrame:defaultConnectorRect withType:@"track"  withImageSource:@"specialTrackConnector"],
                            nil];
@@ -188,6 +192,7 @@
         
         P1InputObjectView* noteObject = [[P1InputObjectView alloc] initWithFrame:CGRectMake(0, i * 50, 150, 50) withObjectType:OUTPUT withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:YES];
         //noteObject.myTag = 128;
+        noteObject.action.patch = object.relatedPatch;
         
         [object addSubview:noteObject];
     }
@@ -250,7 +255,7 @@
     
     if([iconType isEqualToString:@"touch"]){
         NSLog(@"adding a touch input object");
-        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
+        object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"track" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"horizontalSlide"]) {
         NSLog(@"adding a horizontal slide input object");     

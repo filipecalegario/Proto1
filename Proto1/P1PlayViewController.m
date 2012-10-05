@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSString *mainAction;
 @property (nonatomic, strong) NSMutableArray *touchableObjects;
 @property (nonatomic, strong) NSMutableDictionary *swipeDictionary;
+@property (nonatomic, strong) NSMutableDictionary *patchesDictionary;
 @property (nonatomic, strong) OSCOutPort * outPort;
 @property (nonatomic, strong) UILabel * feedbackMessage;
 
@@ -39,11 +40,12 @@
 @synthesize mainAction;
 @synthesize touchableObjects = _touchableObjects;
 @synthesize swipeDictionary = _swipeDictionary;
-@synthesize patchToLoad = _patchToLoad;
+@synthesize patchesToLoad = _patchesToLoad;
 @synthesize currentPannedView = _currentPannedView;
 @synthesize backgroundForPlayArea = _backgroundForPlayArea;
 @synthesize outPort = _outPort;
 @synthesize feedbackMessage = _feedbackMessage;
+@synthesize patchesDictionary = _patchesDictionary;
 
 
 //======== SETUP/INITIALIZATION ========
@@ -264,29 +266,33 @@
         
         //########################MATA TUDO AÍ EM CIMA############################
         
-        //*********************************************************
+        //***************************solução ainda ruim******************************
         
-//        if ([currentObject.iconType isEqualToString:@"touch"]) {
-//            if ([connectedTo.iconType isEqualToString:@"playNotes"]) {
-//                self.mainAction = @"touch-playNotes";
-//                
-//                UIPanGestureRecognizer* panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(touch:)];
-//                [self.playArea addGestureRecognizer:panIconGesture];
-//                
-//            }
-//        } else if ([currentObject.iconType isEqualToString:@"horizontalSlide"]) {
-//            if ([connectedTo.iconType isEqualToString:@"pitch"]) {
-//                self.pitchOrientation = @"horizontal";
-//            } else if ([connectedTo.iconType isEqualToString:@"duration"]) {
-//                self.durationOrientation = @"horizontal";
-//            }
-//        } else if ([currentObject.iconType isEqualToString:@"verticalSlide"]) {
-//            if ([connectedTo.iconType isEqualToString:@"pitch"]) {
-//                self.pitchOrientation = @"vertical";
-//            } else if ([connectedTo.iconType isEqualToString:@"duration"]) {
-//                self.durationOrientation = @"vertical";
-//            }
-//        }
+        if ([currentObject.iconType isEqualToString:@"touch"]) {
+            for (P1InputObjectView* connectedTo in currentObject.connectedObjects) {
+                if ([connectedTo.iconType isEqualToString:@"playNotes"]) {
+                    self.mainAction = @"touch-playNotes";
+                    UIPanGestureRecognizer* panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(touch:)];
+                    [self.playArea addGestureRecognizer:panIconGesture];
+                }
+            }
+        } else if ([currentObject.iconType isEqualToString:@"horizontalSlide"]) {
+            for (P1InputObjectView* connectedTo in currentObject.connectedObjects) {
+                if ([connectedTo.iconType isEqualToString:@"pitch"]) {
+                    self.pitchOrientation = @"horizontal";
+                } else if ([connectedTo.iconType isEqualToString:@"duration"]) {
+                    self.durationOrientation = @"horizontal";
+                }
+            }
+        } else if ([currentObject.iconType isEqualToString:@"verticalSlide"]) {
+            for (P1InputObjectView* connectedTo in currentObject.connectedObjects) {
+                if ([connectedTo.iconType isEqualToString:@"pitch"]) {
+                    self.pitchOrientation = @"vertical";
+                } else if ([connectedTo.iconType isEqualToString:@"duration"]) {
+                    self.durationOrientation = @"vertical";
+                }
+            }
+        }
         
         //*********************************************************
         
@@ -392,18 +398,18 @@
 //======== GESTURES HANDLERS ========
 #pragma mark - Gesture Handlers
 
-- (void)aMethod:(UIButton *)sender
-{
-    NSLog(@"BUTTON TOUCHED");
-    if([self.patchToLoad isEqualToString:@"proto1.pd"]){
-        [PdBase sendFloat:sender.tag toReceiver:@"midinote"];
-        [PdBase sendBangToReceiver:@"noteTrigger"];
-    } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"]){ 
-        [PdBase sendBangToReceiver:sender.titleLabel.text];
-    } else if([self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
-        [PdBase sendBangToReceiver:sender.titleLabel.text];
-    }
-}
+//- (void)aMethod:(UIButton *)sender
+//{
+//    NSLog(@"BUTTON TOUCHED");
+//    if([self.patchToLoad isEqualToString:@"proto1.pd"]){
+//        [PdBase sendFloat:sender.tag toReceiver:@"midinote"];
+//        [PdBase sendBangToReceiver:@"noteTrigger"];
+//    } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"]){ 
+//        [PdBase sendBangToReceiver:sender.titleLabel.text];
+//    } else if([self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
+//        [PdBase sendBangToReceiver:sender.titleLabel.text];
+//    }
+//}
 
 - (void)swipeHandler:(UISwipeGestureRecognizer *)gesture
 {
@@ -608,9 +614,11 @@
     
     [self initializeSwipeDictionary];
     
+    
+    
     [self setupForPlayWith];
     
-    [self loadPatch:self.patchToLoad];
+    [self loadPatches:self.patchesToLoad];
     
 }
 
@@ -621,7 +629,7 @@
     //    [PdBase closeFile:patch];
     [PdBase setDelegate:nil];
     [TestFlight passCheckpoint:@"Returning to Edit"];
-    patch = nil;
+    [patches removeAllObjects];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -641,19 +649,28 @@
 //======== SOUND-RELATED METHODS ========
 #pragma mark - Sound-related methods
 
-- (void) loadPatch:(NSString*)patchName
+- (void) loadPatches:(NSArray*)patchesNames
 {
-    NSLog([NSString stringWithFormat:@"Carregando patch: %@", patchName]);
+    self.patchesDictionary = [[NSMutableDictionary alloc] init];
+    patches = [[NSMutableArray alloc] init];
     
-    if (![patchName isEqualToString:@"NotPD"]) {
-        dispatcher = [[PdDispatcher alloc] init];
-        [PdBase setDelegate:dispatcher];
-        patch = [PdFile openFileNamed:patchName path:[[NSBundle mainBundle] resourcePath]];
-        if (!patch) {
-            NSLog(@"Failed to open patch!");
+    dispatcher = [[PdDispatcher alloc] init];
+    [PdBase setDelegate:dispatcher];
+    
+    for (NSString* patchName in patchesNames) {
+        NSLog([NSString stringWithFormat:@"Carregando patch: %@", patchName]);
+        if (![patchName isEqualToString:@"NotPD"]) {
+            PdFile* thisPatch = [PdFile openFileNamed:patchName path:[[NSBundle mainBundle] bundlePath]];
+            [patches addObject:thisPatch];
+            if (!thisPatch) {
+                NSLog(@"Failed to open patch!");
+            } else {
+                NSString* object = [[NSNumber numberWithInt:[thisPatch dollarZero]] stringValue];
+                NSLog(object);
+                [self.patchesDictionary setObject:object forKey:patchName];
+            }
         }
     }
-    
 }
 
 //-(void) playNote:(P1PlayTouchable *)touchable
@@ -705,23 +722,62 @@
 -(void) runAction:(P1PlayAction *)action
 {
 
-    if ([self.patchToLoad isEqualToString:@"proto1.pd"]) {
+//    NSString* dollar = [self.patchesDictionary objectForKey:action.patch];
+//
+//    if ([action.patch isEqualToString:@"proto1.pd"]) {
+//        
+//        NSString* value = [NSString stringWithFormat:@"%@-%@", dollar,@"midinote"];
+//        NSString* message = [NSString stringWithFormat:@"%@-%@", dollar,@"noteTrigger"];
+//        
+//        [PdBase sendFloat:action.value toReceiver:value];
+//        [PdBase sendBangToReceiver:message];
+//        
+//    } else if ([action.patch isEqualToString:@"noteArray.pd"]){
+//        
+//        NSString* intermediate = [NSString stringWithFormat:@"%@v",action.description];
+//        NSString* value = [NSString stringWithFormat:@"%@-%@", dollar,intermediate];
+//        NSString* command = [NSString stringWithFormat:@"%@-%@", dollar,action.description];
+//        
+//        NSLog(value);
+//        NSLog(command);
+//        
+//        [PdBase sendFloat:action.value toReceiver:value];
+//        [PdBase sendBangToReceiver:command];
+//        
+//    } else if([action.patch isEqualToString:@"afro-beat.pd"] 
+//              || [action.patch isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
+//        //NSLog(playTouchable.action);
+//        
+//        [PdBase sendBangToReceiver:[NSString stringWithFormat:@"%@-%@", dollar,action.description]];        
+//        
+//    } else if ([action.patch isEqualToString:@"NotPD"]){
+//        [self sendMessageWithAddress:action.description value:0];
+//    }
+    
+    if ([action.patch isEqualToString:@"proto1.pd"]) {
         [PdBase sendFloat:action.value toReceiver:@"midinote"];
         [PdBase sendBangToReceiver:@"noteTrigger"];
-    } else if ([self.patchToLoad isEqualToString:@"noteArray.pd"]){
+    } else if ([action.patch isEqualToString:@"noteArray.pd"]){
         
         [PdBase sendFloat:action.value toReceiver:[NSString stringWithFormat:@"%@v",action.description]];
         [PdBase sendBangToReceiver:action.description];
-    } else if([self.patchToLoad isEqualToString:@"afro-beat.pd"] 
-              || [self.patchToLoad isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
+    } else if([action.patch isEqualToString:@"afro-beat.pd"] 
+              || [action.patch isEqualToString:@"mySimpleSamplePlayer.pd"]){ 
         //NSLog(playTouchable.action);
         [PdBase sendBangToReceiver:action.description];
         
-    } else if ([self.patchToLoad isEqualToString:@"NotPD"]){
+    } else if ([action.patch isEqualToString:@"NotPD"]){
         [self sendMessageWithAddress:action.description value:0];
     }
     
  }
+
+//- (NSString*)formMessageToPD:(NSString*)dollar withCommand:(NSString*)command isBang:(BOOL)bang
+//{
+//    NSString* message = @"";
+//
+//    return [NSString stringWithFormat:@"%@-%@", dollar,command];
+//}
 
 
 

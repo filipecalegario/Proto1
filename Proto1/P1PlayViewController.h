@@ -15,13 +15,13 @@
 @interface P1PlayViewController : UIViewController <UIGestureRecognizerDelegate, OSCDelegateProtocol>
 {
     PdDispatcher *dispatcher;
-    PdFile *patch;
+    NSMutableArray* patches;
 }
 
 @property (weak, nonatomic) IBOutlet P1PlayView *playArea;
 @property (nonatomic, strong) NSArray* objectArray;
 
-@property (nonatomic, strong) NSString* patchToLoad;
+@property (nonatomic, strong) NSArray* patchesToLoad;
 
 @property (nonatomic, strong) UIImage * backgroundForPlayArea;
 

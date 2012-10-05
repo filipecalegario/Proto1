@@ -95,12 +95,20 @@
 
 - (void) tapIcon:(UITapGestureRecognizer *)gesture
 {
+    P1InputObjectView* obj = (P1InputObjectView*) gesture.view.superview;
+    [self removeConnections:obj];
     [gesture.view.superview removeFromSuperview];
     [self setNeedsDisplay];
 }
 
 - (void) tapIconMultiple:(UITapGestureRecognizer *)gesture
 {
+    for (UIView* currentView in gesture.view.superview.superview.subviews) {
+        if ([currentView isMemberOfClass:[P1InputObjectView class]]) {
+            P1InputObjectView* obj = (P1InputObjectView*) currentView;
+            [self removeConnections:obj];
+        }
+    }
     [gesture.view.superview.superview removeFromSuperview];
     [self setNeedsDisplay];
 }
@@ -110,16 +118,21 @@
     P1InputObjectView * obj = (P1InputObjectView *) gesture.view.superview;
     obj.hasToBeDrawn = YES;
     
-    for (P1InputObjectView* connectedTo in obj.connectedObjects) {
-        [connectedTo.connectedObjects removeObject:obj];
-    }
-    [obj.connectedObjects removeAllObjects];
+    [self removeConnections:obj];
     
     //obj.connectedTo.hasToBeDrawn = YES;
     //obj.connectedTo.connectedTo = nil;
     //obj.connectedTo = nil;
     NSLog(@"detectou double tap no connector");
     [self setNeedsDisplay];
+}
+
+-(void) removeConnections:(P1InputObjectView*) obj
+{
+    for (P1InputObjectView* connectedTo in obj.connectedObjects) {
+        [connectedTo.connectedObjects removeObject:obj];
+    }
+    [obj.connectedObjects removeAllObjects];
 }
 
 - (void) swipeConnection:(UISwipeGestureRecognizer *)gesture
@@ -184,6 +197,16 @@
             CGPoint p1 = [self convertPoint:castedView.connector.center fromView:castedView];            
             CGPoint cp1 = [self convertPoint:castedView.auxPoint fromView:castedView];
             
+            if(castedView.objectType !=self.current.objectType){
+                if(([castedView.connectorType isEqualToString:self.current.connectorType])) {
+                    if (![self.current.connectedObjects containsObject:castedView]) {
+                        [P1Utils drawCircleAtPoint:p1 withRadius:10 withColor:strongOrange inContext:context];
+                    }
+                    
+                } 
+            }
+            
+            
             for (P1InputObjectView* connectedView in castedView.connectedObjects) {
                 CGPoint p2 = [self convertPoint:connectedView.connector.center fromView:connectedView];
                 CGPoint cp2 = [self convertPoint:connectedView.auxPoint fromView:connectedView];
@@ -192,15 +215,6 @@
                 [P1Utils drawCircleAtPoint:p2 withRadius:4 withColor:connectorColor inContext:context];
                 [P1Utils drawConnectionFrom:p1 cPoint1:cp1 cPoint2:cp2 endPoint:p2 withColor:connectorColor inContext:context];
             }
-            
-            
-            if(castedView.objectType !=self.current.objectType){
-                
-                if(([castedView.connectorType isEqualToString:self.current.connectorType])) {
-                    [P1Utils drawCircleAtPoint:p1 withRadius:10 withColor:strongOrange inContext:context];
-                } 
-            }
-            
             
             
             //            P1InputObjectView * castedView = (P1InputObjectView *) currentView;

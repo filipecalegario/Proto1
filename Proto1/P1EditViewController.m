@@ -138,7 +138,7 @@
         NSLog(@"Going to play segue");
         
         //TODO Ver isso depois!
-        [segue.destinationViewController setPatchToLoad:[self whichPatchToLoad]];
+        [segue.destinationViewController setPatchesToLoad:[self whichPatchToLoad]];
         NSArray* array = [self.canvas getAllObjects];
 //        for (P1InputObjectView* obj in array) {
 //            NSMutableArray* array2 = obj.connectedObjects;
@@ -210,24 +210,19 @@
     }
 }
 
-- (NSString *)whichPatchToLoad
+- (NSArray *)whichPatchToLoad
 {
-    /*WARNING cuidado com este método. Problemas com múltiplos objetos de saída.
-     Pode carregar o patch diferente.
-     */
-    
-#warning Cuidado com esse método!
-    
-    NSString * patchToLoad = @"";
+        
+    NSMutableArray* patchesToLoad = [[NSMutableArray alloc] init];
     
     for (UIView * currentView in self.canvas.subviews) {
         if ([currentView isKindOfClass:[P1OutputObjectView class]]) {
             P1OutputObjectView * outputObject = (P1OutputObjectView *) currentView;
-            patchToLoad = outputObject.relatedPatch;
+            [patchesToLoad addObject:outputObject.relatedPatch];
         }
     }
     
-    return patchToLoad;
+    return patchesToLoad;
 }
 
 //======== GESTURES HANDLERS ========

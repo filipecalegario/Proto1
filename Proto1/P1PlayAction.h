@@ -12,5 +12,6 @@
 
 @property (nonatomic, assign) int value;
 @property (nonatomic, strong) NSString * description;
+@property (nonatomic, strong) NSString * patch;
 
 @end

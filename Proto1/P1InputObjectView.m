@@ -49,8 +49,22 @@
 //        _connectedTo = nil;
 //    }
     if ((connectedTo.objectType != _objectType) &&[connectedTo.connectorType isEqualToString:_connectorType]) {
-        [self.connectedObjects addObject:connectedTo];
-        [connectedTo.connectedObjects addObject:self];
+//        __weak P1InputObjectView* addConnectedTo = connectedTo;
+//        __weak P1InputObjectView* addSelf = self;
+//        [self.connectedObjects addObject:addConnectedTo];
+//        [connectedTo.connectedObjects addObject:addSelf];
+        
+//        NSValue *valueConnectedTo = [NSValue valueWithNonretainedObject:connectedTo];
+//        NSValue *valueSelf = [NSValue valueWithNonretainedObject:self];
+//        [self.connectedObjects addObject:valueConnectedTo];
+//        [connectedTo.connectedObjects addObject:valueSelf];
+        
+        if (![self.connectedObjects containsObject:connectedTo] && ![connectedTo.connectedObjects containsObject:self]) {
+            [self.connectedObjects addObject:connectedTo];
+            [connectedTo.connectedObjects addObject:self];
+        }
+        
+        
     }
 }
 

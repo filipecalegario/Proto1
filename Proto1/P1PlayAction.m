@@ -12,12 +12,14 @@
 
 @synthesize value = _value;
 @synthesize description = _description;
+@synthesize patch = _patch;
 
 - (id)init
 {
     self = [super init];
     if (self) {
         self.description = [[NSString alloc] init];
+        self.patch = [[NSString alloc] init];
         self.value = 0;
     }
     return self;
