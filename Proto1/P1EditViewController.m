@@ -23,22 +23,61 @@
 
 @property (nonatomic, strong) UIPopoverController *myPopover;
 @property (nonatomic, strong) UIPopoverController *contextMenuPopover;
+@property (nonatomic, strong) UIView* currentManipulatedObject;
+@property (nonatomic, assign) BOOL isLeftMenuHidden;
+@property (nonatomic, assign) BOOL isRightMenuHidden;
 
 @end
 
 @implementation P1EditViewController
+@synthesize rightSideMenuButton;
+@synthesize sideMenuButton;
 @synthesize botao;
 @synthesize contextMenuButton;
 @synthesize rightButton;
 @synthesize canvas;
+@synthesize sideMenu;
+@synthesize rightSideMenu;
+@synthesize swipeUp;
 @synthesize myPopover = _myPopover;
 @synthesize contextMenuPopover = _contextMenuPopover;
-
+@synthesize isLeftMenuHidden = _isLeftMenuHidden;
+@synthesize isRightMenuHidden = _isRightMenuHidden;
+@synthesize currentManipulatedObject = _currentManipulatedObject;
 
 
 //======== METHODS FOR REMOTE ACCESS ========
+- (IBAction)rightSideMenuButtonAction:(id)sender {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    if (self.isRightMenuHidden) {
+        self.rightSideMenu.center = CGPointMake(self.rightSideMenu.center.x - 110, self.rightSideMenu.center.y);
+        self.rightSideMenuButton.center = CGPointMake(self.rightSideMenuButton.center.x - 110, self.rightSideMenuButton.center.y);       
+        self.isRightMenuHidden = NO;
+    } else {
+        self.rightSideMenu.center = CGPointMake(self.rightSideMenu.center.x + 110, self.rightSideMenu.center.y);    
+        self.rightSideMenuButton.center = CGPointMake(self.rightSideMenuButton.center.x + 110, self.rightSideMenuButton.center.y);
+        self.isRightMenuHidden = YES;
+    }
+    [UIView commitAnimations];
+}
 
-- (void) addObject:(NSString *)identifier
+- (IBAction)sideMenuButtonAction:(id)sender {
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    if (self.isLeftMenuHidden) {
+        self.sideMenu.center = CGPointMake(self.sideMenu.center.x + 110, self.sideMenu.center.y);
+        self.sideMenuButton.center = CGPointMake(self.sideMenuButton.center.x + 110, self.sideMenuButton.center.y);       
+        self.isLeftMenuHidden = NO;
+    } else {
+        self.sideMenu.center = CGPointMake(self.sideMenu.center.x - 110, self.sideMenu.center.y);    
+        self.sideMenuButton.center = CGPointMake(self.sideMenuButton.center.x - 110, self.sideMenuButton.center.y);
+        self.isLeftMenuHidden = YES;
+    }
+    [UIView commitAnimations];
+}
+
+- (UIView*) addObject:(NSString *)identifier
 {
     UIView *object;
     
@@ -90,12 +129,14 @@
     }
     
     
-    object.center = botao.center;
+    //object.center = botao.center;
     [self.canvas addSubview:object];
     [self.canvas setNeedsDisplay];
     [self.myPopover dismissPopoverAnimated:NO];
     
     [TestFlight passCheckpoint:@"Object added"];
+    
+    return object;
 }
 
 - (void) configContextMenu:(P1InputObjectView *)objectView withTag:(int)tag
@@ -276,7 +317,7 @@
 
     self.canvas.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openMenuToAddObject:)];
     self.canvas.tapGesture.numberOfTapsRequired = 1;
-    self.canvas.tapGesture.numberOfTouchesRequired = 1;
+    self.canvas.tapGesture.numberOfTouchesRequired = 2;
     self.canvas.tapGesture.delegate = self.canvas;
     [self.canvas addGestureRecognizer:self.canvas.tapGesture];
     
@@ -285,8 +326,25 @@
     doubleTouch.numberOfTouchesRequired = 3;
     [self.canvas addGestureRecognizer:doubleTouch];
     
+    UIPanGestureRecognizer* panToAdd = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
+    [self.swipeUp addGestureRecognizer:panToAdd];
+    
     [self.canvas.tapGesture requireGestureRecognizerToFail:doubleTouch];
     
+}
+
+-(void)panToAdd:(UIPanGestureRecognizer *)gesture
+{
+    CGPoint point = [gesture locationInView:self.canvas];
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        self.currentManipulatedObject = [self addObject:@"swipeUp"];
+        self.currentManipulatedObject.center = point;
+    } else if (gesture.state == UIGestureRecognizerStateChanged){
+        self.currentManipulatedObject.center = point;
+    } else if (gesture.state == UIGestureRecognizerStateEnded){
+        [self.canvas sendSubviewToBack:self.currentManipulatedObject];
+    }
+    NSLog(@"arrastando");
 }
 
 - (void)viewDidUnload
@@ -295,6 +353,11 @@
     [self setBotao:nil];
     [self setRightButton:nil];
     [self setContextMenuButton:nil];
+    [self setSideMenu:nil];
+    [self setSideMenuButton:nil];
+    [self setRightSideMenuButton:nil];
+    [self setRightSideMenu:nil];
+    [self setSwipeUp:nil];
     [super viewDidUnload];
 }
 

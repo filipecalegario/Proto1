@@ -17,6 +17,9 @@
 //    PdDispatcher *dispatcher;
 //    PdFile *patch;
 //}
+@property (weak, nonatomic) IBOutlet UIButton *rightSideMenuButton;
+
+@property (weak, nonatomic) IBOutlet UIButton *sideMenuButton;
 
 @property (weak, nonatomic) IBOutlet UIButton *botao;
 
@@ -26,11 +29,16 @@
 
 @property (weak, nonatomic) IBOutlet P1EditView *canvas;
 
+@property (weak, nonatomic) IBOutlet UIView *sideMenu;
 
+@property (weak, nonatomic) IBOutlet UIView *rightSideMenu;
 
-- (void) addObject:(NSString *)identifier;
+@property (weak, nonatomic) IBOutlet UIButton *swipeUp;
+
+- (UIView*) addObject:(NSString *)identifier;
 - (void) openMenuToAddObject:(UITapGestureRecognizer *)gesture;
 - (void) longTapHandle:(UILongPressGestureRecognizer *)gesture;
+- (void) panToAdd:(UIPanGestureRecognizer *)gesture;
 - (void) configContextMenu:(P1InputObjectView *)objectView withTag:(int)tag;
 
 @end
