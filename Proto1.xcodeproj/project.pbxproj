@@ -12,6 +12,8 @@
 		4512E4D615BF7BD800843A60 /* specialIconLong@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4512E4CF15BF7BD800843A60 /* specialIconLong@2x.png */; };
 		4512E4D715BF7BD800843A60 /* specialTrackConnector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4512E4D015BF7BD800843A60 /* specialTrackConnector@2x.png */; };
 		45159AEF16079CB800DBEE06 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45159AEE16079CB800DBEE06 /* libz.dylib */; };
+		45209C521637A1F50032D1A9 /* inputTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45209C501637A1F50032D1A9 /* inputTab@2x.png */; };
+		45209C531637A1F50032D1A9 /* outputTab@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45209C511637A1F50032D1A9 /* outputTab@2x.png */; };
 		4520B57B15F5673900C78B9D /* samplesPlayer@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4520B57615F5673900C78B9D /* samplesPlayer@2x.png */; };
 		4520B57C15F5673900C78B9D /* OSCNotesArray@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4520B57715F5673900C78B9D /* OSCNotesArray@2x.png */; };
 		4520B57D15F5673900C78B9D /* afrobeatMachine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4520B57815F5673900C78B9D /* afrobeatMachine@2x.png */; };
@@ -73,6 +75,8 @@
 		454C91A315B8B07200313CC3 /* playNote@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 454C91A215B8B07100313CC3 /* playNote@2x.png */; };
 		454C91A615B8CAAF00313CC3 /* P1ContextMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 454C91A515B8CAAE00313CC3 /* P1ContextMenuViewController.m */; };
 		455D099215D57722006A42DA /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 455D099115D57722006A42DA /* QuartzCore.framework */; };
+		45657A931636EFDB00EBE3E0 /* inputTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 45657A911636EFDB00EBE3E0 /* inputTab.png */; };
+		45657A941636EFDB00EBE3E0 /* outputTab.png in Resources */ = {isa = PBXBuildFile; fileRef = 45657A921636EFDB00EBE3E0 /* outputTab.png */; };
 		456EE47F15F676F500C6ED87 /* P1MultipleInputObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 456EE47E15F676F500C6ED87 /* P1MultipleInputObject.m */; };
 		457192A015D00E69008DEF35 /* P1Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4571929F15D00E69008DEF35 /* P1Utils.m */; };
 		457192A815D03F44008DEF35 /* P1Touchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 457192A715D03F44008DEF35 /* P1Touchable.m */; };
@@ -160,6 +164,8 @@
 		4512E4CF15BF7BD800843A60 /* specialIconLong@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "specialIconLong@2x.png"; sourceTree = "<group>"; };
 		4512E4D015BF7BD800843A60 /* specialTrackConnector@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "specialTrackConnector@2x.png"; sourceTree = "<group>"; };
 		45159AEE16079CB800DBEE06 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		45209C501637A1F50032D1A9 /* inputTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "inputTab@2x.png"; sourceTree = "<group>"; };
+		45209C511637A1F50032D1A9 /* outputTab@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outputTab@2x.png"; sourceTree = "<group>"; };
 		4520B57615F5673900C78B9D /* samplesPlayer@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "samplesPlayer@2x.png"; sourceTree = "<group>"; };
 		4520B57715F5673900C78B9D /* OSCNotesArray@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OSCNotesArray@2x.png"; sourceTree = "<group>"; };
 		4520B57815F5673900C78B9D /* afrobeatMachine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "afrobeatMachine@2x.png"; sourceTree = "<group>"; };
@@ -228,6 +234,8 @@
 		454C91A415B8CAAE00313CC3 /* P1ContextMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1ContextMenuViewController.h; sourceTree = "<group>"; };
 		454C91A515B8CAAE00313CC3 /* P1ContextMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = P1ContextMenuViewController.m; sourceTree = "<group>"; };
 		455D099115D57722006A42DA /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		45657A911636EFDB00EBE3E0 /* inputTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inputTab.png; sourceTree = "<group>"; };
+		45657A921636EFDB00EBE3E0 /* outputTab.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = outputTab.png; sourceTree = "<group>"; };
 		456EE47D15F676F500C6ED87 /* P1MultipleInputObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1MultipleInputObject.h; sourceTree = "<group>"; };
 		456EE47E15F676F500C6ED87 /* P1MultipleInputObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = P1MultipleInputObject.m; sourceTree = "<group>"; };
 		4571929E15D00E69008DEF35 /* P1Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = P1Utils.h; sourceTree = "<group>"; };
@@ -493,6 +501,10 @@
 		45A611BB15BF207700A1156F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				45209C501637A1F50032D1A9 /* inputTab@2x.png */,
+				45209C511637A1F50032D1A9 /* outputTab@2x.png */,
+				45657A911636EFDB00EBE3E0 /* inputTab.png */,
+				45657A921636EFDB00EBE3E0 /* outputTab.png */,
 				45436DB71607AE27009A4A49 /* notesFlow.png */,
 				45436DB81607AE27009A4A49 /* resize.png */,
 				45436DB91607AE27009A4A49 /* specialConnector.png */,
@@ -729,6 +741,10 @@
 				45BF43D3161D46850060620A /* sample3.wav in Resources */,
 				45BF43D4161D46850060620A /* sample2.wav in Resources */,
 				45BF43D5161D46850060620A /* sample1.wav in Resources */,
+				45657A931636EFDB00EBE3E0 /* inputTab.png in Resources */,
+				45657A941636EFDB00EBE3E0 /* outputTab.png in Resources */,
+				45209C521637A1F50032D1A9 /* inputTab@2x.png in Resources */,
+				45209C531637A1F50032D1A9 /* outputTab@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

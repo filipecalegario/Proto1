@@ -33,7 +33,22 @@
 
 @property (weak, nonatomic) IBOutlet UIView *rightSideMenu;
 
+@property (weak, nonatomic) IBOutlet UIButton *touchable;
 @property (weak, nonatomic) IBOutlet UIButton *swipeUp;
+@property (weak, nonatomic) IBOutlet UIButton *swipeDown;
+@property (weak, nonatomic) IBOutlet UIButton *swipeRight;
+@property (weak, nonatomic) IBOutlet UIButton *swipeLeft;
+@property (weak, nonatomic) IBOutlet UIButton *swipeDoubleUp;
+@property (weak, nonatomic) IBOutlet UIButton *swipeDoubleDown;
+@property (weak, nonatomic) IBOutlet UIButton *swipeDoubleRight;
+@property (weak, nonatomic) IBOutlet UIButton *swipeDoubleLeft;
+@property (weak, nonatomic) IBOutlet UIButton *notesArray;
+@property (weak, nonatomic) IBOutlet UIButton *samplesPlayer;
+@property (weak, nonatomic) IBOutlet UIButton *afrobeatMachine;
+@property (weak, nonatomic) IBOutlet UIView *teste;
+@property (weak, nonatomic) IBOutlet UIView *magicAreaRight;
+
+
 
 - (UIView*) addObject:(NSString *)identifier;
 - (void) openMenuToAddObject:(UITapGestureRecognizer *)gesture;

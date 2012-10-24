@@ -38,7 +38,20 @@
 @synthesize canvas;
 @synthesize sideMenu;
 @synthesize rightSideMenu;
+@synthesize touchable;
 @synthesize swipeUp;
+@synthesize swipeDown;
+@synthesize swipeRight;
+@synthesize swipeLeft;
+@synthesize swipeDoubleUp;
+@synthesize swipeDoubleDown;
+@synthesize swipeDoubleRight;
+@synthesize swipeDoubleLeft;
+@synthesize notesArray;
+@synthesize samplesPlayer;
+@synthesize afrobeatMachine;
+@synthesize teste;
+@synthesize magicAreaRight;
 @synthesize myPopover = _myPopover;
 @synthesize contextMenuPopover = _contextMenuPopover;
 @synthesize isLeftMenuHidden = _isLeftMenuHidden;
@@ -48,34 +61,76 @@
 
 //======== METHODS FOR REMOTE ACCESS ========
 - (IBAction)rightSideMenuButtonAction:(id)sender {
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.5];
-    if (self.isRightMenuHidden) {
-        self.rightSideMenu.center = CGPointMake(self.rightSideMenu.center.x - 110, self.rightSideMenu.center.y);
-        self.rightSideMenuButton.center = CGPointMake(self.rightSideMenuButton.center.x - 110, self.rightSideMenuButton.center.y);       
-        self.isRightMenuHidden = NO;
-    } else {
-        self.rightSideMenu.center = CGPointMake(self.rightSideMenu.center.x + 110, self.rightSideMenu.center.y);    
-        self.rightSideMenuButton.center = CGPointMake(self.rightSideMenuButton.center.x + 110, self.rightSideMenuButton.center.y);
-        self.isRightMenuHidden = YES;
-    }
-    [UIView commitAnimations];
+    [self performRightMenuAction];
 }
 
 - (IBAction)sideMenuButtonAction:(id)sender {
+    [self performLeftMenuAction];
+}
+
+- (void) performRightMenuAction
+{
+    if (self.isRightMenuHidden) {
+        [self showRightSideMenu];
+    } else {
+        [self hideRightSideMenu];
+    }
+}
+
+- (void)performLeftMenuAction
+{
+    if (self.isLeftMenuHidden) {
+        [self showLeftSideMenu];
+    } else {
+        [self hideLeftSideMenu];
+    }
+}
+
+- (void) showRightSideMenu
+{
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.5];
-    if (self.isLeftMenuHidden) {
-        self.sideMenu.center = CGPointMake(self.sideMenu.center.x + 110, self.sideMenu.center.y);
-        self.sideMenuButton.center = CGPointMake(self.sideMenuButton.center.x + 110, self.sideMenuButton.center.y);       
-        self.isLeftMenuHidden = NO;
-    } else {
-        self.sideMenu.center = CGPointMake(self.sideMenu.center.x - 110, self.sideMenu.center.y);    
-        self.sideMenuButton.center = CGPointMake(self.sideMenuButton.center.x - 110, self.sideMenuButton.center.y);
-        self.isLeftMenuHidden = YES;
-    }
+    self.rightSideMenu.center = CGPointMake(self.rightSideMenu.center.x - 110, self.rightSideMenu.center.y);
+    self.rightSideMenuButton.center = CGPointMake(self.rightSideMenuButton.center.x - 110, self.rightSideMenuButton.center.y);    
+    self.magicAreaRight.center = CGPointMake(self.magicAreaRight.center.x - 110, self.magicAreaRight.center.y);
+    self.isRightMenuHidden = NO;
     [UIView commitAnimations];
 }
+
+
+- (void) hideRightSideMenu
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    self.rightSideMenu.center = CGPointMake(self.rightSideMenu.center.x + 110, self.rightSideMenu.center.y);    
+    self.rightSideMenuButton.center = CGPointMake(self.rightSideMenuButton.center.x + 110, self.rightSideMenuButton.center.y);
+    self.magicAreaRight.center = CGPointMake(self.magicAreaRight.center.x + 110, self.magicAreaRight.center.y);
+    self.isRightMenuHidden = YES;
+    [UIView commitAnimations];
+}
+
+- (void) showLeftSideMenu
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    self.sideMenu.center = CGPointMake(self.sideMenu.center.x + 110, self.sideMenu.center.y);
+    self.sideMenuButton.center = CGPointMake(self.sideMenuButton.center.x + 110, self.sideMenuButton.center.y);       
+    self.teste.center = CGPointMake(self.teste.center.x + 110, self.teste.center.y);
+    self.isLeftMenuHidden = NO;
+    [UIView commitAnimations];
+}
+
+- (void) hideLeftSideMenu
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    self.sideMenu.center = CGPointMake(self.sideMenu.center.x - 110, self.sideMenu.center.y);    
+    self.sideMenuButton.center = CGPointMake(self.sideMenuButton.center.x - 110, self.sideMenuButton.center.y);
+    self.teste.center = CGPointMake(self.teste.center.x - 110, self.teste.center.y);
+    self.isLeftMenuHidden = YES;
+    [UIView commitAnimations];
+}
+
 
 - (UIView*) addObject:(NSString *)identifier
 {
@@ -177,6 +232,14 @@
         
     } else if ([segue.identifier isEqualToString:@"GoingToPlayMode"]) {
         NSLog(@"Going to play segue");
+        
+        if (!self.isLeftMenuHidden) {
+            [self hideLeftSideMenu];
+        }
+        
+        if (!self.isRightMenuHidden) {
+            [self hideRightSideMenu];
+        }
         
         //TODO Ver isso depois!
         [segue.destinationViewController setPatchesToLoad:[self whichPatchToLoad]];
@@ -326,25 +389,128 @@
     doubleTouch.numberOfTouchesRequired = 3;
     [self.canvas addGestureRecognizer:doubleTouch];
     
-    UIPanGestureRecognizer* panToAdd = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
-    [self.swipeUp addGestureRecognizer:panToAdd];
+    UIPanGestureRecognizer* panToAdd1 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
+    UIPanGestureRecognizer* panToAdd2 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
+    UIPanGestureRecognizer* panToAdd3 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
+    UIPanGestureRecognizer* panToAdd4 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
+    UIPanGestureRecognizer* panToAdd5 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
+    UIPanGestureRecognizer* panToAdd6 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
+    UIPanGestureRecognizer* panToAdd7 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
+    UIPanGestureRecognizer* panToAdd8 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
+    UIPanGestureRecognizer* panToAdd9 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
+    UIPanGestureRecognizer* panToAdd10 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
+    UIPanGestureRecognizer* panToAdd11 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
+    UIPanGestureRecognizer* panToAdd12 = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panToAdd:)];
+    [self.touchable addGestureRecognizer:panToAdd1];
+    [self.swipeUp addGestureRecognizer:panToAdd2];
+    [self.swipeDown addGestureRecognizer:panToAdd3];
+    [self.swipeRight addGestureRecognizer:panToAdd4];
+    [self.swipeLeft addGestureRecognizer:panToAdd5];
+    [self.swipeDoubleUp addGestureRecognizer:panToAdd6];
+    [self.swipeDoubleDown addGestureRecognizer:panToAdd7];
+    [self.swipeDoubleRight addGestureRecognizer:panToAdd8];
+    [self.swipeDoubleLeft addGestureRecognizer:panToAdd9];
+    [self.notesArray addGestureRecognizer:panToAdd10];
+    [self.samplesPlayer addGestureRecognizer:panToAdd11];
+    [self.afrobeatMachine addGestureRecognizer:panToAdd12];
+    
+    UISwipeGestureRecognizer* swipeOpenLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeOpenLeftMenu:)];
+    
+    [swipeOpenLeft setDirection:UISwipeGestureRecognizerDirectionRight];
+    
+    UISwipeGestureRecognizer* swipeCloseLeft = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeCloseLeftMenu:)];
+    
+    [swipeCloseLeft setDirection:UISwipeGestureRecognizerDirectionLeft];
+    
+    UITapGestureRecognizer* tapLeft = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapLeftTab:)];
+    //============================================================================================/
+    UISwipeGestureRecognizer* swipeOpenRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeOpenRightMenu:)];
+    
+    [swipeOpenRight setDirection:UISwipeGestureRecognizerDirectionLeft];
+    
+    UISwipeGestureRecognizer* swipeCloseRight = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeCloseRightMenu:)];
+    
+    [swipeCloseRight setDirection:UISwipeGestureRecognizerDirectionRight];
+    
+    UITapGestureRecognizer* tapRight = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapRightTab:)];
+    
+    [self.teste addGestureRecognizer:swipeOpenLeft];
+    [self.teste addGestureRecognizer:swipeCloseLeft];
+    [self.teste addGestureRecognizer:tapLeft];
+    
+    [self.magicAreaRight addGestureRecognizer:tapRight];
+    [self.magicAreaRight addGestureRecognizer:swipeOpenRight];
+    [self.magicAreaRight addGestureRecognizer:swipeCloseRight];
+    
+    [self hideRightSideMenu];
+    [self hideLeftSideMenu];
     
     [self.canvas.tapGesture requireGestureRecognizerToFail:doubleTouch];
     
+    [self.teste setBackgroundColor:[UIColor clearColor]];
+    [self.magicAreaRight setBackgroundColor:[UIColor clearColor]];
+    
+}
+
+-(void)tapRightTab:(UITapGestureRecognizer* ) gesture
+{
+    [self performRightMenuAction];
+}
+
+-(void)tapLeftTab:(UITapGestureRecognizer* ) gesture
+{
+    [self performLeftMenuAction];
+}
+
+-(void)swipeOpenLeftMenu:(UIGestureRecognizer* ) gesture
+{
+    if (self.isLeftMenuHidden) {
+        [self showLeftSideMenu];        
+    }
+
+    NSLog(@"swipe open left");
+}
+
+-(void)swipeCloseLeftMenu:(UIGestureRecognizer* ) gesture
+{
+    if (!self.isLeftMenuHidden) {
+        [self hideLeftSideMenu];        
+    }
+    
+    NSLog(@"swipe close left");
+}
+
+-(void)swipeOpenRightMenu:(UIGestureRecognizer* ) gesture
+{
+    if (self.isRightMenuHidden) {
+        [self showRightSideMenu];        
+    }
+    
+    NSLog(@"swipe open right");
+}
+
+-(void)swipeCloseRightMenu:(UIGestureRecognizer* ) gesture
+{
+    if (!self.isRightMenuHidden) {
+        [self hideRightSideMenu];        
+    }
+    
+    NSLog(@"swipe close right");
 }
 
 -(void)panToAdd:(UIPanGestureRecognizer *)gesture
 {
+    UIButton* draggedButton = (UIButton*) gesture.view;
     CGPoint point = [gesture locationInView:self.canvas];
     if (gesture.state == UIGestureRecognizerStateBegan) {
-        self.currentManipulatedObject = [self addObject:@"swipeUp"];
+        self.currentManipulatedObject = [self addObject:[draggedButton currentTitle]];
         self.currentManipulatedObject.center = point;
     } else if (gesture.state == UIGestureRecognizerStateChanged){
         self.currentManipulatedObject.center = point;
     } else if (gesture.state == UIGestureRecognizerStateEnded){
         [self.canvas sendSubviewToBack:self.currentManipulatedObject];
     }
-    NSLog(@"arrastando");
+    //NSLog(@"arrastando");
 }
 
 - (void)viewDidUnload
@@ -358,6 +524,22 @@
     [self setRightSideMenuButton:nil];
     [self setRightSideMenu:nil];
     [self setSwipeUp:nil];
+    [self setSwipeDown:nil];
+    [self setSwipeRight:nil];
+    [self setTouchable:nil];
+    [self setSwipeLeft:nil];
+    [self setSwipeDoubleUp:nil];
+    [self setSwipeDoubleDown:nil];
+    [self setSwipeDoubleRight:nil];
+    [self setSwipeDoubleLeft:nil];
+    [self setNotesArray:nil];
+    [self setSamplesPlayer:nil];
+    [self setAfrobeatMachine:nil];
+    [self setNotesArray:nil];
+    [self setSamplesPlayer:nil];
+    [self setAfrobeatMachine:nil];
+    [self setTeste:nil];
+    [self setMagicAreaRight:nil];
     [super viewDidUnload];
 }
 
