@@ -33,6 +33,7 @@
     self.actions = [[NSMutableArray alloc] init];
     
     self.backgroundColor = [P1Utils myColor:@"green"];//[UIColor orangeColor];
+    //self.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"button"]];
     self.layer.shadowOffset = CGSizeMake(0, 3);
     self.layer.shadowRadius = 5.0;
     self.layer.shadowColor = [UIColor grayColor].CGColor;

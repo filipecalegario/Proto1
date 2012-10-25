@@ -82,64 +82,67 @@
     }
     
     for (P1InputObjectView *currentObject in self.objectArray) {
-        
-        if ([currentObject.iconType isEqualToString:@"touchable"]){
-            
-            P1InputObjectView * touchable = currentObject;
-            
-            CGRect touchableIconRect = [touchable convertRect:touchable.icon.frame toView:touchable.canvas];
-            
-            P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:touchableIconRect];
-            
-            for (P1InputObjectView* connectedTo in currentObject.connectedObjects) {
-                //P1PlayAction* action = [[P1PlayAction alloc] init];
-                //action.description = connectedTo.action.description;
-                //action.value = connectedTo.action.value;
-                [playTouchable.actions addObject:connectedTo.action];
+        if (currentObject.connectedObjects.count != 0) {
+            if ([currentObject.iconType isEqualToString:@"touchable"]){
+                
+                P1InputObjectView * touchable = currentObject;
+                
+                CGRect touchableIconRect = [touchable convertRect:touchable.icon.frame toView:touchable.canvas];
+                
+                P1PlayTouchable * playTouchable = [[P1PlayTouchable alloc] initWithFrame:touchableIconRect];
+                
+                for (P1InputObjectView* connectedTo in currentObject.connectedObjects) {
+                    //P1PlayAction* action = [[P1PlayAction alloc] init];
+                    //action.description = connectedTo.action.description;
+                    //action.value = connectedTo.action.value;
+                    [playTouchable.actions addObject:connectedTo.action];
+                }
+                
+                [playTouchable setNeedsDisplay];
+                
+                P1TouchGestureRecognizer * touchGesture = [[P1TouchGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
+                [playTouchable addGestureRecognizer:touchGesture];
+                
+                [self.playArea addSubview:playTouchable];
+                
+                
+                
+            } else if([currentObject.iconType hasPrefix:@"swipe"]){
+                
+                //__________________UM______________________            
+                
+                UISwipeGestureRecognizer * swipe = [self createSwipe:currentObject];
+                
+                float indexacao = swipe.direction*(swipe.numberOfTouchesRequired+1);
+                
+                NSMutableArray* actions = [[NSMutableArray alloc] init];
+                
+                for (P1InputObjectView* connectedTo in currentObject.connectedObjects) {
+                    [actions addObject:connectedTo.action];
+                }
+                
+                NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
+                
+                [self.swipeDictionary setObject:actions forKey:keyToStore];
+                
+                [self.playArea addGestureRecognizer:swipe];
+                
+                //__________________DOIS______________________
+                
+                //            UISwipeGestureRecognizer * swipe = [self createSwipe:currentObject];
+                //            
+                //            float indexacao = swipe.direction*(swipe.numberOfTouchesRequired+1);
+                //            
+                //            NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
+                //            
+                //            [self.swipeDictionary setObject:messageToSend forKey:keyToStore];
+                //            
+                //            [self.playArea addGestureRecognizer:swipe];
+                
+                
+            } else if ([currentObject.iconType isEqualToString:@"touch"]) {
+                
             }
-            
-            [playTouchable setNeedsDisplay];
-            
-            P1TouchGestureRecognizer * touchGesture = [[P1TouchGestureRecognizer alloc] initWithTarget:self action:@selector(playTouchableAction:)];
-            [playTouchable addGestureRecognizer:touchGesture];
-            
-            [self.playArea addSubview:playTouchable];
-            
-        } else if([currentObject.iconType hasPrefix:@"swipe"]){
-
-            //__________________UM______________________            
-
-            UISwipeGestureRecognizer * swipe = [self createSwipe:currentObject];
-            
-            float indexacao = swipe.direction*(swipe.numberOfTouchesRequired+1);
-            
-            NSMutableArray* actions = [[NSMutableArray alloc] init];
-            
-            for (P1InputObjectView* connectedTo in currentObject.connectedObjects) {
-                [actions addObject:connectedTo.action];
-            }
-            
-            NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
-            
-            [self.swipeDictionary setObject:actions forKey:keyToStore];
-            
-            [self.playArea addGestureRecognizer:swipe];
-            
-            //__________________DOIS______________________
-            
-//            UISwipeGestureRecognizer * swipe = [self createSwipe:currentObject];
-//            
-//            float indexacao = swipe.direction*(swipe.numberOfTouchesRequired+1);
-//            
-//            NSNumber * keyToStore = [NSNumber numberWithInt:indexacao];
-//            
-//            [self.swipeDictionary setObject:messageToSend forKey:keyToStore];
-//            
-//            [self.playArea addGestureRecognizer:swipe];
-            
-            
-        } else if ([currentObject.iconType isEqualToString:@"touch"]) {
-            
         }
         
         

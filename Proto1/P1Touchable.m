@@ -36,6 +36,8 @@
     
     P1IconView* icon = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 100, 100) withType:@"touchable" withColor:[P1Utils myColor:@"green"]];
     
+    //P1IconView* icon = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 100, 100) withType:@"touchable" withImageSource:@"button"];
+    
     P1IconView* connector = [[P1IconView alloc] initWithFrame:CGRectMake(100, 0, 50, 100) withType:@"trigger"];
     
     self = [super initWithFrame:frame withObjectType:INPUT withIcon:icon withConnector:connector withCanvas:canvas groupedGestures:NO];

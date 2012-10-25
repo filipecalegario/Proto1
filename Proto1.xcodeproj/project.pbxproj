@@ -122,6 +122,10 @@
 		45BF43D3161D46850060620A /* sample3.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45BF43CD161D46850060620A /* sample3.wav */; };
 		45BF43D4161D46850060620A /* sample2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45BF43CE161D46850060620A /* sample2.wav */; };
 		45BF43D5161D46850060620A /* sample1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 45BF43CF161D46850060620A /* sample1.wav */; };
+		45C76C71163888E300E548A5 /* bin.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C76C6F163888E300E548A5 /* bin.png */; };
+		45C76C72163888E300E548A5 /* bin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C76C70163888E300E548A5 /* bin@2x.png */; };
+		45C76C761638B9D100E548A5 /* button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C76C751638B9D100E548A5 /* button@2x.png */; };
+		45C76C801638F15600E548A5 /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C76C7F1638F15600E548A5 /* help@2x.png */; };
 		45CCDE4615DCAF6F004F980A /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 45CCDE4515DCAF6F004F980A /* ProximaNova-Regular.otf */; };
 		45DEC1B015DCB8AA000133F4 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 45DEC1AE15DCB8AA000133F4 /* ProximaNova-Bold.otf */; };
 		45DEC1B115DCB8AA000133F4 /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 45DEC1AF15DCB8AA000133F4 /* ProximaNova-Semibold.otf */; };
@@ -298,6 +302,10 @@
 		45BF43CD161D46850060620A /* sample3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample3.wav; sourceTree = "<group>"; };
 		45BF43CE161D46850060620A /* sample2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample2.wav; sourceTree = "<group>"; };
 		45BF43CF161D46850060620A /* sample1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sample1.wav; sourceTree = "<group>"; };
+		45C76C6F163888E300E548A5 /* bin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bin.png; sourceTree = "<group>"; };
+		45C76C70163888E300E548A5 /* bin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bin@2x.png"; sourceTree = "<group>"; };
+		45C76C751638B9D100E548A5 /* button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button@2x.png"; sourceTree = "<group>"; };
+		45C76C7F1638F15600E548A5 /* help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@2x.png"; sourceTree = "<group>"; };
 		45CCDE4515DCAF6F004F980A /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
 		45DEC1AE15DCB8AA000133F4 /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
 		45DEC1AF15DCB8AA000133F4 /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
@@ -501,6 +509,10 @@
 		45A611BB15BF207700A1156F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				45C76C751638B9D100E548A5 /* button@2x.png */,
+				45C76C7F1638F15600E548A5 /* help@2x.png */,
+				45C76C6F163888E300E548A5 /* bin.png */,
+				45C76C70163888E300E548A5 /* bin@2x.png */,
 				45209C501637A1F50032D1A9 /* inputTab@2x.png */,
 				45209C511637A1F50032D1A9 /* outputTab@2x.png */,
 				45657A911636EFDB00EBE3E0 /* inputTab.png */,
@@ -745,6 +757,10 @@
 				45657A941636EFDB00EBE3E0 /* outputTab.png in Resources */,
 				45209C521637A1F50032D1A9 /* inputTab@2x.png in Resources */,
 				45209C531637A1F50032D1A9 /* outputTab@2x.png in Resources */,
+				45C76C71163888E300E548A5 /* bin.png in Resources */,
+				45C76C72163888E300E548A5 /* bin@2x.png in Resources */,
+				45C76C761638B9D100E548A5 /* button@2x.png in Resources */,
+				45C76C801638F15600E548A5 /* help@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

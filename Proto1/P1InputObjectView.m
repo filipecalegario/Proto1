@@ -33,6 +33,7 @@
 //@synthesize value = _value;
 @synthesize connectedObjects = _connectedObjects;
 @synthesize action = _action;
+@synthesize isPartOfAGroup = _isPartOfAGroup;
 
 - (void) connectObject:(P1InputObjectView *)connectedTo
 {
@@ -129,8 +130,8 @@
 //        self.connector = [[P1IconView alloc] initWithFrame:CGRectMake(0, 0, 50, 100) withType:[NSString stringWithFormat:@"%@Flipped", connectorType]];
 //        self.icon = [[P1IconView alloc] initWithFrame:CGRectMake(50, 0, 100, 100) withType:iconType];
 //    }
-    
-    [self setupDefaultGestures:NO];
+    self.isPartOfAGroup = NO;
+    [self setupDefaultGestures];
     
 //    UIPanGestureRecognizer* panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panIcon:)];
 //    UIPanGestureRecognizer* panConnectorGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panConnector:)];
@@ -168,6 +169,7 @@
         [self initialConfiguration];
         self.canvas = canvas;
         self.hasToBeDrawn = true;
+        self.isPartOfAGroup = grouped;
         
         self.iconType = iconObject.type;
         self.connectorType = connectorObject.type;
@@ -179,7 +181,7 @@
         self.icon = iconObject;
         self.connector = connectorObject;
         
-        [self setupDefaultGestures:grouped];
+        [self setupDefaultGestures];
         
 //        UIPanGestureRecognizer* panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panIconMultiple:)];
 //        UIPanGestureRecognizer* panConnectorGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panConnector:)];
@@ -218,12 +220,12 @@
     return self;
 }
 
-- (void) setupDefaultGestures:(BOOL)grouped
+- (void) setupDefaultGestures
 {
     UIPanGestureRecognizer *panIconGesture = nil;
     UITapGestureRecognizer *tapIconGesture = nil;
 
-    if (grouped) {
+    if (self.isPartOfAGroup) {
         panIconGesture = [[UIPanGestureRecognizer alloc] initWithTarget:_canvas action:@selector(panIconMultiple:)];
         
         tapIconGesture = [[UITapGestureRecognizer alloc] initWithTarget:_canvas action:@selector(tapIconMultiple:)];
@@ -271,6 +273,30 @@
 {
     self.connectedObjects = [[NSMutableArray alloc] init];
     self.action = [[P1PlayAction alloc] init];
+}
+
+-(void) removeConnections
+{
+    for (P1InputObjectView* connectedTo in self.connectedObjects) {
+        [connectedTo.connectedObjects removeObject:self];
+    }
+    [self.connectedObjects removeAllObjects];
+}
+
+-(void)killMeNow
+{
+    if(self.isPartOfAGroup){
+        for (UIView* currentView in self.superview.subviews) {
+            if ([currentView isMemberOfClass:[P1InputObjectView class]]) {
+                P1InputObjectView* obj = (P1InputObjectView*) currentView;
+                [obj removeConnections];
+            }
+        }
+        [self.superview removeFromSuperview];
+    } else {
+        [self removeConnections];
+        [self removeFromSuperview];
+    }
 }
 
 - (void)drawRect:(CGRect)rect

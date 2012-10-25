@@ -47,6 +47,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *afrobeatMachine;
 @property (weak, nonatomic) IBOutlet UIView *teste;
 @property (weak, nonatomic) IBOutlet UIView *magicAreaRight;
+@property (weak, nonatomic) IBOutlet UIImageView *bin;
 
 
 

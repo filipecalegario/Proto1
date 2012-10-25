@@ -18,6 +18,9 @@
 @property (nonatomic, assign) CGPoint endPoint;
 @property (nonatomic, assign) BOOL drawPossibilities;
 @property (nonatomic, weak) P1InputObjectView* current;
+@property (nonatomic, strong) UIImageView* bin;
+@property (nonatomic, strong) UIImageView* help;
+
 
 @end
 
@@ -28,11 +31,16 @@
 @synthesize drawPossibilities;
 @synthesize current = _current;
 @synthesize tapGesture = _tapGesture;
+@synthesize bin = _bin;
+@synthesize help = _help;
+@synthesize isHelpPageHidden = _isHelpPageHidden;
 
+#warning depois unificar isso num método "move" no InputObject
 - (void)panIcon:(UIPanGestureRecognizer *)gesture
 {
-    if ((gesture.state == UIGestureRecognizerStateChanged) ||
-        (gesture.state == UIGestureRecognizerStateEnded)) {
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        [self moveBinUp];
+    } else if ((gesture.state == UIGestureRecognizerStateChanged)) {
         
         CGPoint translation = [gesture translationInView:self];
         
@@ -40,14 +48,22 @@
                                                     gesture.view.superview.center.y + translation.y);
         
         [gesture setTranslation:CGPointMake(0, 0) inView:self];
+        [self setNeedsDisplay];        
+    } else if ((gesture.state == UIGestureRecognizerStateEnded)) {
+        [self moveBinDown];
+        if ([self checkCollision:[gesture locationInView:self]]) {
+            [(P1InputObjectView*)gesture.view.superview killMeNow];
+        }
         [self setNeedsDisplay];
     }
 }
 
+#warning depois unificar isso num método "move" no InputObject
 - (void)panIconMultiple:(UIPanGestureRecognizer *)gesture
 {
-    if ((gesture.state == UIGestureRecognizerStateChanged) ||
-        (gesture.state == UIGestureRecognizerStateEnded)) {
+    if (gesture.state == UIGestureRecognizerStateBegan) {
+        [self moveBinUp];
+    } else if ((gesture.state == UIGestureRecognizerStateChanged)) {
         
         CGPoint translation = [gesture translationInView:self];
         
@@ -56,7 +72,39 @@
         
         [gesture setTranslation:CGPointMake(0, 0) inView:self];
         [self setNeedsDisplay];
+    } else if ((gesture.state == UIGestureRecognizerStateEnded)) {
+        [self moveBinDown];
+        if ([self checkCollision:[gesture locationInView:self]]) {
+            [(P1InputObjectView*)gesture.view.superview killMeNow];
+        }
+        [self setNeedsDisplay];
     }
+}
+
+- (BOOL)checkCollision:(CGPoint)point
+{
+    BOOL result = NO;
+
+//    if (point.x > (self.bin.center.x - self.bin.frame.size.width/2) && 
+//        point.x < (self.bin.center.x + self.bin.frame.size.width/2) && 
+//        point.y > (self.bin.center.y - self.bin.frame.size.height/2))
+//    {
+//        result = YES;
+//    }
+    
+    if (point.x > 448 && point.x < 576 && point.y > 576) {
+        result = YES;
+    }
+    
+//    int moreBoundsX = point.x + 50;
+//    int moreBoundsY = point.y + 50;
+//    
+//    if (moreBoundsX > 448 && moreBoundsX < 576 && moreBoundsY > 576)
+//    {
+//        result = YES;
+//    }
+    
+    return result;
 }
 
 - (void) panConnector:(UIPanGestureRecognizer *)gesture
@@ -67,7 +115,6 @@
         self.startPoint = [gesture.view.superview convertPoint:gesture.view.center toView:self];//[self convertPoint:gesture.view.center fromView:gesture.view];
         CGPoint location = [gesture locationInView:self];
         self.endPoint = location;
-        
         
         
     } else if(gesture.state == UIGestureRecognizerStateBegan){
@@ -96,20 +143,23 @@
 - (void) tapIcon:(UITapGestureRecognizer *)gesture
 {
     P1InputObjectView* obj = (P1InputObjectView*) gesture.view.superview;
-    [self removeConnections:obj];
-    [gesture.view.superview removeFromSuperview];
+//    [obj removeConnections];
+//    [gesture.view.superview removeFromSuperview];
+    [obj killMeNow];
     [self setNeedsDisplay];
 }
 
 - (void) tapIconMultiple:(UITapGestureRecognizer *)gesture
 {
-    for (UIView* currentView in gesture.view.superview.superview.subviews) {
-        if ([currentView isMemberOfClass:[P1InputObjectView class]]) {
-            P1InputObjectView* obj = (P1InputObjectView*) currentView;
-            [self removeConnections:obj];
-        }
-    }
-    [gesture.view.superview.superview removeFromSuperview];
+//    for (UIView* currentView in gesture.view.superview.superview.subviews) {
+//        if ([currentView isMemberOfClass:[P1InputObjectView class]]) {
+//            P1InputObjectView* obj = (P1InputObjectView*) currentView;
+//            [obj removeConnections];
+//        }
+//    }
+//    [gesture.view.superview.superview removeFromSuperview];
+    P1InputObjectView* obj = (P1InputObjectView*) gesture.view.superview;
+    [obj killMeNow];
     [self setNeedsDisplay];
 }
 
@@ -118,7 +168,7 @@
     P1InputObjectView * obj = (P1InputObjectView *) gesture.view.superview;
     obj.hasToBeDrawn = YES;
     
-    [self removeConnections:obj];
+    [obj removeConnections];
     
     //obj.connectedTo.hasToBeDrawn = YES;
     //obj.connectedTo.connectedTo = nil;
@@ -127,13 +177,7 @@
     [self setNeedsDisplay];
 }
 
--(void) removeConnections:(P1InputObjectView*) obj
-{
-    for (P1InputObjectView* connectedTo in obj.connectedObjects) {
-        [connectedTo.connectedObjects removeObject:obj];
-    }
-    [obj.connectedObjects removeAllObjects];
-}
+
 
 - (void) swipeConnection:(UISwipeGestureRecognizer *)gesture
 {
@@ -146,6 +190,49 @@
     UISwipeGestureRecognizer * sg = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeConnection:)];
     [self addGestureRecognizer:sg];
     self.startPoint = CGPointMake(-5, -5);
+    
+    self.bin = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bin"]];
+    [self addSubview:self.bin];
+    self.bin.center = CGPointMake(512, 640);
+    
+    self.help = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"help"]]; 
+    
+    self.help.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer* tapToHideHelp = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideHelpPage:)];
+    [self.help addGestureRecognizer:tapToHideHelp];
+    
+    [self addSubview:self.help];
+    self.help.center = CGPointMake(self.center.x, self.center.y + 20);
+    self.help.alpha = 0;
+    
+    self.isHelpPageHidden = YES;
+    
+    NSLog(@"Entrou no setup");
+}
+
+- (void) showHelp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.1];
+    self.help.alpha = 1;
+    [UIView commitAnimations];
+    self.isHelpPageHidden = NO;
+}
+
+- (void)hideHelpPage:(UITapGestureRecognizer*)gesture
+{
+    [self hideHelp];
+    NSLog(@"Tap recog");
+}
+
+- (void) hideHelp
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.1];
+    self.help.alpha = 0;
+    [UIView commitAnimations];
+    self.isHelpPageHidden = YES;
 }
 
 - (void) awakeFromNib
@@ -178,6 +265,30 @@
     }
     return [NSArray arrayWithArray:tempArray];
 }
+
+- (void) moveBinUp
+{
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    self.bin.center = CGPointMake(self.bin.center.x, self.bin.center.y - 128);    
+    self.bin.alpha = 1;
+    [UIView commitAnimations];
+    
+}
+
+- (void) moveBinDown
+{
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.5];
+    self.bin.center = CGPointMake(self.bin.center.x, self.bin.center.y + 128);    
+    self.bin.alpha = 0;
+    [UIView commitAnimations];
+    
+}
+
+
 
 - (void)drawRect:(CGRect)rect
 {

@@ -11,6 +11,7 @@
 @interface P1EditView : UIView <UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UITapGestureRecognizer* tapGesture;
+@property (nonatomic, assign) BOOL isHelpPageHidden;
 
 - (void)panIcon:(UIPanGestureRecognizer *)gesture;
 - (void)panIconMultiple:(UIPanGestureRecognizer *)gesture;
@@ -19,6 +20,13 @@
 - (void)tapIcon:(UITapGestureRecognizer *)gesture;
 - (void)tapIconMultiple:(UITapGestureRecognizer *)gesture;
 - (void)tapConnector:(UITapGestureRecognizer *)gesture;
+
+- (void) moveBinUp;
+- (void) moveBinDown;
+- (BOOL)checkCollision:(CGPoint)point;
+
+-(void) showHelp;
+-(void) hideHelp;
 
 -(NSArray*)getAllObjects;
 

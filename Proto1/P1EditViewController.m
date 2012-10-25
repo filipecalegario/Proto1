@@ -17,6 +17,7 @@
 #import "P1OutputObjectView.h"
 #import "P1ObjectFactory.h"
 #import "P1Utils.h"
+#import "P1Touchable.h"
 #import <QuartzCore/QuartzCore.h>
 
 @interface P1EditViewController ()
@@ -26,6 +27,7 @@
 @property (nonatomic, strong) UIView* currentManipulatedObject;
 @property (nonatomic, assign) BOOL isLeftMenuHidden;
 @property (nonatomic, assign) BOOL isRightMenuHidden;
+
 
 @end
 
@@ -52,11 +54,13 @@
 @synthesize afrobeatMachine;
 @synthesize teste;
 @synthesize magicAreaRight;
+@synthesize bin;
 @synthesize myPopover = _myPopover;
 @synthesize contextMenuPopover = _contextMenuPopover;
 @synthesize isLeftMenuHidden = _isLeftMenuHidden;
 @synthesize isRightMenuHidden = _isRightMenuHidden;
 @synthesize currentManipulatedObject = _currentManipulatedObject;
+
 
 
 //======== METHODS FOR REMOTE ACCESS ========
@@ -376,6 +380,14 @@
 {
     [super viewDidLoad];
     
+    UIBarButtonItem *helpButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStyleBordered target:self action:@selector(helpButtonAction:)];
+    
+    UIBarButtonItem *feedbackButton = [[UIBarButtonItem alloc] initWithTitle:@"Feedback" style:UIBarButtonItemStyleBordered target:self action:@selector(launchFeedback:)];
+    
+    NSArray *myButtons = [[NSArray alloc] initWithObjects:feedbackButton, helpButton, nil];
+    
+    self.navigationItem.leftBarButtonItems = myButtons;
+    
     //self.navigationController 
 
     self.canvas.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openMenuToAddObject:)];
@@ -449,6 +461,24 @@
     
     [self.teste setBackgroundColor:[UIColor clearColor]];
     [self.magicAreaRight setBackgroundColor:[UIColor clearColor]];
+    [self.canvas moveBinDown];
+    
+}
+
+-(void) helpButtonAction:(id)sender
+{
+    NSLog(@"Help button pressed");
+    if (self.canvas.isHelpPageHidden) {
+        if (self.isLeftMenuHidden) {
+            [self showLeftSideMenu];
+        }
+        if (self.isRightMenuHidden) {
+            [self showRightSideMenu];
+        }
+        [self.canvas showHelp];        
+    } else {
+        [self.canvas hideHelp];
+    }
     
 }
 
@@ -498,20 +528,48 @@
     NSLog(@"swipe close right");
 }
 
+#warning depois unificar isso num método "move" no InputObject
 -(void)panToAdd:(UIPanGestureRecognizer *)gesture
 {
     UIButton* draggedButton = (UIButton*) gesture.view;
     CGPoint point = [gesture locationInView:self.canvas];
     if (gesture.state == UIGestureRecognizerStateBegan) {
+        [self.canvas moveBinUp];
         self.currentManipulatedObject = [self addObject:[draggedButton currentTitle]];
-        self.currentManipulatedObject.center = point;
+        if ([self.currentManipulatedObject isKindOfClass:[P1Touchable class]]) {
+            self.currentManipulatedObject.center = CGPointMake(point.x - 50, point.y - 50);            
+        } else {
+            self.currentManipulatedObject.center = point;
+        }
+
     } else if (gesture.state == UIGestureRecognizerStateChanged){
-        self.currentManipulatedObject.center = point;
+        //self.currentManipulatedObject.center = point;
+        
+        CGPoint translation = [gesture translationInView:self.canvas];
+        
+        self.currentManipulatedObject.center = 
+                CGPointMake(self.currentManipulatedObject.center.x + translation.x, 
+                            self.currentManipulatedObject.center.y + translation.y);
+        
+        [gesture setTranslation:CGPointMake(0, 0) inView:self.canvas];
+        
+        
     } else if (gesture.state == UIGestureRecognizerStateEnded){
+        [self.canvas moveBinDown];
         [self.canvas sendSubviewToBack:self.currentManipulatedObject];
+        if ([self.canvas checkCollision:point]) {
+            if ([self.currentManipulatedObject isKindOfClass:[P1InputObjectView class]]) {
+                [(P1InputObjectView*)self.currentManipulatedObject killMeNow];
+            } else {
+                [(P1InputObjectView*)[[self.currentManipulatedObject subviews] objectAtIndex:0] killMeNow];
+            }
+
+        }
     }
     //NSLog(@"arrastando");
 }
+
+
 
 - (void)viewDidUnload
 {
@@ -540,6 +598,7 @@
     [self setAfrobeatMachine:nil];
     [self setTeste:nil];
     [self setMagicAreaRight:nil];
+    [self setBin:nil];
     [super viewDidUnload];
 }
 

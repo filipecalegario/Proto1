@@ -32,6 +32,7 @@ typedef enum{
 #warning consertar essa representação de noteLabel e name
 @property (nonatomic, strong) UILabel *label;
 @property (nonatomic, strong) P1PlayAction* action;
+@property (nonatomic, assign) BOOL isPartOfAGroup;
 //@property (nonatomic, strong) NSString *name;
 //@property (nonatomic, assign) int value;
 
@@ -41,5 +42,7 @@ typedef enum{
 - (void) connectObject:(P1InputObjectView *)connectedTo;
 - (id)initWithFrame:(CGRect)frame withObjectType:(ObjectType)objectType withIconType:(NSString *)iconType withConnectorType:(NSString *)connectorType withCanvas:(P1EditView *)canvas;
 - (id)initWithFrame:(CGRect)frame withObjectType:(ObjectType)objectType withIcon:(P1IconView*)iconObject withConnector:(P1IconView*)connectorObject withCanvas:(P1EditView*)canvas groupedGestures:(BOOL)grouped;
+-(void) removeConnections;
+-(void)killMeNow;
 
 @end
