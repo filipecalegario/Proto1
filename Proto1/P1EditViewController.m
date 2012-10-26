@@ -76,8 +76,10 @@
 {
     if (self.isRightMenuHidden) {
         [self showRightSideMenu];
+
     } else {
         [self hideRightSideMenu];
+
     }
 }
 
@@ -99,6 +101,8 @@
     self.magicAreaRight.center = CGPointMake(self.magicAreaRight.center.x - 110, self.magicAreaRight.center.y);
     self.isRightMenuHidden = NO;
     [UIView commitAnimations];
+    NSLog(@"Show Right Menu");
+    [TestFlight passCheckpoint:@"Show Right Menu"];
 }
 
 
@@ -111,6 +115,8 @@
     self.magicAreaRight.center = CGPointMake(self.magicAreaRight.center.x + 110, self.magicAreaRight.center.y);
     self.isRightMenuHidden = YES;
     [UIView commitAnimations];
+    NSLog(@"Hide Right Menu");
+    [TestFlight passCheckpoint:@"Hide Right Menu"];
 }
 
 - (void) showLeftSideMenu
@@ -122,6 +128,8 @@
     self.teste.center = CGPointMake(self.teste.center.x + 110, self.teste.center.y);
     self.isLeftMenuHidden = NO;
     [UIView commitAnimations];
+    NSLog(@"Show Left Menu");
+    [TestFlight passCheckpoint:@"Show Left Menu"];
 }
 
 - (void) hideLeftSideMenu
@@ -133,6 +141,8 @@
     self.teste.center = CGPointMake(self.teste.center.x - 110, self.teste.center.y);
     self.isLeftMenuHidden = YES;
     [UIView commitAnimations];
+    NSLog(@"Hide Left Menu");
+    [TestFlight passCheckpoint:@"Hide Left Menu"];
 }
 
 
@@ -141,7 +151,8 @@
     UIView *object;
     
     if ([identifier isEqualToString:@"Play Note"] || [identifier isEqualToString:@"notesArray"]) {
-        NSLog(@"adding a touchable input object");
+        NSLog(@"Add Notes Array");
+        [TestFlight passCheckpoint:@"Add Notes Array"];
         object = [P1ObjectFactory createNoteArrayWithCanvas:self.canvas withGestureHandler:self];
         
 //        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapHandle:)];
@@ -152,22 +163,28 @@
 
         
     } else if ([identifier isEqualToString:@"Afrobeat"] || [identifier isEqualToString:@"afrobeat"]) {
-        NSLog(@"Afrobeat");
+        NSLog(@"Add Afrobeat Machine");
+        [TestFlight passCheckpoint:@"Add Afrobeat Machine"];
         object = [P1ObjectFactory createAfrobeatWithCanvas:self.canvas];
         
     } else if ([identifier isEqualToString:@"sample player"]  || [identifier isEqualToString:@"samplePlayer"]) {
-        NSLog(@"Sample Player");
+        
+        NSLog(@"Add Samples Player");
+        [TestFlight passCheckpoint:@"Add Samples Player"];
         object = [P1ObjectFactory createSamplePlayerWithCanvas:self.canvas];
         
     } else if ([identifier isEqualToString:@"Note Flow"] || [identifier isEqualToString:@"noteFlow"]) {
-        NSLog(@"adding a play notes output object");
+        NSLog(@"Add Note Flow");
+        [TestFlight passCheckpoint:@"Add Note Flow"];
         object = [P1ObjectFactory createNoteFlowWithCanvas:self.canvas];
         
     } else if ([identifier isEqualToString:@"touchable"]) {
-        NSLog(@"adding a touchable input object");  
+        NSLog(@"Add Touchable");  
+        [TestFlight passCheckpoint:@"Add Touchable"];
         object = [P1ObjectFactory createTouchable:self.canvas];
     } else if ([identifier isEqualToString:@"OSCNoteArray"]) {
-        NSLog(@"adding a touchable input object");  
+        NSLog(@"Add OSC Note Array");  
+        [TestFlight passCheckpoint:@"Add OSC Note Array"];
         object = [P1ObjectFactory createOSCNoteArrayWithCanvas:self.canvas withGestureHandler:self];
         
         //UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longTapHandle:)];
@@ -177,10 +194,11 @@
         //[self.canvas.tapGesture requireGestureRecognizerToFail:longPress];
         
     } else if ([identifier isEqualToString:@"circleTouchable"]) {
-        NSLog(@"adding a circle touchable");  
+        NSLog(@"Add Circle Touchable");  
         object = [P1ObjectFactory createCircleTouchable:self.canvas];
     } else if ([identifier isEqualToString:@"multipleTouchable"]) {
-        NSLog(@"adding a circle touchable");  
+        NSLog(@"Add Multiple Touchable");  
+        [TestFlight passCheckpoint:@"Add Multiple Touchable"];
         object = [P1ObjectFactory createMultipleTouchable:self.canvas];
         
     } else {
@@ -193,7 +211,7 @@
     [self.canvas setNeedsDisplay];
     [self.myPopover dismissPopoverAnimated:NO];
     
-    [TestFlight passCheckpoint:@"Object added"];
+    //[TestFlight passCheckpoint:@"Object added"];
     
     return object;
 }
@@ -208,12 +226,14 @@
 //======== SEGUES ========
 - (IBAction)launchFeedback:(id)sender {
     [TestFlight openFeedbackView];
+    NSLog(@"Open Feedback");
+    [TestFlight passCheckpoint:@"Open Feedback"];
 }
 
 - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"AddInputObject"] || [segue.identifier isEqualToString:@"AddOutputObject"]) {
-        NSLog(@"Add gesture segue");
+        NSLog(@"Segue: Add Object");
         [segue.destinationViewController setEditViewController:self];
         
         CGPoint point;
@@ -225,7 +245,7 @@
         }
         
         if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
-            NSLog(@"YEAY");
+            //NSLog(@"YEAY");
             UIStoryboardPopoverSegue * seguePopover = (UIStoryboardPopoverSegue *) segue;
             self.myPopover = seguePopover.popoverController;
             botao.center = point;
@@ -235,7 +255,7 @@
         }
         
     } else if ([segue.identifier isEqualToString:@"GoingToPlayMode"]) {
-        NSLog(@"Going to play segue");
+       NSLog(@"Segue: Going to Play Mode");
         
         if (!self.isLeftMenuHidden) {
             [self hideLeftSideMenu];
@@ -273,7 +293,7 @@
         
     } else if ([segue.identifier isEqualToString:@"AddObjectTableView"]) {
         //#################################################################
-        
+        NSLog(@"Segue: Add Object Table View");
         [segue.destinationViewController setEditViewController:self];
         
         CGPoint point;
@@ -285,7 +305,7 @@
         }
         
         if ([segue isKindOfClass:[UIStoryboardPopoverSegue class]]) {
-            NSLog(@"YEAY");
+            //NSLog(@"YEAY");
             UIStoryboardPopoverSegue * seguePopover = (UIStoryboardPopoverSegue *) segue;
             self.myPopover = seguePopover.popoverController;
             rightButton.center = point;
@@ -297,7 +317,8 @@
         
         //#################################################################        
     } else if ([segue.identifier isEqualToString:@"ContextMenu"]) {
-        
+        NSLog(@"Segue: Note Context Menu");
+        [TestFlight passCheckpoint:@"Segue: Note Context Menu"];
         [segue.destinationViewController setEditController:self];
         
         CGPoint point;
@@ -347,7 +368,7 @@
 {
     if(gesture.numberOfTouches == 3){
         [self performSegueWithIdentifier: @"AddObjectTableView" sender:gesture];
-    } else if (gesture.numberOfTouches == 1){
+    } else if (gesture.numberOfTouches == 4){
         [self performSegueWithIdentifier: @"AddOutputObject" sender:gesture];
     }
 }
@@ -392,7 +413,7 @@
 
     self.canvas.tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(openMenuToAddObject:)];
     self.canvas.tapGesture.numberOfTapsRequired = 1;
-    self.canvas.tapGesture.numberOfTouchesRequired = 2;
+    self.canvas.tapGesture.numberOfTouchesRequired = 4;
     self.canvas.tapGesture.delegate = self.canvas;
     [self.canvas addGestureRecognizer:self.canvas.tapGesture];
     
@@ -468,13 +489,14 @@
 -(void) helpButtonAction:(id)sender
 {
     NSLog(@"Help button pressed");
+    [TestFlight passCheckpoint:@"Help Button Pressed"];
     if (self.canvas.isHelpPageHidden) {
-        if (self.isLeftMenuHidden) {
-            [self showLeftSideMenu];
-        }
-        if (self.isRightMenuHidden) {
-            [self showRightSideMenu];
-        }
+//        if (self.isLeftMenuHidden) {
+//            [self showLeftSideMenu];
+//        }
+//        if (self.isRightMenuHidden) {
+//            [self showRightSideMenu];
+//        }
         [self.canvas showHelp];        
     } else {
         [self.canvas hideHelp];
@@ -498,7 +520,7 @@
         [self showLeftSideMenu];        
     }
 
-    NSLog(@"swipe open left");
+    //NSLog(@"swipe open left");
 }
 
 -(void)swipeCloseLeftMenu:(UIGestureRecognizer* ) gesture
@@ -507,7 +529,7 @@
         [self hideLeftSideMenu];        
     }
     
-    NSLog(@"swipe close left");
+    //NSLog(@"swipe close left");
 }
 
 -(void)swipeOpenRightMenu:(UIGestureRecognizer* ) gesture
@@ -516,7 +538,7 @@
         [self showRightSideMenu];        
     }
     
-    NSLog(@"swipe open right");
+    //NSLog(@"swipe open right");
 }
 
 -(void)swipeCloseRightMenu:(UIGestureRecognizer* ) gesture
@@ -525,7 +547,7 @@
         [self hideRightSideMenu];        
     }
     
-    NSLog(@"swipe close right");
+    //NSLog(@"swipe close right");
 }
 
 #warning depois unificar isso num método "move" no InputObject

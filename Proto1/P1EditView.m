@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 FCAC. All rights reserved.
 //
 
+#define NSLog(__FORMAT__, ...) TFLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+
 #import "P1EditView.h"
 #import "P1InputObjectView.h"
 #import "P1OutputObjectView.h"
@@ -39,6 +41,8 @@
 - (void)panIcon:(UIPanGestureRecognizer *)gesture
 {
     if (gesture.state == UIGestureRecognizerStateBegan) {
+        NSLog(@"Beginning Pan Object");
+        [TestFlight passCheckpoint:@"Beginning Pan Object"];
         [self moveBinUp];
     } else if ((gesture.state == UIGestureRecognizerStateChanged)) {
         
@@ -54,6 +58,8 @@
         if ([self checkCollision:[gesture locationInView:self]]) {
             [(P1InputObjectView*)gesture.view.superview killMeNow];
         }
+        [TestFlight passCheckpoint:@"Ended Pan Object"];
+        NSLog(@"Ended Pan Object");
         [self setNeedsDisplay];
     }
 }
@@ -63,6 +69,8 @@
 {
     if (gesture.state == UIGestureRecognizerStateBegan) {
         [self moveBinUp];
+        NSLog(@"Beginning Pan Multiple Object");
+                [TestFlight passCheckpoint:@"Beginning Pan Multiple Object"];
     } else if ((gesture.state == UIGestureRecognizerStateChanged)) {
         
         CGPoint translation = [gesture translationInView:self];
@@ -77,6 +85,8 @@
         if ([self checkCollision:[gesture locationInView:self]]) {
             [(P1InputObjectView*)gesture.view.superview killMeNow];
         }
+        NSLog(@"Ended Pan Multiple Object");
+        [TestFlight passCheckpoint:@"Ended Pan Multiple Object"];
         [self setNeedsDisplay];
     }
 }
@@ -94,6 +104,8 @@
     
     if (point.x > 448 && point.x < 576 && point.y > 576) {
         result = YES;
+        NSLog(@"Moved object to Bin");
+        [TestFlight passCheckpoint:@"Moved object to Bin"];
     }
     
 //    int moreBoundsX = point.x + 50;
@@ -118,10 +130,12 @@
         
         
     } else if(gesture.state == UIGestureRecognizerStateBegan){
-        NSLog(@"Began");
+        NSLog(@"Beginning Pan Connector");
+        [TestFlight passCheckpoint:@"Beginning Pan Connector"];
         self.drawPossibilities = YES;
         self.current = (P1InputObjectView *) gesture.view.superview;
     } else if ((gesture.state == UIGestureRecognizerStateEnded)){
+        
         UIView* pickedView = [self hitTest:endPoint withEvent:nil];
         if(pickedView != self) {
             if ([pickedView isMemberOfClass:[P1IconView class]]) {
@@ -129,13 +143,17 @@
                 //pickedView.superview.backgroundColor = [UIColor greenColor];
                 P1InputObjectView * castedView = (P1InputObjectView *) gesture.view.superview;
                 [castedView connectObject:((P1InputObjectView *)pickedView.superview)];
+                [TestFlight passCheckpoint:@"Connection added"];
+                NSLog(@"Connection Added");
             }
         }
         self.startPoint = CGPointMake(-5, -5);
         self.endPoint = CGPointMake(-5, -5);
         self.drawPossibilities = NO;
         self.current = nil;
-        [TestFlight passCheckpoint:@"Connection added"];
+
+        NSLog(@"Ended Pan Connector");
+        [TestFlight passCheckpoint:@"Ended Pan Connector"];
     }
     [self setNeedsDisplay];
 }
@@ -146,6 +164,8 @@
 //    [obj removeConnections];
 //    [gesture.view.superview removeFromSuperview];
     [obj killMeNow];
+    NSLog(@"Double Tap Object");
+    [TestFlight passCheckpoint:@"Double Tap Object"];
     [self setNeedsDisplay];
 }
 
@@ -160,6 +180,8 @@
 //    [gesture.view.superview.superview removeFromSuperview];
     P1InputObjectView* obj = (P1InputObjectView*) gesture.view.superview;
     [obj killMeNow];
+    NSLog(@"Double Tap Multiple Object");
+    [TestFlight passCheckpoint:@"Double Tap Multiple Object"];
     [self setNeedsDisplay];
 }
 
@@ -173,8 +195,10 @@
     //obj.connectedTo.hasToBeDrawn = YES;
     //obj.connectedTo.connectedTo = nil;
     //obj.connectedTo = nil;
-    NSLog(@"detectou double tap no connector");
+
     [self setNeedsDisplay];
+    NSLog(@"Double Tap Connector");
+    [TestFlight passCheckpoint:@"Double Tap Connector"];
 }
 
 
@@ -208,7 +232,7 @@
     
     self.isHelpPageHidden = YES;
     
-    NSLog(@"Entrou no setup");
+    //NSLog(@"Entrou no setup");
 }
 
 - (void) showHelp
@@ -223,7 +247,8 @@
 - (void)hideHelpPage:(UITapGestureRecognizer*)gesture
 {
     [self hideHelp];
-    NSLog(@"Tap recog");
+    NSLog(@"Hide Help by Tap");
+    [TestFlight passCheckpoint:@"Hide Help by Tap"];
 }
 
 - (void) hideHelp
@@ -274,6 +299,7 @@
     self.bin.center = CGPointMake(self.bin.center.x, self.bin.center.y - 128);    
     self.bin.alpha = 1;
     [UIView commitAnimations];
+    NSLog(@"Bin Moved Up");
     
 }
 
@@ -285,7 +311,7 @@
     self.bin.center = CGPointMake(self.bin.center.x, self.bin.center.y + 128);    
     self.bin.alpha = 0;
     [UIView commitAnimations];
-    
+    NSLog(@"Bin Moved Down");
 }
 
 

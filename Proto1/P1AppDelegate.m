@@ -19,7 +19,7 @@
 	[self.audioController configureAmbientWithSampleRate:44100 numberChannels:2 mixingEnabled:YES];
 	[self.audioController setActive:YES];
 	[self.audioController print];
-    NSLog(@"Passou por aqui!");
+    NSLog(@"Beginning app...");
     #define TESTING 1
     #ifdef TESTING
     [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];

@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 FCAC. All rights reserved.
 //
 
+#define NSLog(__FORMAT__, ...) TFLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+
 #import "P1Touchable.h"
 #import "P1Utils.h"
 #import "P1IconView.h"
@@ -131,12 +133,20 @@
     if (gesture.state == UIGestureRecognizerStateBegan) {
         editable = !editable;
         [self setNeedsDisplay];
+        if (editable) {
+            NSLog(@"Editable Touchable");
+            [TestFlight passCheckpoint:@"Editable Touchable"];
+        } else {
+            NSLog(@"Non-editable Touchable");
+            [TestFlight passCheckpoint:@"Non-Editable Touchable"];
+        }
     }
 }
 
 - (void) doubleTap:(UITapGestureRecognizer *)gesture
 {
-    NSLog(@"Touchable: Double Tap");
+    NSLog(@"Duplicate Touchable");
+    
     P1Touchable * copied = [self duplicate];
     [self.canvas addSubview:copied];
     [self.canvas setNeedsDisplay];
@@ -144,17 +154,17 @@
 
 - (void) panCorners1:(UIPanGestureRecognizer *)gesture
 {
-    NSLog(@"Pan Corner 1");
+    //NSLog(@"Pan Corner 1");
 }
 
 - (void) panCorners2:(UIPanGestureRecognizer *)gesture
 {
-    NSLog(@"Pan Corner 2");        
+    //NSLog(@"Pan Corner 2");        
 }
 
 - (void) panCorners3:(UIPanGestureRecognizer *)gesture
 {
-    NSLog(@"Pan Corner 3");
+    //NSLog(@"Pan Corner 3");
     
     CGPoint translation = [gesture translationInView:self.canvas];
     
@@ -220,13 +230,13 @@
 - (void)drawRect:(CGRect)rect
 {
     if (editable) {
-        NSLog(@"Editable");
+        //NSLog(@"Editable");
         //[self.corner1 setHidden:false];
         //[self.corner2 setHidden:false];
         [self.corner3 setHidden:false];
         //[self.corner4 setHidden:false];
     } else {
-        NSLog(@"Not Editable");
+        //NSLog(@"Not Editable");
         //[self.corner1 setHidden:true];
         //[self.corner2 setHidden:true];
         [self.corner3 setHidden:true];

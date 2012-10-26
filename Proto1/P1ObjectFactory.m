@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 FCAC. All rights reserved.
 //
 
+#define NSLog(__FORMAT__, ...) TFLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+
 #import "P1ObjectFactory.h"
 #import "P1InputObjectView.h"
 #import "P1OutputObjectView.h"
@@ -165,7 +167,7 @@
 
 +(UIView *)createNoteFlowWithCanvas:(P1EditView *)canvas
 {
-    NSLog(@"NoteFlow");
+    //NSLog(@"NoteFlow");
     P1OutputObjectView* object = [[P1OutputObjectView alloc] initWithFrame:CGRectMake(0, 0, 150, 150) relatedPatch:@"proto1.pd"];
     
     NSString* defaultIconImageSource = @"specialIconLong";
@@ -254,49 +256,51 @@
     P1InputObjectView * object;
     
     if([iconType isEqualToString:@"touch"]){
-        NSLog(@"adding a touch input object");
+        NSLog(@"Add touch input object");
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"track" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"horizontalSlide"]) {
-        NSLog(@"adding a horizontal slide input object");     
+        NSLog(@"Add horizontal slide input object");     
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"track" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"verticalSlide"]) {
-        NSLog(@"adding a vertical slide input object");       
+        NSLog(@"Add vertical slide input object");       
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"track" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeUp"]) {
-        NSLog(@"adding a swipeUp input object");  
+        NSLog(@"Add swipeUp input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeDown"]) {
-        NSLog(@"adding a swipeDown input object");  
+        NSLog(@"Add swipeDown input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeLeft"]) {
-        NSLog(@"adding a swipeLeft input object");  
+        NSLog(@"Add swipeLeft input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeRight"]) {
-        NSLog(@"adding a swipeRight input object");  
+        NSLog(@"Add swipeRight input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeDoubleUp"]) {
-        NSLog(@"adding a swipeDoubleUp input object");  
+        NSLog(@"Add swipeDoubleUp input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeDoubleDown"]) {
-        NSLog(@"adding a swipeDoubleDown input object");  
+        NSLog(@"Add swipeDoubleDown input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeDoubleLeft"]) {
-        NSLog(@"adding a swipeDoubleLeft input object");  
+        NSLog(@"Add swipeDoubleLeft input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
         
     } else if ([iconType isEqualToString:@"swipeDoubleRight"]) {
-        NSLog(@"adding a swipeDoubleRight input object");  
+        NSLog(@"Add swipeDoubleRight input object");  
         object = [[P1InputObjectView alloc] initWithFrame:defaultRect withObjectType:INPUT withIconType:iconType withConnectorType:@"trigger" withCanvas:canvas];
     }
+    
+    [TestFlight passCheckpoint:[NSString stringWithFormat:@"Added %@", iconType]];
     
     return object;
 }

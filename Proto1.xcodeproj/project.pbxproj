@@ -125,10 +125,10 @@
 		45C76C71163888E300E548A5 /* bin.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C76C6F163888E300E548A5 /* bin.png */; };
 		45C76C72163888E300E548A5 /* bin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C76C70163888E300E548A5 /* bin@2x.png */; };
 		45C76C761638B9D100E548A5 /* button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C76C751638B9D100E548A5 /* button@2x.png */; };
-		45C76C801638F15600E548A5 /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45C76C7F1638F15600E548A5 /* help@2x.png */; };
 		45CCDE4615DCAF6F004F980A /* ProximaNova-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 45CCDE4515DCAF6F004F980A /* ProximaNova-Regular.otf */; };
 		45DEC1B015DCB8AA000133F4 /* ProximaNova-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 45DEC1AE15DCB8AA000133F4 /* ProximaNova-Bold.otf */; };
 		45DEC1B115DCB8AA000133F4 /* ProximaNova-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 45DEC1AF15DCB8AA000133F4 /* ProximaNova-Semibold.otf */; };
+		45E5207C163A2EF9000E0649 /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45E5207B163A2EF9000E0649 /* help@2x.png */; };
 		45EDB44615BE50D300FD9040 /* specialConnector@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45EDB44415BE50D200FD9040 /* specialConnector@2x.png */; };
 		45EDB44B15BE6FFF00FD9040 /* trigger@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45EDB44715BE6FFE00FD9040 /* trigger@2x.png */; };
 		45EDB44C15BE6FFF00FD9040 /* triggerFlipped@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45EDB44815BE6FFE00FD9040 /* triggerFlipped@2x.png */; };
@@ -305,10 +305,10 @@
 		45C76C6F163888E300E548A5 /* bin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bin.png; sourceTree = "<group>"; };
 		45C76C70163888E300E548A5 /* bin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bin@2x.png"; sourceTree = "<group>"; };
 		45C76C751638B9D100E548A5 /* button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button@2x.png"; sourceTree = "<group>"; };
-		45C76C7F1638F15600E548A5 /* help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@2x.png"; sourceTree = "<group>"; };
 		45CCDE4515DCAF6F004F980A /* ProximaNova-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Regular.otf"; sourceTree = "<group>"; };
 		45DEC1AE15DCB8AA000133F4 /* ProximaNova-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Bold.otf"; sourceTree = "<group>"; };
 		45DEC1AF15DCB8AA000133F4 /* ProximaNova-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "ProximaNova-Semibold.otf"; sourceTree = "<group>"; };
+		45E5207B163A2EF9000E0649 /* help@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "help@2x.png"; sourceTree = "<group>"; };
 		45EDB44415BE50D200FD9040 /* specialConnector@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "specialConnector@2x.png"; sourceTree = "<group>"; };
 		45EDB44715BE6FFE00FD9040 /* trigger@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trigger@2x.png"; sourceTree = "<group>"; };
 		45EDB44815BE6FFE00FD9040 /* triggerFlipped@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "triggerFlipped@2x.png"; sourceTree = "<group>"; };
@@ -509,8 +509,8 @@
 		45A611BB15BF207700A1156F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				45E5207B163A2EF9000E0649 /* help@2x.png */,
 				45C76C751638B9D100E548A5 /* button@2x.png */,
-				45C76C7F1638F15600E548A5 /* help@2x.png */,
 				45C76C6F163888E300E548A5 /* bin.png */,
 				45C76C70163888E300E548A5 /* bin@2x.png */,
 				45209C501637A1F50032D1A9 /* inputTab@2x.png */,
@@ -760,7 +760,7 @@
 				45C76C71163888E300E548A5 /* bin.png in Resources */,
 				45C76C72163888E300E548A5 /* bin@2x.png in Resources */,
 				45C76C761638B9D100E548A5 /* button@2x.png in Resources */,
-				45C76C801638F15600E548A5 /* help@2x.png in Resources */,
+				45E5207C163A2EF9000E0649 /* help@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -917,8 +917,8 @@
 					"-lVVBasics",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "A8C7C028-5BF5-427F-A3DF-D559F9ABF590";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A8C7C028-5BF5-427F-A3DF-D559F9ABF590";
+				PROVISIONING_PROFILE = "07F77537-BE34-4D29-A70E-4E2135F48D82";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "07F77537-BE34-4D29-A70E-4E2135F48D82";
 				USER_HEADER_SEARCH_PATHS = "/Users/filipecalegario/Developer/libpd/pd-for-ios/libpd/**";
 				WRAPPER_EXTENSION = app;
 			};

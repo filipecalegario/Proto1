@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 FCAC. All rights reserved.
 //
 
+#define NSLog(__FORMAT__, ...) TFLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
+
 #import "P1PlayViewController.h"
 #import "P1InputObjectView.h"
 #import "P1IconView.h"
@@ -73,12 +75,12 @@
     //NSArray *objects = self.objectArray;
     if(self.objectArray){
         if (self.objectArray.count == 0) {
-            NSLog(@"objectArray vazio");
+            //NSLog(@"objectArray vazio");
         } else {
-            NSLog(@"objectArray não está vazio");
+            //NSLog(@"objectArray não está vazio");
         }
     } else {
-        NSLog(@"objectArray tah nulo");
+        //NSLog(@"objectArray tah nulo");
     }
     
     for (P1InputObjectView *currentObject in self.objectArray) {
@@ -419,6 +421,7 @@
 #warning Deixar isso sem tá dependende do patch!
     
     NSLog(@"Swipe Detected");
+        [TestFlight passCheckpoint:@"Swipe Detected"];
     
     NSNumber* indexacao = [NSNumber numberWithInt:gesture.direction * (gesture.numberOfTouches + 1)];
     
@@ -469,7 +472,9 @@
     //NSLog([NSString stringWithFormat:@"%i", gesture.state]);
     
     if (gesture.state == UIGestureRecognizerStateBegan) {
-        NSLog(@"PlayTouchableAction!"); 
+        NSLog(@"Trigged PlayTouchable by Tap"); 
+        [TestFlight passCheckpoint:@"Returning to Edit"];
+        
         
         //[self playNote:playTouchable];
         [self runActions:playTouchable.actions withVisualFeedback:NO];
@@ -563,6 +568,8 @@
                 
                 //[self playNote:pickedTouchable];
                 [self runActions:pickedTouchable.actions withVisualFeedback:NO];
+                NSLog(@"Trigged PlayTouchable by Pan On Everything");
+                [TestFlight passCheckpoint:@"Trigged PlayTouchable by Pan On Everything"];
                 
                 self.currentPannedView = pickedView;
                 //self.currentPannedView.backgroundColor = [UIColor brownColor];
@@ -611,7 +618,7 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"viewDidLoad");
+    //NSLog(@"viewDidLoad");
     
     [super viewDidLoad];
     
@@ -623,15 +630,29 @@
     
     [self loadPatches:self.patchesToLoad];
     
+    [self.navigationItem.backBarButtonItem setAction:@selector(tellMeWhenBack:)];
+    
+}
+
+- (void) viewWillDisappear:(BOOL)animated
+{
+    NSLog(@"Return to Edit Mode");
+    [TestFlight passCheckpoint:@"Returning to Edit"];
+}
+
+- (void)tellMeWhenBack:(id)sender
+{
+    
 }
 
 - (void)viewDidUnload
 {
+    
     [self setPlayArea:nil];
     [super viewDidUnload];
     //    [PdBase closeFile:patch];
     [PdBase setDelegate:nil];
-    [TestFlight passCheckpoint:@"Returning to Edit"];
+    
     [patches removeAllObjects];
 }
 
@@ -661,7 +682,7 @@
     [PdBase setDelegate:dispatcher];
     
     for (NSString* patchName in patchesNames) {
-        NSLog([NSString stringWithFormat:@"Carregando patch: %@", patchName]);
+        //NSLog([NSString stringWithFormat:@"Carregando patch: %@", patchName]);
         if (![patchName isEqualToString:@"NotPD"]) {
             PdFile* thisPatch = [PdFile openFileNamed:patchName path:[[NSBundle mainBundle] bundlePath]];
             [patches addObject:thisPatch];
@@ -669,7 +690,7 @@
                 NSLog(@"Failed to open patch!");
             } else {
                 NSString* object = [[NSNumber numberWithInt:[thisPatch dollarZero]] stringValue];
-                NSLog(object);
+                //NSLog(object);
                 [self.patchesDictionary setObject:object forKey:patchName];
             }
         }
@@ -814,7 +835,7 @@
     
     // send the OSC message
     [self.outPort sendThisMessage:newMsg];
-    NSLog(@"message sent");
+    //NSLog(@"message sent");
 }
 
 -(void)receivedOSCMessage:(OSCMessage *)m
