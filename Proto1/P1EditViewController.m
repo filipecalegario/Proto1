@@ -484,6 +484,8 @@
     [self.magicAreaRight setBackgroundColor:[UIColor clearColor]];
     [self.canvas moveBinDown];
     
+    //self.canvas.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bgNoise"]];
+    
 }
 
 -(void) helpButtonAction:(id)sender
