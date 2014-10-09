@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="DPJ-Lv-AV6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="12F45" targetRuntime="iOS.CocoaTouch.iPad" propertyAccessControl="none" initialViewController="DPJ-Lv-AV6">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
-        <development version="4300" defaultVersion="4200" identifier="xcode"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Edit View Controller - Edit Mode-->
         <scene sceneID="4">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="P1EditViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="660"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="lSZ-4H-Duy" customClass="P1EditView">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="660"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="MDK-50-pxG">
-                                        <rect key="frame" x="898" y="17" width="50" height="100"/>
+                                        <rect key="frame" x="897" y="66" width="50" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="outputTab@2x.png">
+                                        <state key="normal" image="outputTab.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -35,10 +33,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="FwV-MX-fvb">
-                                        <rect key="frame" x="77" y="17" width="50" height="100"/>
+                                        <rect key="frame" x="77" y="66" width="50" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="input" image="inputTab@2x.png">
+                                        <state key="normal" title="input" image="inputTab.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -51,7 +49,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" id="tHj-fl-ndc">
-                                        <rect key="frame" x="17" y="659" width="29" height="29"/>
+                                        <rect key="frame" x="17" y="659" width="22" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal">
@@ -68,7 +66,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" id="nLU-X4-Ngu">
-                                        <rect key="frame" x="978" y="659" width="29" height="29"/>
+                                        <rect key="frame" x="978" y="659" width="22" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal">
@@ -85,7 +83,7 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" id="lC7-iD-PsE">
-                                        <rect key="frame" x="955" y="620" width="29" height="29"/>
+                                        <rect key="frame" x="955" y="620" width="22" height="22"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal">
@@ -102,14 +100,14 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" id="kNg-Dx-84e">
-                                        <rect key="frame" x="0.0" y="17" width="110" height="670"/>
+                                        <rect key="frame" x="0.0" y="66" width="110" height="670"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ahl-Sf-dFz">
                                                 <rect key="frame" x="10" y="20" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="touchable" image="button@2x.png">
+                                                <state key="normal" title="touchable" image="button.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -121,7 +119,7 @@
                                                 <rect key="frame" x="10" y="88" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="swipeUp" image="swipeUp@2x.png">
+                                                <state key="normal" title="swipeUp" image="swipeUp.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -134,7 +132,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <gestureRecognizers/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="swipeDown" image="swipeDown@2x.png">
+                                                <state key="normal" title="swipeDown" image="swipeDown.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -146,7 +144,7 @@
                                                 <rect key="frame" x="10" y="224" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="swipeRight" image="swipeRight@2x.png">
+                                                <state key="normal" title="swipeRight" image="swipeRight.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -159,11 +157,11 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <gestureRecognizers/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="swipeLeft" image="swipeLeft@2x.png">
+                                                <state key="normal" title="swipeLeft" image="swipeLeft.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
-                                                <state key="selected" image="swipeLeft@2x.png"/>
-                                                <state key="highlighted" image="swipeLeft@2x.png">
+                                                <state key="selected" image="swipeLeft.png"/>
+                                                <state key="highlighted" image="swipeLeft.png">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
@@ -171,7 +169,7 @@
                                                 <rect key="frame" x="10" y="360" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="swipeDoubleUp" image="swipeDoubleUp@2x.png">
+                                                <state key="normal" title="swipeDoubleUp" image="swipeDoubleUp.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -183,7 +181,7 @@
                                                 <rect key="frame" x="10" y="428" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="swipeDoubleDown" image="swipeDoubleDown@2x.png">
+                                                <state key="normal" title="swipeDoubleDown" image="swipeDoubleDown.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -195,7 +193,7 @@
                                                 <rect key="frame" x="10" y="496" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="swipeDoubleRight" image="swipeDoubleRight@2x.png">
+                                                <state key="normal" title="swipeDoubleRight" image="swipeDoubleRight.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -207,7 +205,7 @@
                                                 <rect key="frame" x="10" y="564" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="swipeDoubleLeft" image="swipeDoubleLeft@2x.png">
+                                                <state key="normal" title="swipeDoubleLeft" image="swipeDoubleLeft.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -219,7 +217,7 @@
                                                 <rect key="frame" x="70" y="156" width="30" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                                <state key="normal" title="Touch" image="trigger.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -231,7 +229,7 @@
                                                 <rect key="frame" x="70" y="224" width="30" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                                <state key="normal" title="Touch" image="trigger.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -243,7 +241,7 @@
                                                 <rect key="frame" x="70" y="88" width="30" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                                <state key="normal" title="Touch" image="trigger.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -255,7 +253,7 @@
                                                 <rect key="frame" x="70" y="20" width="30" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                                <state key="normal" title="Touch" image="trigger.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -267,7 +265,7 @@
                                                 <rect key="frame" x="70" y="564" width="30" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                                <state key="normal" title="Touch" image="trigger.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -279,7 +277,7 @@
                                                 <rect key="frame" x="70" y="292" width="30" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                                <state key="normal" title="Touch" image="trigger.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -291,7 +289,7 @@
                                                 <rect key="frame" x="70" y="360" width="30" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                                <state key="normal" title="Touch" image="trigger.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -303,7 +301,7 @@
                                                 <rect key="frame" x="70" y="428" width="30" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                                <state key="normal" title="Touch" image="trigger.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -315,7 +313,7 @@
                                                 <rect key="frame" x="70" y="496" width="30" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                                <state key="normal" title="Touch" image="trigger.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -327,14 +325,14 @@
                                         <color key="backgroundColor" red="0.66395828400307533" green="0.68767107664233584" blue="0.60764040148483178" alpha="0.5" colorSpace="deviceRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="Od8-de-JUF">
-                                        <rect key="frame" x="915" y="17" width="110" height="670"/>
+                                        <rect key="frame" x="914" y="66" width="110" height="670"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="t2T-9p-x5R">
                                                 <rect key="frame" x="40" y="20" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Play Note" image="notesArray@2x.png">
+                                                <state key="normal" title="Play Note" image="notesArray.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -346,7 +344,7 @@
                                                 <rect key="frame" x="40" y="156" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Afrobeat" image="afrobeatMachine@2x.png">
+                                                <state key="normal" title="Afrobeat" image="afrobeatMachine.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -354,11 +352,12 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" id="L8B-qI-Jbs">
-                                                <rect key="frame" x="40" y="88" width="60" height="60"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="L8B-qI-Jbs">
+                                                <rect key="frame" x="40" y="87" width="60" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <state key="normal" title="sample player" backgroundImage="samplesPlayer@2x.png">
+                                                <state key="normal" title="sample player" image="samplesPlayer.png">
+                                                    <color key="titleColor" red="0.2826089036889386" green="0.25644702935922575" blue="0.43021824048913049" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <state key="highlighted">
@@ -369,7 +368,7 @@
                                                 <rect key="frame" x="11" y="156" width="30" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Touch" image="triggerFlipped@2x.png">
+                                                <state key="normal" title="Touch" image="triggerFlipped.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -381,7 +380,7 @@
                                                 <rect key="frame" x="11" y="88" width="30" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Touch" image="triggerFlipped@2x.png">
+                                                <state key="normal" title="Touch" image="triggerFlipped.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -393,7 +392,7 @@
                                                 <rect key="frame" x="11" y="20" width="30" height="60"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                <state key="normal" title="Touch" image="triggerFlipped@2x.png">
+                                                <state key="normal" title="Touch" image="triggerFlipped.png">
                                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
@@ -405,12 +404,12 @@
                                         <color key="backgroundColor" red="0.66395828400000001" green="0.68767107660000004" blue="0.60764040149999998" alpha="0.5" colorSpace="deviceRGB"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="oku-55-0IL">
-                                        <rect key="frame" x="97" y="17" width="103" height="100"/>
+                                        <rect key="frame" x="77" y="66" width="103" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
                                     <view contentMode="scaleToFill" id="xDu-2e-mEW">
-                                        <rect key="frame" x="829" y="17" width="100" height="100"/>
+                                        <rect key="frame" x="847" y="66" width="100" height="100"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                     </view>
@@ -463,28 +462,23 @@
                         <outlet property="touchable" destination="ahl-Sf-dFz" id="geC-QR-nl6"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1101" y="-69"/>
         </scene>
         <!--Add Object Menu View Controller-->
         <scene sceneID="Av5-0g-bEe">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IVn-19-jSd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="KLh-Dh-Taz" customClass="P1AddObjectMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="o00-vw-Lpl">
-                        <rect key="frame" x="0.0" y="20" width="1024" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="T2J-Cg-pDK">
                                 <rect key="frame" x="20" y="20" width="150" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Touch">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="addObject:" destination="KLh-Dh-Taz" eventType="touchUpInside" id="fwa-6p-JsW"/>
@@ -493,13 +487,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vD2-0c-sdx">
                                 <rect key="frame" x="20" y="68" width="150" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Horizontal Slide">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="addObject:" destination="KLh-Dh-Taz" eventType="touchUpInside" id="RRC-DU-zOO"/>
@@ -508,13 +497,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="RGG-xG-vvU">
                                 <rect key="frame" x="20" y="116" width="150" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Vertical Slide">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="addObject:" destination="KLh-Dh-Taz" eventType="touchUpInside" id="0Y4-Gx-JTe"/>
@@ -523,13 +507,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="M1R-sJ-Tgw">
                                 <rect key="frame" x="20" y="164" width="150" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Play Notes">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="addObject:" destination="SDK-xl-LMS" eventType="touchUpInside" id="A48-yh-CMc"/>
@@ -539,13 +518,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="jqZ-5h-o3J">
                                 <rect key="frame" x="20" y="212" width="150" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Change Pitch">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="addObject:" destination="KLh-Dh-Taz" eventType="touchUpInside" id="5PZ-gu-m1R"/>
@@ -555,13 +529,8 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="vNq-yy-gqW">
                                 <rect key="frame" x="20" y="260" width="150" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Change Duration">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="addObject:" destination="KLh-Dh-Taz" eventType="touchUpInside" id="3IJ-zH-B4j"/>
@@ -574,16 +543,16 @@
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="190" height="320"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IVn-19-jSd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1091" y="863"/>
         </scene>
         <!--Context Menu View Controller-->
         <scene sceneID="eIf-gV-S7z">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pya-3p-UMx" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="pwb-LT-TUM" customClass="P1ContextMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="51c-aT-xJJ">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="828"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" tag="60" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="3ph-pP-d6M">
@@ -785,20 +754,20 @@
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="142" height="347"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pya-3p-UMx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2322" y="-887"/>
         </scene>
         <!--Play View Controller - Play Mode-->
         <scene sceneID="CTQ-w2-33g">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="mR5-Io-ccT" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="Hsn-LB-GQh" customClass="P1PlayViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Jtv-qx-qsX">
-                        <rect key="frame" x="0.0" y="64" width="1024" height="660"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" id="JHB-ZF-XM6" customClass="P1PlayView">
-                                <rect key="frame" x="0.0" y="0.0" width="1024" height="660"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.87843143939971924" green="0.90980398654937744" blue="0.80392163991928101" alpha="1" colorSpace="deviceRGB"/>
                             </view>
@@ -813,23 +782,23 @@
                         <outlet property="playArea" destination="JHB-ZF-XM6" id="V1L-nx-KMD"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mR5-Io-ccT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2313" y="-51"/>
         </scene>
         <!--Add Object Menu View Controller-->
         <scene sceneID="K1o-pF-bXP">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jj5-ti-lbV" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="SDK-xl-LMS" customClass="P1AddObjectMenuViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hWX-DE-6KR">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="828"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wjT-fa-Ayh">
                                 <rect key="frame" x="216" y="88" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="touch" image="touch@2x.png">
+                                <state key="normal" title="touch" image="touch.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -844,7 +813,7 @@
                                 <rect key="frame" x="216" y="156" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="horizontalSlide" image="horizontalSlide@2x.png">
+                                <state key="normal" title="horizontalSlide" image="horizontalSlide.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -859,7 +828,7 @@
                                 <rect key="frame" x="276" y="88" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="track@2x.png">
+                                <state key="normal" title="Touch" image="track.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -871,7 +840,7 @@
                                 <rect key="frame" x="216" y="20" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="touchable" image="touchable@2x.png">
+                                <state key="normal" title="touchable" image="touchable.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -886,7 +855,7 @@
                                 <rect key="frame" x="276" y="20" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                <state key="normal" title="Touch" image="trigger.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -898,7 +867,7 @@
                                 <rect key="frame" x="314" y="20" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="multipleTouchable" image="multipleTouchable@2x.png">
+                                <state key="normal" title="multipleTouchable" image="multipleTouchable.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -913,7 +882,7 @@
                                 <rect key="frame" x="442" y="222" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Note Flow" image="notesFlow@2x.png">
+                                <state key="normal" title="Note Flow" image="notesFlow.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -928,7 +897,7 @@
                                 <rect key="frame" x="216" y="224" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="verticalSlide" image="verticalSlide@2x.png">
+                                <state key="normal" title="verticalSlide" image="verticalSlide.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -943,7 +912,7 @@
                                 <rect key="frame" x="276" y="156" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="track@2x.png">
+                                <state key="normal" title="Touch" image="track.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -955,7 +924,7 @@
                                 <rect key="frame" x="276" y="224" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="track@2x.png">
+                                <state key="normal" title="Touch" image="track.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -967,7 +936,7 @@
                                 <rect key="frame" x="412" y="224" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="trackFlipped@2x.png">
+                                <state key="normal" title="Touch" image="trackFlipped.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -979,7 +948,7 @@
                                 <rect key="frame" x="20" y="20" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="swipeUp" image="swipeUp@2x.png">
+                                <state key="normal" title="swipeUp" image="swipeUp.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -994,7 +963,7 @@
                                 <rect key="frame" x="20" y="88" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="swipeDown" image="swipeDown@2x.png">
+                                <state key="normal" title="swipeDown" image="swipeDown.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1009,7 +978,7 @@
                                 <rect key="frame" x="80" y="20" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                <state key="normal" title="Touch" image="trigger.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1021,7 +990,7 @@
                                 <rect key="frame" x="20" y="224" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="swipeRight" image="swipeRight@2x.png">
+                                <state key="normal" title="swipeRight" image="swipeRight.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1036,7 +1005,7 @@
                                 <rect key="frame" x="80" y="224" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                <state key="normal" title="Touch" image="trigger.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1048,7 +1017,7 @@
                                 <rect key="frame" x="20" y="156" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="swipeLeft" image="swipeLeft@2x.png">
+                                <state key="normal" title="swipeLeft" image="swipeLeft.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1063,7 +1032,7 @@
                                 <rect key="frame" x="80" y="88" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                <state key="normal" title="Touch" image="trigger.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1075,7 +1044,7 @@
                                 <rect key="frame" x="80" y="156" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                <state key="normal" title="Touch" image="trigger.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1087,7 +1056,7 @@
                                 <rect key="frame" x="118" y="20" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="swipeDoubleUp" image="swipeDoubleUp@2x.png">
+                                <state key="normal" title="swipeDoubleUp" image="swipeDoubleUp.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1102,7 +1071,7 @@
                                 <rect key="frame" x="118" y="88" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="swipeDoubleDown" image="swipeDoubleDown@2x.png">
+                                <state key="normal" title="swipeDoubleDown" image="swipeDoubleDown.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1117,7 +1086,7 @@
                                 <rect key="frame" x="178" y="20" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                <state key="normal" title="Touch" image="trigger.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1129,7 +1098,7 @@
                                 <rect key="frame" x="118" y="224" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="swipeDoubleRight" image="swipeDoubleRight@2x.png">
+                                <state key="normal" title="swipeDoubleRight" image="swipeDoubleRight.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1144,7 +1113,7 @@
                                 <rect key="frame" x="178" y="224" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                <state key="normal" title="Touch" image="trigger.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1156,7 +1125,7 @@
                                 <rect key="frame" x="118" y="156" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="swipeDoubleLeft" image="swipeDoubleLeft@2x.png">
+                                <state key="normal" title="swipeDoubleLeft" image="swipeDoubleLeft.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1171,7 +1140,7 @@
                                 <rect key="frame" x="178" y="88" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                <state key="normal" title="Touch" image="trigger.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1183,7 +1152,7 @@
                                 <rect key="frame" x="178" y="156" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="trigger@2x.png">
+                                <state key="normal" title="Touch" image="trigger.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1195,7 +1164,7 @@
                                 <rect key="frame" x="442" y="155" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="OSCNoteArray" image="OSCNotesArray@2x.png">
+                                <state key="normal" title="OSCNoteArray" image="OSCNotesArray.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1210,7 +1179,7 @@
                                 <rect key="frame" x="412" y="155" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="triggerFlipped@2x.png">
+                                <state key="normal" title="Touch" image="triggerFlipped.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1222,7 +1191,7 @@
                                 <rect key="frame" x="442" y="87" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Play Note" image="notesArray@2x.png">
+                                <state key="normal" title="Play Note" image="notesArray.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1237,7 +1206,7 @@
                                 <rect key="frame" x="412" y="87" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="triggerFlipped@2x.png">
+                                <state key="normal" title="Touch" image="triggerFlipped.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1249,7 +1218,7 @@
                                 <rect key="frame" x="344" y="155" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Afrobeat" image="afrobeatMachine@2x.png">
+                                <state key="normal" title="Afrobeat" image="afrobeatMachine.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1264,7 +1233,7 @@
                                 <rect key="frame" x="314" y="155" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="triggerFlipped@2x.png">
+                                <state key="normal" title="Touch" image="triggerFlipped.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1276,7 +1245,7 @@
                                 <rect key="frame" x="344" y="224" width="60" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="sample player" backgroundImage="samplesPlayer@2x.png">
+                                <state key="normal" title="sample player" backgroundImage="samplesPlayer.png">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -1290,7 +1259,7 @@
                                 <rect key="frame" x="314" y="224" width="30" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Touch" image="triggerFlipped@2x.png">
+                                <state key="normal" title="Touch" image="triggerFlipped.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1304,13 +1273,13 @@
                     </view>
                     <value key="contentSizeForViewInPopover" type="size" width="522" height="304"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jj5-ti-lbV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2313" y="863"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="bIK-5J-hGy">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qRa-42-k0W" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="DPJ-Lv-AV6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="vGf-2I-kZv">
@@ -1322,16 +1291,16 @@
                         <segue destination="2" kind="relationship" relationship="rootViewController" id="7mt-BK-4QK"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qRa-42-k0W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-322" y="-146"/>
         </scene>
         <!--Add Object Table View Controller - Add object-->
         <scene sceneID="s3w-oq-g7z">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Uny-4t-OHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController title="Add object" id="mZf-za-28q" customClass="P1AddObjectTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="gW1-EW-qTP">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="748"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="828"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
@@ -1341,367 +1310,351 @@
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="touchable" textLabel="u5C-6E-MVz" imageView="A09-uT-89v" rowHeight="50" style="IBUITableViewCellStyleDefault" id="eta-jl-pCd">
                                         <rect key="frame" x="0.0" y="22" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="eta-jl-pCd" id="kpe-Mw-TAU">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Touchable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="u5C-6E-MVz">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="touchable@2x.png" id="A09-uT-89v">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="touchable.png" id="A09-uT-89v">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="multipleTouchable" textLabel="0u5-Ut-sSx" imageView="oq7-lI-WcC" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Wpy-EQ-3u8">
                                         <rect key="frame" x="0.0" y="72" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wpy-EQ-3u8" id="Q5W-1y-STY">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Multiple Touchable" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="0u5-Ut-sSx">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="touchable@2x.png" id="oq7-lI-WcC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="touchable.png" id="oq7-lI-WcC">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="swipeUp" textLabel="Z0T-S2-vfY" imageView="DKO-86-xdI" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Ym8-wv-fwe">
                                         <rect key="frame" x="0.0" y="122" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ym8-wv-fwe" id="Mte-dC-bZN">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Swipe Up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z0T-S2-vfY">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeUp@2x.png" id="DKO-86-xdI">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeUp.png" id="DKO-86-xdI">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="swipeDown" textLabel="tGq-Fx-sMF" imageView="ELM-J9-mJs" rowHeight="50" style="IBUITableViewCellStyleDefault" id="0RZ-fi-Ost">
                                         <rect key="frame" x="0.0" y="172" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0RZ-fi-Ost" id="QRS-8j-dJE">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Swipe Down" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tGq-Fx-sMF">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeDown@2x.png" id="ELM-J9-mJs">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeDown.png" id="ELM-J9-mJs">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="swipeLeft" textLabel="22E-9r-huF" imageView="dfG-TA-01U" rowHeight="50" style="IBUITableViewCellStyleDefault" id="xZd-VM-U5A">
                                         <rect key="frame" x="0.0" y="222" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="xZd-VM-U5A" id="dI9-Sg-EqU">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Swipe Left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="22E-9r-huF">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeLeft@2x.png" id="dfG-TA-01U">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeLeft.png" id="dfG-TA-01U">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="swipeRight" textLabel="GJH-u3-cO7" imageView="UWm-gV-nzC" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Een-YQ-u91">
                                         <rect key="frame" x="0.0" y="272" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Een-YQ-u91" id="6OF-ST-ehm">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Swipe Right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GJH-u3-cO7">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeRight@2x.png" id="UWm-gV-nzC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeRight.png" id="UWm-gV-nzC">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="swipeDoubleUp" textLabel="FjC-up-bjO" imageView="ssg-eO-i8o" rowHeight="50" style="IBUITableViewCellStyleDefault" id="H62-81-aDW">
                                         <rect key="frame" x="0.0" y="322" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="H62-81-aDW" id="0PO-Qm-QjL">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Double Swipe Up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="FjC-up-bjO">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeDoubleUp@2x.png" id="ssg-eO-i8o">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeDoubleUp.png" id="ssg-eO-i8o">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="swipeDoubleDown" textLabel="Cii-3j-6UC" imageView="xGr-eB-ujQ" rowHeight="50" style="IBUITableViewCellStyleDefault" id="4uN-da-3Aa">
                                         <rect key="frame" x="0.0" y="372" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4uN-da-3Aa" id="BNq-gb-BJY">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Double Swipe Down" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Cii-3j-6UC">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeDoubleDown@2x.png" id="xGr-eB-ujQ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeDoubleDown.png" id="xGr-eB-ujQ">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="swipeDoubleLeft" textLabel="mnO-fZ-MKt" imageView="ieq-o1-cGk" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Dze-ay-8L0">
                                         <rect key="frame" x="0.0" y="422" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Dze-ay-8L0" id="Tjl-GR-HTS">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Double Swipe Left" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mnO-fZ-MKt">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeDoubleLeft@2x.png" id="ieq-o1-cGk">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeDoubleLeft.png" id="ieq-o1-cGk">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.87843143939971924" green="0.90980398654937744" blue="0.80392163991928101" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="swipeDoubleRight" textLabel="34U-FQ-ZBR" imageView="FT8-dq-5Mq" rowHeight="50" style="IBUITableViewCellStyleDefault" id="0WS-DD-et0">
                                         <rect key="frame" x="0.0" y="472" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0WS-DD-et0" id="KgG-TT-r8i">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Double Swipe Right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="34U-FQ-ZBR">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeDoubleRight@2x.png" id="FT8-dq-5Mq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="swipeDoubleRight.png" id="FT8-dq-5Mq">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="touch" textLabel="7RG-ua-sFC" imageView="I3h-hr-nzC" rowHeight="50" style="IBUITableViewCellStyleDefault" id="UEy-0H-uvR">
                                         <rect key="frame" x="0.0" y="522" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="UEy-0H-uvR" id="QwX-d0-ks4">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Touch" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7RG-ua-sFC">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="touch@2x.png" id="I3h-hr-nzC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="touch.png" id="I3h-hr-nzC">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="horizontalSlide" textLabel="Yhc-Vw-JxA" imageView="tze-RF-ZGv" rowHeight="50" style="IBUITableViewCellStyleDefault" id="4vD-aQ-MHu">
                                         <rect key="frame" x="0.0" y="572" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="4vD-aQ-MHu" id="TFr-f1-Hos">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Horizontal Slide" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Yhc-Vw-JxA">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="horizontalSlide@2x.png" id="tze-RF-ZGv">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="horizontalSlide.png" id="tze-RF-ZGv">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="0.0" reuseIdentifier="verticalSlide" textLabel="2pg-2S-8Oh" imageView="F0Y-Rj-HGA" rowHeight="50" style="IBUITableViewCellStyleDefault" id="dR9-Ut-Kfz">
-                                        <rect key="frame" x="0.0" y="622" width="1024" height="51"/>
+                                        <rect key="frame" x="0.0" y="622" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dR9-Ut-Kfz" id="fJW-WR-iPa">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Vertical Slide" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2pg-2S-8Oh">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="verticalSlide@2x.png" id="F0Y-Rj-HGA">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="verticalSlide.png" id="F0Y-Rj-HGA">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection headerTitle="Output" id="9O3-Dx-Qfa">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="notesArray" textLabel="j7e-JS-ooC" imageView="Qxg-si-IOw" rowHeight="50" style="IBUITableViewCellStyleDefault" id="szT-Oc-nyY">
-                                        <rect key="frame" x="0.0" y="695" width="1024" height="50"/>
+                                        <rect key="frame" x="0.0" y="694" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="szT-Oc-nyY" id="n47-ff-gbi">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Notes Array" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="j7e-JS-ooC">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="specialIcon@2x.png" id="Qxg-si-IOw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="specialIcon.png" id="Qxg-si-IOw">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.87843143939971924" green="0.90980398654937744" blue="0.80392163991928101" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="OSCNoteArray" textLabel="tjb-mx-3Bq" imageView="ZFU-YT-o7o" rowHeight="50" style="IBUITableViewCellStyleDefault" id="PK5-Dk-OyL">
-                                        <rect key="frame" x="0.0" y="745" width="1024" height="50"/>
+                                        <rect key="frame" x="0.0" y="744" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PK5-Dk-OyL" id="I9B-ig-rmr">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="OSC Note Array" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tjb-mx-3Bq">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="specialIcon@2x.png" id="ZFU-YT-o7o">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="specialIcon.png" id="ZFU-YT-o7o">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.87843143940000001" green="0.90980398650000005" blue="0.80392163989999998" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="afrobeat" textLabel="7wf-9E-xIJ" imageView="NNd-Qz-olh" rowHeight="50" style="IBUITableViewCellStyleDefault" id="VsA-eI-VUZ">
-                                        <rect key="frame" x="0.0" y="795" width="1024" height="50"/>
+                                        <rect key="frame" x="0.0" y="794" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VsA-eI-VUZ" id="iKC-Gi-KVj">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Afrobeat Machine" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="7wf-9E-xIJ">
-                                                    <rect key="frame" x="59" y="0.0" width="955" height="49"/>
+                                                    <rect key="frame" x="79" y="0.0" width="930" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="specialIcon@2x.png" id="NNd-Qz-olh">
-                                                    <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="specialIcon.png" id="NNd-Qz-olh">
+                                                    <rect key="frame" x="15" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.87843143939971924" green="0.90980398654937744" blue="0.80392163991928101" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="samplePlayer" textLabel="oDy-Se-g8c" imageView="b8H-mt-39h" rowHeight="50" style="IBUITableViewCellStyleDefault" id="pJZ-Lb-WVa">
-                                        <rect key="frame" x="0.0" y="845" width="1024" height="50"/>
+                                        <rect key="frame" x="0.0" y="844" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pJZ-Lb-WVa" id="gez-km-pW3">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1712,19 +1665,18 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="specialIcon@2x.png" id="b8H-mt-39h">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="specialIcon.png" id="b8H-mt-39h">
                                                     <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.87843143939971924" green="0.90980398654937744" blue="0.80392163991928101" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noteFlow" textLabel="tg2-NH-NnK" imageView="23d-Rq-JDW" rowHeight="50" style="IBUITableViewCellStyleDefault" id="Th0-zZ-wH0">
-                                        <rect key="frame" x="0.0" y="895" width="1024" height="51"/>
+                                        <rect key="frame" x="0.0" y="894" width="1024" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Th0-zZ-wH0" id="t3t-V7-iO4">
                                             <rect key="frame" x="0.0" y="0.0" width="1024" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -1735,13 +1687,12 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
-                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="specialIcon@2x.png" id="23d-Rq-JDW">
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="specialIcon.png" id="23d-Rq-JDW">
                                                     <rect key="frame" x="0.0" y="0.0" width="49" height="49"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        </view>
+                                        </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.87843143939971924" green="0.90980398654937744" blue="0.80392163991928101" alpha="1" colorSpace="deviceRGB"/>
                                     </tableViewCell>
                                 </cells>
@@ -1754,40 +1705,41 @@
                     </tableView>
                     <value key="contentSizeForViewInPopover" type="size" width="270" height="300"/>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uny-4t-OHJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-8" y="809"/>
         </scene>
     </scenes>
     <resources>
-        <image name="OSCNotesArray@2x.png" width="122" height="122"/>
-        <image name="afrobeatMachine@2x.png" width="122" height="122"/>
-        <image name="button@2x.png" width="202" height="202"/>
-        <image name="horizontalSlide@2x.png" width="202" height="202"/>
-        <image name="inputTab@2x.png" width="101" height="201"/>
-        <image name="multipleTouchable@2x.png" width="250" height="250"/>
-        <image name="notesArray@2x.png" width="122" height="122"/>
-        <image name="notesFlow@2x.png" width="122" height="122"/>
-        <image name="outputTab@2x.png" width="101" height="201"/>
-        <image name="samplesPlayer@2x.png" width="122" height="122"/>
-        <image name="specialIcon@2x.png" width="100" height="100"/>
-        <image name="swipeDoubleDown@2x.png" width="202" height="202"/>
-        <image name="swipeDoubleLeft@2x.png" width="202" height="202"/>
-        <image name="swipeDoubleRight@2x.png" width="202" height="202"/>
-        <image name="swipeDoubleUp@2x.png" width="202" height="202"/>
-        <image name="swipeDown@2x.png" width="202" height="202"/>
-        <image name="swipeLeft@2x.png" width="202" height="202"/>
-        <image name="swipeRight@2x.png" width="202" height="202"/>
-        <image name="swipeUp@2x.png" width="202" height="202"/>
-        <image name="touch@2x.png" width="202" height="202"/>
-        <image name="touchable@2x.png" width="202" height="202"/>
-        <image name="track@2x.png" width="100" height="200"/>
-        <image name="trackFlipped@2x.png" width="100" height="200"/>
-        <image name="trigger@2x.png" width="100" height="200"/>
-        <image name="triggerFlipped@2x.png" width="100" height="200"/>
-        <image name="verticalSlide@2x.png" width="202" height="202"/>
+        <image name="OSCNotesArray.png" width="61" height="61"/>
+        <image name="afrobeatMachine.png" width="61" height="61"/>
+        <image name="button.png" width="101" height="101"/>
+        <image name="horizontalSlide.png" width="101" height="101"/>
+        <image name="inputTab.png" width="51" height="101"/>
+        <image name="multipleTouchable.png" width="125" height="125"/>
+        <image name="notesArray.png" width="61" height="61"/>
+        <image name="notesFlow.png" width="61" height="61"/>
+        <image name="outputTab.png" width="51" height="101"/>
+        <image name="samplesPlayer.png" width="61" height="61"/>
+        <image name="specialIcon.png" width="50" height="50"/>
+        <image name="swipeDoubleDown.png" width="101" height="101"/>
+        <image name="swipeDoubleLeft.png" width="101" height="101"/>
+        <image name="swipeDoubleRight.png" width="101" height="101"/>
+        <image name="swipeDoubleUp.png" width="101" height="101"/>
+        <image name="swipeDown.png" width="101" height="101"/>
+        <image name="swipeLeft.png" width="101" height="101"/>
+        <image name="swipeRight.png" width="101" height="101"/>
+        <image name="swipeUp.png" width="101" height="101"/>
+        <image name="touch.png" width="101" height="101"/>
+        <image name="touchable.png" width="101" height="101"/>
+        <image name="track.png" width="50" height="100"/>
+        <image name="trackFlipped.png" width="50" height="100"/>
+        <image name="trigger.png" width="50" height="100"/>
+        <image name="triggerFlipped.png" width="50" height="100"/>
+        <image name="verticalSlide.png" width="101" height="101"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
+        <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation" orientation="landscapeRight"/>
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>

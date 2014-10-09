@@ -56,7 +56,7 @@
 		45436DF21607AE27009A4A49 /* changePitch.png in Resources */ = {isa = PBXBuildFile; fileRef = 45436DD31607AE27009A4A49 /* changePitch.png */; };
 		45436DF31607AE27009A4A49 /* playNote.png in Resources */ = {isa = PBXBuildFile; fileRef = 45436DD41607AE27009A4A49 /* playNote.png */; };
 		45436DF41607AE27009A4A49 /* playNotes.png in Resources */ = {isa = PBXBuildFile; fileRef = 45436DD51607AE27009A4A49 /* playNotes.png */; };
-		45436DF71607AED1009A4A49 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45436DF61607AED1009A4A49 /* libTestFlight.a */; };
+		45436DF71607AED1009A4A49 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 45436DF61607AED1009A4A49 /* libTestFlight.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		45463EDA15E41796000A225C /* P1CircleTouchable.m in Sources */ = {isa = PBXBuildFile; fileRef = 45463ED915E41796000A225C /* P1CircleTouchable.m */; };
 		454A690615B9F101009BEAAC /* swipeUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 454A68FD15B9F101009BEAAC /* swipeUp@2x.png */; };
 		454A690715B9F101009BEAAC /* swipeDown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 454A68FE15B9F101009BEAAC /* swipeDown@2x.png */; };
@@ -617,8 +617,13 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = P1;
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = FCAC;
+				TargetAttributes = {
+					458E90E015B4886D00A82826 = {
+						DevelopmentTeam = R73YBLR7TK;
+					};
+				};
 			};
 			buildConfigurationList = 458E90DB15B4886C00A82826 /* Build configuration list for PBXProject "Proto1" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -833,8 +838,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -846,10 +857,15 @@
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -859,17 +875,27 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -879,8 +905,10 @@
 		458E910015B4886D00A82826 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ADDITIONAL_SDKS = "/Users/filipecalegario/Library/SDKs/VVBasics/iphoneos.sdk /Users/filipecalegario/Library/SDKs/VVOSC/iphoneos.sdk";
+				ADDITIONAL_SDKS = /Users/fcac/Library/SDKs/VVBasics/iphoneos.sdk;
+				"ADDITIONAL_SDKS[arch=*]" = /Users/fcac/Library/SDKs/VVBasics/iphoneos.sdk;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Proto1/Proto1-Prefix.pch";
@@ -889,14 +917,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Proto1\"",
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lVVOSC",
-					"-lVVBasics",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				USER_HEADER_SEARCH_PATHS = "/Users/filipecalegario/Developer/libpd/pd-for-ios/libpd/**";
+				USER_HEADER_SEARCH_PATHS = "/Users/fcac/Developer/libpd/pd-for-ios/libpd/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -904,9 +928,9 @@
 		458E910115B4886D00A82826 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ADDITIONAL_SDKS = "/Users/filipecalegario/Library/SDKs/VVBasics/iphoneos.sdk /Users/filipecalegario/Library/SDKs/VVOSC/iphoneos.sdk";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Filipe A Calegario";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Filipe A Calegario";
+				ADDITIONAL_SDKS = /Users/fcac/Library/SDKs/VVBasics/iphoneos.sdk;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Proto1/Proto1-Prefix.pch";
@@ -915,15 +939,10 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/Proto1\"",
 				);
-				OTHER_LDFLAGS = (
-					"-ObjC",
-					"-lVVOSC",
-					"-lVVBasics",
-				);
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1BED200E-7D4C-48AA-9802-1AEFB90FC837";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1BED200E-7D4C-48AA-9802-1AEFB90FC837";
-				USER_HEADER_SEARCH_PATHS = "/Users/filipecalegario/Developer/libpd/pd-for-ios/libpd/**";
+				PROVISIONING_PROFILE = "";
+				USER_HEADER_SEARCH_PATHS = "/Users/fcac/Developer/libpd/pd-for-ios/libpd/**";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

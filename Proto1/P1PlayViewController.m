@@ -26,7 +26,7 @@
 @property (nonatomic, strong) NSMutableArray *touchableObjects;
 @property (nonatomic, strong) NSMutableDictionary *swipeDictionary;
 @property (nonatomic, strong) NSMutableDictionary *patchesDictionary;
-@property (nonatomic, strong) OSCOutPort * outPort;
+//@property (nonatomic, strong) OSCOutPort * outPort;
 @property (nonatomic, strong) UILabel * feedbackMessage;
 
 @property (nonatomic, strong) UIView* currentPannedView;
@@ -45,7 +45,7 @@
 @synthesize patchesToLoad = _patchesToLoad;
 @synthesize currentPannedView = _currentPannedView;
 @synthesize backgroundForPlayArea = _backgroundForPlayArea;
-@synthesize outPort = _outPort;
+//@synthesize outPort = _outPort;
 @synthesize feedbackMessage = _feedbackMessage;
 @synthesize patchesDictionary = _patchesDictionary;
 
@@ -55,7 +55,7 @@
 
 - (void)setupForPlayWith
 {
-    [self setupOSCManager];
+    //[self setupOSCManager];
     
     UIPanGestureRecognizer* panOnEverything = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panOnEverything:)];
     panOnEverything.delegate = self;
@@ -791,7 +791,7 @@
         [PdBase sendBangToReceiver:action.description];
         
     } else if ([action.patch isEqualToString:@"NotPD"]){
-        [self sendMessageWithAddress:action.description value:0];
+        //[self sendMessageWithAddress:action.description value:0];
     }
     
  }
@@ -806,7 +806,7 @@
 
 
 //======== OSC MESSAGES ========
-
+/*
 - (void)setupOSCManager
 {
     // create an OSCManager- set myself up as its delegate
@@ -842,6 +842,8 @@
 {
     //NSLog(m.address);
 }
+
+*/
 
 //======== MANDAR PRA UTILS ========
 -(float)mapThis:(float)a fromMin:(float)fmin fromMax:(float)fmax toMin:(float)tmin toMax:(float)tmax

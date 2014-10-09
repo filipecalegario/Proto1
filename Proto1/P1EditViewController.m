@@ -9,7 +9,7 @@
 #define NSLog(__FORMAT__, ...) TFLog((@"%s [Line %d] " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__)
 
 #import "P1EditViewController.h"
-
+#import "TestFlight.h"
 #import "P1InputObjectView.h"
 #import "P1AddObjectMenuViewController.h"
 #import "P1PlayViewController.h"
@@ -225,7 +225,7 @@
 
 //======== SEGUES ========
 - (IBAction)launchFeedback:(id)sender {
-    [TestFlight openFeedbackView];
+    //[TestFlight openFeedbackView];
     NSLog(@"Open Feedback");
     [TestFlight passCheckpoint:@"Open Feedback"];
 }
@@ -400,6 +400,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [TestFlight takeOff:@"c5f999f0-40dd-4051-ae31-798779c3f737"];
     
     UIBarButtonItem *helpButton = [[UIBarButtonItem alloc] initWithTitle:@"Help" style:UIBarButtonItemStyleBordered target:self action:@selector(helpButtonAction:)];
     
